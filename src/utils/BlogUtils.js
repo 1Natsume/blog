@@ -1,4 +1,3 @@
-import $ from "../assets/lib/toast/jquery.toast.min";
 import $MT from "../assets/lib/myukitoast/myukitoast";
 // 首先创建一个MyukiToast的实例
 
@@ -155,20 +154,6 @@ let utils = {
 
 
   showInfoMsg: (msg) => {
-    /*$.toast({
-      heading: 'Can I add <em>icons</em>?',
-      text: 'Yes! check this <a href="https://github.com/kamranahmedse/jquery-toast-plugin/commits/master">update</a>.',
-      hideAfter: false,
-      icon: 'success'
-    })*/
-    // $.toast({
-    //   text: msg,
-    //   icon: 'info',
-    //   hideAfter: 2000,
-    //   position: 'top-center',
-    //   loader: false,
-    // });
-
     toastObj.toast({
       type: 'primary', 
       message: msg,
@@ -183,14 +168,6 @@ let utils = {
     });
   },
   showErrMsg: (msg) => {
-    // $.toast({
-    //   text: msg,
-    //   icon: 'error',
-    //   hideAfter: 2000,
-    //   position: 'top-center',
-    //   loader: false,
-    // });
-
     toastObj.toast({
       type: 'danger',
       message: msg, 

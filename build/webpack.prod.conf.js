@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader/dist/index')
 //const ExtractTextPlugin = require('extract-text-webpack-plugin')
 //const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -43,11 +44,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     // }
   },
   plugins: [
+    new VueLoaderPlugin(),
     new CleanWebpackPlugin(), // 自动清理 /dist 目录
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      "process.env": env,
-    }),
     new MiniCssExtractPlugin({
       filename: 'css/manifest.[contentHash:8].css'
     }),
@@ -124,14 +122,14 @@ const webpackConfig = merge(baseWebpackConfig, {
     // }),
 
     // copy custom static assets
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "../static"),
-          to: config.dev.assetsSubDirectory,
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, "../static"),
+    //       to: config.dev.assetsSubDirectory,
+    //     },
+    //   ],
+    // }),
   ],
 });
 

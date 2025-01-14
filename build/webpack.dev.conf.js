@@ -48,8 +48,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      filename: "./public/index.html",
-      template: "./public/index.html",
+      filename: "index.html",
+      template: "index.html",
       inject: true,
     }),
     // copy custom static assets

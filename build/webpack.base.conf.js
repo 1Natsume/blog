@@ -4,7 +4,6 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const { use } = require('vue/types/umd')
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -12,7 +11,9 @@ function resolve(dir) {
 module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, '../'),
-  entry:  './src/main.js',
+  entry:  {
+    app:'./src/main.js'
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

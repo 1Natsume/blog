@@ -83,7 +83,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 #article_body{
   border-right: 1px solid #dee5e7;
   box-sizing: border-box;
@@ -102,4 +102,4 @@
   }
 
 }
-</style>
+</style> -->

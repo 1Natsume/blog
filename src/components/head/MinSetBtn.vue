@@ -12,7 +12,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #min_set_btn {
     height: $headHeight;
     width: $headHeight;
@@ -37,4 +37,4 @@
     color: rgba(240, 240, 240, .9);
   }
 
-</style>
+</style> -->

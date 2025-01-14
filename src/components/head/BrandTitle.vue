@@ -18,7 +18,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #brand_title{
     top: 0;
     position: absolute;
@@ -40,4 +40,4 @@
       cursor: pointer;
     }
   }
-</style>
+</style> -->

@@ -63,7 +63,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #article_title {
     .article-page-head-wrap {
       border-bottom: 1px solid #e2e8ea;
@@ -102,4 +102,4 @@
       }
     }
   }
-</style>
+</style> -->

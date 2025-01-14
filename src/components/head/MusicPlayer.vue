@@ -196,7 +196,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #music_player {
     color: #a6a8b1;
     width: 250px;
@@ -410,4 +410,4 @@
       }
     }
   }
-</style>
+</style> -->

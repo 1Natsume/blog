@@ -115,7 +115,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #pub_aside {
     width: 100%;
     font-size: 10px;
@@ -220,4 +220,4 @@
       }
     }
   }
-</style>
+</style> -->

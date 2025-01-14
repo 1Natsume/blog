@@ -24,7 +24,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #set_btn{
     display: inline-block;
     vertical-align: top;
@@ -63,4 +63,4 @@
       }
     }
   }
-</style>
+</style> -->

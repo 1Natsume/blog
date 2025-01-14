@@ -134,7 +134,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #article_message {
     .article-message-wrap {
       .message-title {
@@ -273,4 +273,4 @@
       }
     }
   }
-</style>
+</style> -->

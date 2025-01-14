@@ -27,12 +27,13 @@
     import blogUtils from "../../utils/BlogUtils";
     import TocHelper from '../../assets/lib/toc/toc-helper';
     import $ from 'jquery';
+    import $bus from '@/utils/mitt'
 
     export default {
         name: "BlogFullPage",
         methods: {
             closeFullScreenEven: function () {
-                this.$bus.emit("closeFullScreenEven", true);
+                $bus.emit("closeFullScreenEven", true);
             }
         },
         data: () => {
@@ -46,7 +47,7 @@
         },
         created: function () {
             /*监听打开全屏*/
-            this.$bus.on("openFullScreenEven", (data) => {
+            $bus.on("openFullScreenEven", (data) => {
                 let newBody = $(data.body);
                 newBody.find("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]").each((i, e) => {
                     let ei = $(e);
@@ -90,14 +91,14 @@
                 },);
 
             });
-            this.$bus.on("closeFullScreenEven", (dom) => {
+           $bus.on("closeFullScreenEven", (dom) => {
                 this.isOpenFullScreen = false;
             });
         }
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 
   #blog_article_full_screen {
     position: absolute;
@@ -228,4 +229,4 @@
     }
   }
 
-</style>
+</style> -->

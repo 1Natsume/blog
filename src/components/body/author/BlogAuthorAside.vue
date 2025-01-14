@@ -67,7 +67,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #blog_author_aside {
     display: inline-block;
     vertical-align: top;
@@ -168,4 +168,4 @@
       }
     }
   }
-</style>
+</style> -->

@@ -43,9 +43,9 @@ let routes = [
         component: Admin,
     },
     {
-        path: '*',
+        path:'/:pathMatch(.*)*',
         redirect: "/"
-    }
+    },
 ]
 
 const router = createRouter({

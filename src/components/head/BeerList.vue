@@ -45,7 +45,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #beer_list:before,#beer_list:after{
     content: "";
     height: 1px;
@@ -137,4 +137,4 @@
     }
   }
 
-</style>
+</style> -->

@@ -61,7 +61,7 @@
     name: "RouteBodyShade"
   }
 </script>
-
+<!-- 
 <style lang="scss">
 
   #route_body_shade {
@@ -194,4 +194,4 @@
       display: inline-block;
     }
   }
-</style>
+</style> -->

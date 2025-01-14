@@ -87,7 +87,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #panel_aside {
     width: 100%;
     height: 100%;
@@ -123,4 +123,4 @@
       }
     }
   }
-</style>
+</style> -->

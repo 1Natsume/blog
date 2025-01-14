@@ -1,8 +1,3 @@
-"use strict";
-//const { context } = require("build/webpack.base.conf");
-// Template version: 1.3.1
-// see http://vuejs-templates.github.io/webpack for documentation.
-
 const path = require("path");
 const PosfixZero = function(num, n) {
   return (num + Array(n).join(0)).slice(0, n);
@@ -60,7 +55,7 @@ module.exports = {
 
     host: "localhost", // can be overwritten by process.env.HOST
     port: 8080,
-    autoOpenBrowser: true,
+    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false,

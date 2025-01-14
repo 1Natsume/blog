@@ -141,7 +141,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   $imgAllWidth: 84px;
   $itemTop: 20px;
   #blog_author_ing {
@@ -469,4 +469,4 @@
     }
 
   }
-</style>
+</style> -->

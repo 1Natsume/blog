@@ -85,7 +85,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #article_desc{
     .article-page-body-wrap{
 
@@ -156,4 +156,4 @@
       }
     }
   }
-</style>
+</style> -->

@@ -1,4 +1,5 @@
 import $MT from "../assets/lib/myukitoast/myukitoast";
+import $ from 'jquery';
 // 首先创建一个MyukiToast的实例
 
 let toastObj = $MT(

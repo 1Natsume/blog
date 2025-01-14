@@ -51,7 +51,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #avatar_area:hover{
     background: url("https://cjunn.gitee.io/blog_theme_atum/img/body/float.gif");
     background-size: cover;
@@ -87,4 +87,4 @@
       }
     }
   }
-</style>
+</style> -->

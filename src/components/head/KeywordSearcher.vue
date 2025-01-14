@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 #keyword_searcher:before {
   content: "";
   height: 1px;
@@ -145,4 +145,4 @@ export default {
 
   }
 }
-</style>
+</style> -->

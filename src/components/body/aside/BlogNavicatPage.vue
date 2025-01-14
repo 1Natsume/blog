@@ -83,7 +83,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #blog_navicat_page {
     .blog-navicat-page::-webkit-scrollbar {
       display: none
@@ -96,4 +96,4 @@
     }
 
   }
-</style>
+</style> -->

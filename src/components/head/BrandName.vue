@@ -26,7 +26,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #brand_name{
     display: inline-block;
     height: $headHeight;
@@ -88,4 +88,4 @@
       }
     }
   }
-</style>
+</style> -->

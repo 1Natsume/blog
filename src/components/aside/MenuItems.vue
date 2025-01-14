@@ -85,7 +85,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #menu_items {
     font-size: 0px;
 
@@ -186,4 +186,4 @@
       }
     }
   }
-</style>
+</style> -->

@@ -28,7 +28,7 @@
     }
   }
 </script>
-<style lang="scss">
+<!-- <style lang="scss">
   .loading-bar {
     .preloaderbarShow {
       transform: translateY(0) !important;
@@ -185,4 +185,4 @@
       }
     }
   }
-</style>
+</style> -->

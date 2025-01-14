@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const { VueLoaderPlugin } = require('vue-loader/dist/index')
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -10,7 +11,7 @@ function resolve(dir) {
 
 module.exports = {
   mode: 'development',
-  context: path.resolve(__dirname, '../'),
+  //context: path.resolve(__dirname, '../'),
   entry:  {
     app:'./src/main.js'
   },
@@ -20,12 +21,12 @@ module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath,
-    clean: true,
   },
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.join(__dirname, 'src')
     }
   },
   module: {
@@ -59,7 +60,11 @@ module.exports = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         type: utils.assetsPath('fonts/'),
-        dependency: { not: ['url'] }
+        dependency: { not: ['url'] },
+        // options: {
+        //   limit: 10000,
+        //   name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+        // }
       },
       // {
       //   test: /\.css$/,
@@ -70,5 +75,8 @@ module.exports = {
       //   ]
       // }
     ]
-  }
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+  ],
 }

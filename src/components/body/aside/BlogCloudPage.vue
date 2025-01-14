@@ -35,7 +35,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #blog_cloud_page {
     .menu-body-item {
       padding: 15px 8px 0px 8px;
@@ -103,4 +103,4 @@
       }
     }
   }
-</style>
+</style> -->

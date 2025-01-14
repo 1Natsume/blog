@@ -22,7 +22,6 @@
       }
     },
     methods:{
-
       resetView:function(){
         return;
         let left=this.$refs.routeView.$el.clientHeight;

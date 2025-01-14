@@ -30,12 +30,13 @@
   import BlogFullPage from "./full/BlogFullPage.vue";
   import Tools from "./common/Tools.vue"
   import Headertop from "./common/headertop.vue";
+  import $bus from '@/utils/mitt'
 
   export default {
     name: "BlogPanel",
     methods: {
       panelScrollEvent:function(e){
-        this.$bus.emit("panelScrollEven", e);
+        $bus.emit("panelScrollEven", e);
       }
     },
     data: () => {
@@ -52,23 +53,23 @@
       BlogFullPage,Headertop,
       BlogBottom, LoadingBar, LoadingBody, RouteBody, ArticlesBody, PanelAside, BlogHeadBar,Tools},
     beforeRouteUpdate: function (to, from, next) {
-      this.$bus.emit("fullLoadingOpen", next);
+      $bus.emit("fullLoadingOpen", next);
     },
     mounted: function () {
       /*监控滑到顶部事件*/
-      this.$bus.on("panelToTop", () => {
+      $bus.on("panelToTop", () => {
         document.getElementById("panel_top_target").scrollIntoView({behavior: "smooth"});
       });
       /*监控滑到底部事件*/
-      this.$bus.on("panelToBottom", () => {
+      $bus.on("panelToBottom", () => {
         document.getElementById("panel_bottom_target").scrollIntoView({behavior: "smooth"});
       });
       /*小屏切换顶部设置界面*/
-      this.$bus.on("switchPanelAside",()=>{
+      $bus.on("switchPanelAside",()=>{
         this.asideIsShow=!this.asideIsShow;
       });
       /*全屏加载开启*/
-      this.$bus.on("fullLoadingOpen", (next) => {
+      $bus.on("fullLoadingOpen", (next) => {
         this.$nextTick(() => {
           this.$refs.loadingBody?this.$refs.loadingBody.openLoading(() => {
             next?next():'';
@@ -78,24 +79,24 @@
         })
       });
       /*全屏加载关闭*/
-      this.$bus.on("fullLoadingClose", () => {
+      $bus.on("fullLoadingClose", () => {
         this.$nextTick(() => {
           this.$refs.loadingBody?this.$refs.loadingBody.closeLoading():'';
         })
       });
       /*条加载开启*/
-      this.$bus.on("barLoadingOpen", () => {
+      $bus.on("barLoadingOpen", () => {
         this.$nextTick(()=>{
           this.$refs.loadingBar?this.$refs.loadingBar.openLoadingBar():'';
         })
       });
       /*条加载关闭*/
-      this.$bus.on("barLoadingClose", () => {
+      $bus.on("barLoadingClose", () => {
         this.$nextTick(()=>{
           this.$refs.loadingBar?this.$refs.loadingBar.closeLoadingBar():'';
         })
       });
-      this.routeMinHeight=(this.$refs.routerView.clientHeight-40);
+      routeMinHeight=(this.$refs.routerView.clientHeight-40);
     }
   }
 </script>

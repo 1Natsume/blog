@@ -69,7 +69,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #blog_info_page {
     .menu-body-item {
       padding: 8px 5px 0px 6px;
@@ -119,4 +119,4 @@
 
     }
   }
-</style>
+</style> -->

@@ -58,7 +58,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #pop_list{
     width: 100%;
     position: absolute;
@@ -113,4 +113,4 @@
       }
     }
   }
-</style>
+</style> -->

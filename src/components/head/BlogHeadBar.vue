@@ -61,10 +61,13 @@
 
 <style lang="scss">
   #blog_head_bar {
-    position: relative;
+    &{
+      position: relative;
     z-index: 100;
     transition: all 0.4s ease 0s;
     box-shadow: 0 1px 4px 1px rgba(0,0,0,.05);
+    }
+    
     .float-right-wrap {
       height: 100%;
       float: right;

@@ -17,7 +17,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #blog_cloud_ad{
     padding: 0 5px;
     .pub-body-title{
@@ -31,4 +31,4 @@
       }
     }
   }
-</style>
+</style> -->

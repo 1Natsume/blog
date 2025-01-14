@@ -24,7 +24,7 @@
     }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #page_line{
     .post-comment-num{
       text-align: center;
@@ -89,4 +89,4 @@
 
     }
   }
-</style>
+</style> -->

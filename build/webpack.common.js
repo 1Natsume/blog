@@ -35,21 +35,39 @@ module.exports = {
         loader: 'vue-loader',
         options:vueLoaderConfig
       },
-      // {//设置css的解析规则
-      //   test: /\.css$/,
-      //   use: [
-      //     { loader: 'style-loader' },
-      //     { loader: 'css-loader' },
-      //   ]
-      // },
-      // { // 设置less的解析规则
-      //   test: /\.scss$/,
-      //   use: [
-      //     { loader: 'style-loader' },
-      //     { loader: 'css-loader' },
-      //     { loader: 'sass-loader' }
-      //   ]
-      // },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {//设置css的解析规则
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+        ]
+      },
+      { // 设置less的解析规则
+        test: /\.scss$/,
+        use: [
+          // { loader: 'style-loader' },
+          // { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                path.resolve(__dirname, '../src/assets/scss/global.scss'),
+                path.resolve(__dirname, '../src/assets/scss/deve.scss')]
+            }
+          },
+        ]
+      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

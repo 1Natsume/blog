@@ -11,13 +11,13 @@ const devConfig = {
     filename: 'bundle.js',  // 输出文件名
     path: path.join(__dirname, '..', 'dist')  // 输出目录
   },
-  module: {
-      rules: utils.styleLoaders({
-        sourceMap: config.build.productionSourceMap,
-        extract: true,
-        usePostCSS: true,
-      }),
-    },
+  // module: {
+  //     rules: utils.styleLoaders({
+  //       sourceMap: config.build.productionSourceMap,
+  //       extract: true,
+  //       usePostCSS: true,
+  //     }),
+  //   },
   plugins: [
     new webpack.DefinePlugin({
       "process.env": require("../config/dev.env"),

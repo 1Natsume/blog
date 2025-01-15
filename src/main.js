@@ -3,7 +3,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import App from './App.vue'
-// createApp().use(router).use(store).mount('#app')
+
 const app = createApp(App)
 // 创建axios实例并配置
 //app.config.globalProperties.$axios = axios

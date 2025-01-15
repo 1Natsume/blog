@@ -59,7 +59,7 @@
   }
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
   #blog_head_bar {
     &{
       position: relative;
@@ -80,4 +80,4 @@
       }
     }
   }
-</style>
+</style> -->

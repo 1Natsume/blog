@@ -5,16 +5,18 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const utils = require('./utils')
 const vueLoaderConfig = require('./vue-loader.conf')
-
+const config = require('../config')
 
 module.exports = {
-  entry: './src/main.js',	//打包的入口
+  entry: {
+    app: './src/main.js'
+  },
   //设置别名
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '..', 'src'),
       '@/components': path.resolve(__dirname, '..', 'src/components'),
-
+      '@/assets': path.resolve(__dirname, '..', 'src/assets'),
       '@/utils': path.resolve(__dirname, '..', 'src/utils'),
     },
   },
@@ -33,7 +35,7 @@ module.exports = {
       {//设置.vue文件的解析规则
         test: /\.vue$/,
         loader: 'vue-loader',
-        options:vueLoaderConfig
+        options: vueLoaderConfig
       },
       {
         test: /\.js$/,
@@ -55,17 +57,10 @@ module.exports = {
       { // 设置less的解析规则
         test: /\.scss$/,
         use: [
-          // { loader: 'style-loader' },
-          // { loader: 'css-loader' },
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
           { loader: 'sass-loader' },
-          {
-            loader: 'sass-resources-loader',
-            options: {
-              resources: [
-                path.resolve(__dirname, '../src/assets/scss/global.scss'),
-                path.resolve(__dirname, '../src/assets/scss/deve.scss')]
-            }
-          },
+          
         ]
       },
       {
@@ -102,10 +97,5 @@ module.exports = {
     //   filename: 'index.html',	//配置输出后的html文件名（可携带目录）
     //   template: './public/index.html'	//配置模板
     // })
-  ],
-  //配置webpack-dev-server将dist下的目录代理到web server
-  devServer: {
-    static: './dist',
-    historyApiFallback: true
-  }
+  ]
 }

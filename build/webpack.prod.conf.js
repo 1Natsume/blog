@@ -28,7 +28,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     path: config.build.assetsRoot,
     filename: utils.assetsPath("js/[name].js"),
     chunkFilename: utils.assetsPath("js/[id].js"),
-    clean: true,
     // optimization:{
     //   runtimeChunk:{
     //     name:'manifest'

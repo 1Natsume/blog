@@ -1,0 +1,4 @@
+{
+    "build": "node build/build.js",
+    "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js"
+}

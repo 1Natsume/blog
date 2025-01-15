@@ -69,7 +69,7 @@
   import BlogNavicatPage from "./BlogNavicatPage.vue";
   import BlogCloudAd from "./BlogCloudAd.vue";
   import BlogContext from "../../../context/BlogContext";
-
+  import $bus from '@/utils/mitt'
   export default {
     components: {BlogCloudAd, BlogNavicatPage, BlogCloudPage, AsideInfoPage},
     name: "BodyAside",
@@ -108,7 +108,7 @@
           });
         })
       });
-      this.$bus.on("articleInited", function (dom) {
+      $bus.on("articleInited", function (dom) {
         this.selectItem=1;
       });
     }

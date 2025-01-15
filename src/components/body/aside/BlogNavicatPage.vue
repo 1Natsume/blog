@@ -12,7 +12,7 @@
     import $ from 'jquery';
     import TocHelper from '../../../assets/lib/toc/toc-helper'
     import blogUtils from "../../../utils/BlogUtils";
-
+    import $bus from '@/utils/mitt'
     export default {
         name: "BlogNavicatPage",
         data: () => {
@@ -26,12 +26,12 @@
 
         created: function () {
             let self = this;
-            this.$bus.on("articleDestroy", (dom) => {
+            $bus.on("articleDestroy", (dom) => {
                 //$("#blog_cloud_ad").show();
                 $("#toc_page").empty();
             });
             /*监听生成目录*/
-            this.$bus.on("articleInited", function (dom) {
+            $bus.on("articleInited", function (dom) {
                 //$("#blog_cloud_ad").hide();
                 $(dom).attr("data-toc", "#toc_page");
                 if ($("#app div[data-toc]").length == 0) {
@@ -54,15 +54,15 @@
                 topBtnDom.click(() => {
                     if (topBtnDom.hasClass("topBtnDown")) {
                         //Down
-                        self.$bus.emit("panelToBottom", {});
+                        $bus.emit("panelToBottom", {});
                     } else {
                         //Up
-                        self.$bus.emit("panelToTop", {});
+                        $bus.emit("panelToTop", {});
                     }
                 });
                 $("#toc_page .toc-brand").append(topBtnDom);
                 $(".toc-nav").css("max-height", ($(".body-wrap").height() - 140) + "px");
-                self.$bus.on("panelScrollEven", (e) => {
+                $bus.on("panelScrollEven", (e) => {
                     let tocPage = $(".blog-navicat-page");
                     let height = $(".pub-head").height()+$(".pub-body").height()
                     if (e.target.scrollTop > height) {

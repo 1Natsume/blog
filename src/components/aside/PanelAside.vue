@@ -36,6 +36,7 @@
   import blogApi from "../../utils/BlogApi";
   import blogKit from "../../utils/BlogKit";
   import img from "../../assets/Natsume.png";
+  
   let friendList = Object.assign([{title:'C君博客',url:'https://www.cnblogs.com/cjunn/'}], BlogContext.blogFriendList);
   export default {
     name: "PanelAside",
@@ -87,7 +88,7 @@
   }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
   #panel_aside {
     width: 100%;
     height: 100%;
@@ -123,4 +124,4 @@
       }
     }
   }
-</style> -->
+</style>

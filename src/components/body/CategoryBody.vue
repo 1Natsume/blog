@@ -76,7 +76,7 @@ import blogApi from "../../utils/BlogApi";
 import BlogContext from "../../context/BlogContext";
 import PageLine from "../common/PageLine.vue";
 import router from "../../router";
-   import $bus from '@/utils/mitt'
+import $bus from '@/utils/mitt'
 
 let imgList = Array.from(Array(BlogContext.panelItemPic.length - 1), (v, k) => k).sort(() => Math.random() >= 0.5 ? 1 : -1).map((item) => 1 + item);
 
@@ -123,7 +123,7 @@ export default {
         this.arrList = blogKit.convertSubjectUrls(dataList.list);
         this.title=dataList.title;
         this.pageList=dataList.pageList;
-        this.$bus.emit("fullLoadingClose");
+        $bus.emit("fullLoadingClose");
       }
       /*初始化目录*/
       if (this.categoryId && "default" != this.categoryId) {

@@ -29,7 +29,7 @@
     }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
   #article_pre_line{
     font-size: 12px;
     .post-body-title {
@@ -71,4 +71,4 @@
       }
     }
   }
-</style> -->
+</style>

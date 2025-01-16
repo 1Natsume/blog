@@ -137,7 +137,7 @@ export default {
 }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 #articles_comment {
   .comment-top {
     margin-bottom: 12px;
@@ -253,4 +253,4 @@ export default {
     }
   }
 }
-</style> -->
+</style>

@@ -51,40 +51,36 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader', // 将 JS 字符串生成为 style 节点
-          'css-loader'   // 将 CSS 转换成 CommonJS 模块
-        ]
+        use: utils.getStyleLoaders()
       },
       { 
         test: /\.s[ac]ss$/i,
-        use: [
-          // MiniCssExtractPlugin.loader,
-          // 'vue-style-loader',
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          'postcss-loader',
-          //'sass-loader',
-          // {
-          //   loader: 'sass-resources-loader',
-          //   options: {
-          //     resources: [
-          //       path.resolve(__dirname, '../src/assets/scss/variables.scss'),
-          //       path.resolve(__dirname, '../src/assets/scss/global.scss'),
-          //       path.resolve(__dirname, '../src/assets/scss/deve.scss')
-          //       ]
-          //   }
-          // }
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'), // 使用 dart-sass 或 node-sass（根据你的配置）
-              sassOptions: {
-                includePaths: ['../src/assets/scss'] // 确保你的变量文件路径正确
-              }
-            }
-          }
-        ]
+        // use: [
+        //   { loader: 'style-loader' },
+        //   { loader: 'css-loader' },
+        //   'postcss-loader',
+        //   //'sass-loader',
+        //   // {
+        //   //   loader: 'sass-resources-loader',
+        //   //   options: {
+        //   //     resources: [
+        //   //       path.resolve(__dirname, '../src/assets/scss/variables.scss'),
+        //   //       path.resolve(__dirname, '../src/assets/scss/global.scss'),
+        //   //       path.resolve(__dirname, '../src/assets/scss/deve.scss')
+        //   //       ]
+        //   //   }
+        //   // }
+        //   {
+        //     loader: 'sass-loader',
+        //     options: {
+        //       implementation: require('sass'), // 使用 dart-sass 或 node-sass（根据你的配置）
+        //       sassOptions: {
+        //         includePaths: ['../src/assets/scss'] // 确保你的变量文件路径正确
+        //       }
+        //     }
+        //   }
+        // ]
+        use: utils.getStyleLoaders("sass-loader"),
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

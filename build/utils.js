@@ -2,7 +2,7 @@
 const path = require('path')
 const config = require('../config')
 //const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const packageConfig = require('../package.json')
 
 exports.assetsPath = function (_path) {
@@ -110,3 +110,23 @@ exports.createNotifierCallback = () => {
     })
   }
 }
+
+
+// 获取处理样式的Loaders
+exports.getStyleLoaders = (preProcessor) => {
+  return [
+    MiniCssExtractPlugin.loader,
+    "css-loader",
+    {
+      loader: "postcss-loader",
+      options: {
+        postcssOptions: {
+          plugins: [
+            "postcss-preset-env", // 能解决大多数样式兼容性问题
+          ],
+        },
+      },
+    },
+    preProcessor,
+  ].filter(Boolean);
+};

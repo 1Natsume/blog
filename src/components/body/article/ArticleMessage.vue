@@ -74,7 +74,8 @@
       },
     },
     created: function () {
-      this.articleId = String(this.articleId).replace('.html','')
+      console.log(this.articleId)
+      //this.articleId = String(this.articleId).replace('.html','')
       this.initMyCommentList(this.articleId, 1);
       this.$bus.on("commentCommitEvent",()=>{
         this.initMyCommentList(this.articleId, 1);
@@ -134,7 +135,7 @@
   }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
   #article_message {
     .article-message-wrap {
       .message-title {
@@ -273,4 +274,4 @@
       }
     }
   }
-</style> -->
+</style>

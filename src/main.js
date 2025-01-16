@@ -11,12 +11,12 @@ import hljs from '@/assets/lib/highlight/highlight.index'
 import blogUtils from "@/utils/BlogUtils";
 import blogKit from "@/utils/BlogKit";
 import blogShade from "@/utils/BlogShade";
-import $bus from '@/utils/mitt'
+import bus from '@/utils/mitt'
 
 const app = createApp(App)
 // 创建axios实例并配置
 //app.config.globalProperties.$axios = axios
-app.config.globalProperties.$bus = $bus
+app.config.globalProperties.$bus = bus
 app.use(router).use(store)
 app.directive('highlight', function (el) {
     let pres = el.querySelectorAll('pre');

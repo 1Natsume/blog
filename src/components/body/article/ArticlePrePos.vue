@@ -6,8 +6,8 @@
 </template>
 
 <script>
-    import utils from "../../../utils/BlogUtils";
-    import blogApi from "../../../utils/BlogApi";
+    import utils from "@/utils/BlogUtils";
+    import blogApi from "@/utils/BlogApi";
 
     export default {
       props: {

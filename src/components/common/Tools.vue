@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 .changeSkin-gear {
   position: fixed;
   right: 0;
@@ -117,4 +117,4 @@ export default {
 .skin-menu.show {
   transform: scaleX(1);
 }
-</style> -->
+</style>

@@ -23,16 +23,15 @@
         beforeRouterEnter: function () {
             $("#toc_page").empty();
         },
-
         created: function () {
             let self = this;
             $bus.on("articleDestroy", (dom) => {
-                //$("#blog_cloud_ad").show();
+                $("#blog_cloud_ad").show();
                 $("#toc_page").empty();
             });
             /*监听生成目录*/
             $bus.on("articleInited", function (dom) {
-                //$("#blog_cloud_ad").hide();
+                $("#blog_cloud_ad").hide();
                 $(dom).attr("data-toc", "#toc_page");
                 if ($("#app div[data-toc]").length == 0) {
                     return;

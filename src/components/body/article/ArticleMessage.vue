@@ -69,12 +69,12 @@
     },
     watch: {
       articleId: function () {
-        this.articleId = String(this.articleId).replace('.html','')
+        //this.articleId = String(this.articleId).replace('.html','')
         this.initMyCommentList(this.articleId, 1);
       },
     },
     created: function () {
-      console.log(this.articleId)
+      
       //this.articleId = String(this.articleId).replace('.html','')
       this.initMyCommentList(this.articleId, 1);
       this.$bus.on("commentCommitEvent",()=>{

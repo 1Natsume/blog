@@ -82,7 +82,7 @@
     }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 #pagination{
   .post-comment-num{
     //border-top: 1px solid #e7edef;
@@ -146,4 +146,4 @@
 
   }
 }
-</style> -->
+</style>

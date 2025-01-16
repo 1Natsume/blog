@@ -59,14 +59,14 @@
 </template>
 
 <script>
-import emoji from "../../../utils/EmojiUtils";
-import blogApi from "../../../utils/BlogApi";
-import blogKit from "../../../utils/BlogKit";
+import emoji from "@/utils/EmojiUtils";
+import blogApi from "@/utils/BlogApi";
+import blogKit from "@/utils/BlogKit";
 import AsideInfoPage from "./AsideInfoPage.vue";
 import BlogCloudPage from "./BlogCloudPage.vue";
 import BlogNavicatPage from "./BlogNavicatPage.vue";
 import BlogCloudAd from "./BlogCloudAd.vue";
-import BlogContext from "../../../context/BlogContext";
+import BlogContext from "@/context/BlogContext";
 export default {
   components: { BlogCloudAd, BlogNavicatPage, BlogCloudPage, AsideInfoPage },
   name: "BodyAside",
@@ -104,9 +104,9 @@ export default {
         });
       })
     });
-    this.$bus.on("articleInited", function (dom) {
-      this.selectItem = 1;
-    });
+    // this.$bus.on("articleInited", function (dom) {
+    //   this.selectItem = 1;
+    // });
   }
 }
 </script>

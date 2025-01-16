@@ -1,11 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import blogRedirect from "../utils/BlogRedirect";
-import BlogPanel from "../components/BlogPanel.vue";
-import Admin from "../components/Admin.vue";
-import CategoryBody from "../components/body/CategoryBody.vue";
-import ArticleBody from "../components/body/article/ArticleBody.vue";
-import SubjectBody from "../components/body/SubjectBody.vue";
-import BlogAuthorBody from "../components/body/author/BlogAuthorBody.vue";
+
+// 路由懒加载
+const BlogPanel = () => import('../components/BlogPanel.vue')
+const Admin  = () => import("../components/Admin.vue")
+const CategoryBody  = () => import("../components/body/CategoryBody.vue")
+const ArticleBody  = () => import("../components/body/article/ArticleBody.vue")
+const SubjectBody  = () => import("../components/body/SubjectBody.vue")
+const BlogAuthorBody  = () => import("../components/body/author/BlogAuthorBody.vue")
 
 let routes = [
     {
@@ -50,7 +52,7 @@ let routes = [
 
 let base = process.env.BASE_URL;
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
 })
 

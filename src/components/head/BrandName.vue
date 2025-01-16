@@ -6,7 +6,7 @@
         <router-link class="blog-name head-brand-color" :to="'/'" tag="span">&nbsp;{{blogName}}</router-link>
       </div>
     </div>
-    <div class="min-screen" @click="$bus.$emit('switchPanelAside')">
+    <div class="min-screen" @click="this.$bus.$emit('switchPanelAside')">
       <div class="min-screen-wrap">
         <span class="icon iconfont menu"></span>
       </div>

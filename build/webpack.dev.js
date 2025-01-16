@@ -22,7 +22,14 @@ const devConfig = {
   },
   devServer: {
     hot:true,
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        {
+          from: /.*/,
+          to: path.posix.join(config.dev.assetsPublicPath, "index.html"),
+        },
+      ],
+    },
     proxy: config.dev.proxyTable,
   },
   plugins: [

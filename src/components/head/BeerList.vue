@@ -15,8 +15,8 @@
 
 <script>
     import PopList from "./PopList.vue";
-    import blogUtils from "../../utils/BlogUtils";
-    import blogApi from "../../utils/BlogApi";
+    import blogUtils from "@/utils/BlogUtils";
+    import blogApi from "@/utils/BlogApi";
     export default {
       data: () => {
         return {
@@ -44,97 +44,3 @@
       }
     }
 </script>
-
-<!-- <style lang="scss">
-  #beer_list:before,#beer_list:after{
-    content: "";
-    height: 1px;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    z-index: 1;
-    background-color: rgba(20,20,20,.1);
-  }
-  #beer_list:after{
-    bottom: 0px;
-    z-index: 1;
-  }
-  #beer_list:before{
-    z-index: 2;
-    top: 0px;
-  }
-  #beer_list{
-    display: inline-block;
-    height: $headHeight;
-    width: $headHeight;
-    vertical-align: top;
-    position: relative;
-    cursor: pointer;
-    font-size: 12px;
-    position: relative;
-    box-sizing: border-box;
-
-    @include switchHeadBar(){
-      width: 100%;
-
-      text-align: left;
-      height: $headHeight;
-    }
-
-    .beer-list-wrap {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-
-      .beer-wrap {
-        width: $headHeight;
-        height: 100%;
-        line-height: $headHeight;
-        text-align: center;
-        font-weight: bold;
-        color: #a6a8b1;
-        position: absolute;
-        z-index: 1;
-        @include switchHeadBar(){
-          width: 100%;
-          text-align: left;
-        }
-        .beer-inner-wrap:hover {
-          background-color: rgba(0, 0, 0, .12);
-          color: rgba(240, 240, 240, .9);
-        }
-        .beer-inner-wrap{
-          height: $headHeight;
-          overflow: hidden;
-          @include switchHeadBar(){
-            width: 100%;
-            padding-left: 25px;
-          }
-        }
-      }
-
-      .pop-list {
-        position: absolute;
-        left: -134px;
-        width: 260px;
-        z-index: 0;
-        top: $headHeight;
-        @include switchHeadBar(){
-          width: 100%;
-          left: 0;
-          z-index: 0;
-        }
-      }
-
-
-      .trans-enter-active, .trans-leave-active {
-        transition: all .24s ease-in-out 0s;
-      }
-
-      .trans-enter, .trans-leave-to {
-        transform: translateY(-100%);
-      }
-    }
-  }
-
-</style> -->

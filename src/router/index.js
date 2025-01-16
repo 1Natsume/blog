@@ -43,11 +43,12 @@ let routes = [
         component: Admin,
     },
     {
-        path:'/:pathMatch(.*)*',
-        redirect: "/"
+        path: "/:catchAll(.*)", // 不识别的path自动匹配404
+        redirect: '/',
     },
 ]
 
+let base = process.env.BASE_URL;
 const router = createRouter({
     history: createWebHistory(),
     routes

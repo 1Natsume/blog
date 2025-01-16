@@ -1,7 +1,6 @@
 const path = require('path')
 const commonConfig = require('./webpack.common')
 const { merge } = require('webpack-merge')
-const { plugins } = require('./webpack.base.conf')
 const webpack = require("webpack");
 const utils = require("./utils");
 const config = require("../config");
@@ -22,6 +21,7 @@ const devConfig = {
     filename: '[name].js',
   },
   devServer: {
+    hot:true,
     historyApiFallback: true,
     proxy: config.dev.proxyTable,
   },

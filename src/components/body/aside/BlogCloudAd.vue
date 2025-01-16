@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import BlogContext from "../../../context/BlogContext";
+  import BlogContext from "@/context/BlogContext";
     export default {
         name: "BlogCloudAd",
         data: () => {
@@ -16,19 +16,3 @@
       }
     }
 </script>
-
-<!-- <style lang="scss">
-  #blog_cloud_ad{
-    padding: 0 5px;
-    .pub-body-title{
-      margin-bottom: 2px !important;
-    }
-    .blog-cloud-ad-item{
-      padding: 5px 0;
-      img{
-        width: 100%;
-        cursor: pointer;
-      }
-    }
-  }
-</style> -->

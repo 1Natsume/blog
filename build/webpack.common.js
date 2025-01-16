@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const utils = require('./utils')
 const vueLoaderConfig = require('./vue-loader.conf')
 const config = require('../config')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const cssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -47,20 +49,41 @@ module.exports = {
           }
         }
       },
-      {//设置css的解析规则
+      {
         test: /\.css$/,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
+          'style-loader', // 将 JS 字符串生成为 style 节点
+          'css-loader'   // 将 CSS 转换成 CommonJS 模块
         ]
       },
-      { // 设置less的解析规则
-        test: /\.scss$/,
+      { 
+        test: /\.s[ac]ss$/i,
         use: [
+          // MiniCssExtractPlugin.loader,
+          // 'vue-style-loader',
           { loader: 'style-loader' },
           { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-          
+          'postcss-loader',
+          //'sass-loader',
+          // {
+          //   loader: 'sass-resources-loader',
+          //   options: {
+          //     resources: [
+          //       path.resolve(__dirname, '../src/assets/scss/variables.scss'),
+          //       path.resolve(__dirname, '../src/assets/scss/global.scss'),
+          //       path.resolve(__dirname, '../src/assets/scss/deve.scss')
+          //       ]
+          //   }
+          // }
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'), // 使用 dart-sass 或 node-sass（根据你的配置）
+              sassOptions: {
+                includePaths: ['../src/assets/scss'] // 确保你的变量文件路径正确
+              }
+            }
+          }
         ]
       },
       {
@@ -81,13 +104,18 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        type: utils.assetsPath('fonts/'),
         dependency: { not: ['url'] },
-        // options: {
-        //   limit: 10000,
-        //   name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        // }
+        type: 'asset/resource', // 或者使用 'asset/resource' 和 'asset/inline' 根据需要选择
+        generator: {
+          filename: utils.assetsPath('font/[name].[hash:7].[ext]') // 输出目录和文件名格式
+        }
       },
+    ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new cssMinimizerPlugin()
     ],
   },
   devtool: 'inline-source-map',	//错误追踪工具
@@ -97,5 +125,9 @@ module.exports = {
     //   filename: 'index.html',	//配置输出后的html文件名（可携带目录）
     //   template: './public/index.html'	//配置模板
     // })
+    new MiniCssExtractPlugin({
+      filename: utils.assetsPath('css/[name].css'), // 生成的文件以10位hash值为文件名
+      chunkFilename: utils.assetsPath("css/[id].css"),
+    })
   ]
 }

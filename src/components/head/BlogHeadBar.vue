@@ -58,26 +58,3 @@
     }
   }
 </script>
-
-<!-- <style lang="scss">
-  #blog_head_bar {
-    &{
-      position: relative;
-    z-index: 100;
-    transition: all 0.4s ease 0s;
-    box-shadow: 0 1px 4px 1px rgba(0,0,0,.05);
-    }
-    
-    .float-right-wrap {
-      height: 100%;
-      float: right;
-      @include switchHeadBar(){
-        height: 0px;
-        float: none;
-        z-index: -1;
-        position: absolute;
-        width: 100%;
-      }
-    }
-  }
-</style> -->

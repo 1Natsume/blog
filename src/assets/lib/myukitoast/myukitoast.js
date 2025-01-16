@@ -39,21 +39,21 @@ import "./myukitoast.css"
 			constructor: MyukiToast,
 
 			init: function (option, undefined) {
-				console.log(this.help());
+				//console.log(this.help());
 				this._domName = defaultSetting.defaultDom;
 				let temp = $.extend({}, defaultSetting, arguments[1]);
-				console.log(arguments);
+				//console.log(arguments);
 				typeof arguments[0] == 'string' ? this._domName = arguments[0].toString() : temp = $.extend({}, temp, arguments[0]);
 				this._setting = temp;
 				let dom = this.getDomName();
 				if ($(dom).length < 1) {
-					console.log('No such dom: ' + dom);
+					//console.log('No such dom: ' + dom);
 					let domName = defaultSetting.defaultDom + '-' + new Date().getTime();
 					let newDiv = $('<div></div>');
 					newDiv.attr('id', domName);
 					$('body').append(newDiv);
 					this._domName = '#' + domName;
-					console.log('Generate a new dom: ' + this.getDomName());
+					//console.log('Generate a new dom: ' + this.getDomName());
 				}
 				dom = this.getDomName();
 				let setting = this.getSetting();
@@ -99,7 +99,7 @@ import "./myukitoast.css"
 				});
 				onesetting.dismissible == true ? toastOne.addClass('dismissible') : toastOne.removeClass('dismissible');
 				$(dom).prepend(toastOne);
-				console.log('Add a toast: ' + onesetting.message);
+				//console.log('Add a toast: ' + onesetting.message);
 				let timer;
 				onesetting.autoHide == true ? timer = setTimeout(function () {
 					toastOne.removeClass(onesetting.animation).addClass(onesetting.autoHideAnimation);

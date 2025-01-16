@@ -12,11 +12,11 @@
 <script>
   import BlogContext from "../../context/BlogContext";
 
-  console.log(
-    BlogContext.outPrint[0],
-    BlogContext.outPrint[1],
-    BlogContext.outPrint[2]
-  );
+  // console.log(
+  //   BlogContext.outPrint[0],
+  //   BlogContext.outPrint[1],
+  //   BlogContext.outPrint[2]
+  // );
   let page = BlogContext.myPage;
   let detail = BlogContext.myUrl;
   export default {

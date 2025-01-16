@@ -32,10 +32,10 @@
   /*面板侧边控件*/
   import AvatarArea from "./AvatarArea.vue";
   import MenuItems from "./MenuItems.vue";
-  import BlogContext from "../../context/BlogContext";
-  import blogApi from "../../utils/BlogApi";
-  import blogKit from "../../utils/BlogKit";
-  import img from "../../assets/Natsume.png";
+  import BlogContext from "@/context/BlogContext";
+  import blogApi from "@/utils/BlogApi";
+  import blogKit from "@/utils/BlogKit";
+  import img from "@/assets/Natsume.png";
   
   let friendList = Object.assign([{title:'C君博客',url:'https://www.cnblogs.com/cjunn/'}], BlogContext.blogFriendList);
   export default {
@@ -97,7 +97,7 @@
     .panel-aside-wrap {
       position: absolute;
       top: 0;
-      bottom: $headHeight;
+      bottom: 50px;
       overflow-y: scroll;
       width: 100%;
     }
@@ -106,7 +106,7 @@
 
       position: absolute;
       bottom: 0px;
-      height: $headHeight;
+      height: 50px;
       width: 100%;
 
       .blog-menu-bar {

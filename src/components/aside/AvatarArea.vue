@@ -1,7 +1,7 @@
 <template>
   <div id="avatar_area" class="panel-avatar-dec">
     <div class="avatar-area-wrap" @click="foucsMe">
-      <router-link :to="VUE_CTX+'/author'"  :onerror="'this.src=\''+avatarObj.face+'\';this.onerror=null;'"><img :src="avatarObj.avatar"/></router-link>
+      <router-link :to="'c/author'"  :onerror="'this.src=\''+avatarObj.face+'\';this.onerror=null;'"><img :src="avatarObj.avatar"/></router-link>
       <div class="panel-avatar-sign">
         <div class="name-wrap panel-aside-color">
           <span>{{avatarName}}</span>
@@ -16,9 +16,9 @@
 </template>
 
 <script>
-  import blogUtils from "../../utils/BlogUtils";
-  import BlogContext from "../../context/BlogContext";
-  import blogApi from "../../utils/BlogApi";
+  import blogUtils from "@/utils/BlogUtils";
+  import BlogContext from "@/context/BlogContext";
+  import blogApi from "@/utils/BlogApi";
   export default {
 
     name: "AvatarArea",
@@ -51,7 +51,7 @@
   }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
   #avatar_area:hover{
     background: url("https://cjunn.gitee.io/blog_theme_atum/img/body/float.gif");
     background-size: cover;
@@ -87,4 +87,4 @@
       }
     }
   }
-</style> -->
+</style>

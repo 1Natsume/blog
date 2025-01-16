@@ -1,7 +1,7 @@
 <template>
   <div id="blog_panel">
     <blog-full-page></blog-full-page>
-    <Headertop></Headertop>
+    <!-- <Headertop></Headertop> -->
     <blog-head-bar class="blog-head-bar"></blog-head-bar>
     <div class="main-panel">
       <panel-aside id="panel_aside" class="panel-aside"
@@ -33,13 +33,12 @@ import BlogBottom from "./bottom/BlogBottom.vue";
 import BlogFullPage from "./full/BlogFullPage.vue";
 import Tools from "./common/Tools.vue"
 import Headertop from "./common/headertop.vue";
-import $bus from '@/utils/mitt'
 
 export default {
   name: "BlogPanel",
   methods: {
     panelScrollEvent: function (e) {
-      $bus.emit("panelScrollEven", e);
+      this.$bus.emit("panelScrollEven", e);
     }
   },
   data: () => {
@@ -57,23 +56,23 @@ export default {
     BlogBottom, LoadingBar, LoadingBody, RouteBody, ArticlesBody, PanelAside, BlogHeadBar, Tools
   },
   beforeRouteUpdate: function (to, from, next) {
-    $bus.emit("fullLoadingOpen", next);
+    this.$bus.emit("fullLoadingOpen", next);
   },
   mounted: function () {
     /*监控滑到顶部事件*/
-    $bus.on("panelToTop", () => {
+    this.$bus.on("panelToTop", () => {
       document.getElementById("panel_top_target").scrollIntoView({ behavior: "smooth" });
     });
     /*监控滑到底部事件*/
-    $bus.on("panelToBottom", () => {
+    this.$bus.on("panelToBottom", () => {
       document.getElementById("panel_bottom_target").scrollIntoView({ behavior: "smooth" });
     });
     /*小屏切换顶部设置界面*/
-    $bus.on("switchPanelAside", () => {
+    this.$bus.on("switchPanelAside", () => {
       this.asideIsShow = !this.asideIsShow;
     });
     /*全屏加载开启*/
-    $bus.on("fullLoadingOpen", (next) => {
+    this.$bus.on("fullLoadingOpen", (next) => {
       this.$nextTick(() => {
         this.$refs.loadingBody ? this.$refs.loadingBody.openLoading(() => {
           next ? next() : '';
@@ -83,19 +82,19 @@ export default {
       })
     });
     /*全屏加载关闭*/
-    $bus.on("fullLoadingClose", () => {
+    this.$bus.on("fullLoadingClose", () => {
       this.$nextTick(() => {
         this.$refs.loadingBody ? this.$refs.loadingBody.closeLoading() : '';
       })
     });
     /*条加载开启*/
-    $bus.on("barLoadingOpen", () => {
+    this.$bus.on("barLoadingOpen", () => {
       this.$nextTick(() => {
         this.$refs.loadingBar ? this.$refs.loadingBar.openLoadingBar() : '';
       })
     });
     /*条加载关闭*/
-    $bus.on("barLoadingClose", () => {
+    this.$bus.on("barLoadingClose", () => {
       this.$nextTick(() => {
         this.$refs.loadingBar ? this.$refs.loadingBar.closeLoadingBar() : '';
       })

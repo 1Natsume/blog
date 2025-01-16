@@ -1,6 +1,6 @@
 <template>
     <div id="article_body">
-        <article-title :article-info="articleInfo" @openFullScreenEven="openFullScreenEven"></article-title>
+        <article-title :article-info="articleInfo"></article-title>
         <article-pre-line></article-pre-line>
         <article-desc :articleObj="article" class="article-body-item" ></article-desc>
         <article-pre-pos :article-id="articleId" class="article-body-margin"></article-pre-pos>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import blogApi from "../../../utils/BlogApi";
+  import blogApi from "@/utils/BlogApi";
   import ArticleTitle from "./ArticleTitle.vue";
   import ArticlePreLine from "./ArticlePreLine.vue";
   import ArticleDesc from "./ArticleDesc.vue";
@@ -32,12 +32,12 @@
           this.initArticle();
         },
         methods: {
-          openFullScreenEven:function(){
-            this.$bus.emit("openFullScreenEven", {
-              title: this.articleInfo.title,
-              body: this.article.body
-            });
-          },
+          // openFullScreenEven:function(){
+          //   this.$bus.emit("openFullScreenEven", {
+          //     title: this.articleInfo.title,
+          //     body: this.article.body
+          //   });
+          // },
           noticeUpdateEvent:function(commentId){
             this.$refs.articleComment.setUpdateCommentId(commentId);
           },
@@ -82,24 +82,3 @@
         },
     }
 </script>
-
-<!-- <style lang="scss">
-#article_body{
-  border-right: 1px solid #dee5e7;
-  box-sizing: border-box;
-  background-color: #F6F8F9;
-  .article-body-margin{
-    margin: 10px 15px 10px 15px;
-  }
-  .article-body-item{
-    background-color: white;
-    margin: 10px 15px 10px 15px;
-    box-sizing: border-box;
-    box-shadow: 1px 1px 2px rgba(80,80,80,.2);
-    border-radius: 5px;
-    border: 1px solid hsla(0,0%,94.1%,.8);
-    padding: 20px 30px 20px 30px;
-  }
-
-}
-</style> -->

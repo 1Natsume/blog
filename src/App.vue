@@ -1,12 +1,14 @@
 <template>
     <div id="blog" :class="config.theme">
-        <router-view />
+        <div id="app">
+            <router-view />
+        </div>
     </div>
 </template>
 <script>
 import BlogContext from "./context/BlogContext";
-//import "./assets/css/theme/style0.scss";
-//import "./assets/css/theme/style1.scss";
+import "@/assets/scss/theme/style0.scss";
+
 import { mapState } from 'vuex';
 export default {
     name: "App",

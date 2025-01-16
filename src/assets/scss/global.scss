@@ -1,11 +1,7 @@
 @charset "utf-8";
-@import "deve";
+@use 'variables.scss' as *;
+@use 'deve.scss' as *;
 
-$asideWidth: 230px;
-$headHeight: 50px;
-$headBackColor: #3a3f51;
-$bottomHeight: 40px;
-$commentFocusColor: rgb(184, 232, 247);
 /*是否隐藏侧边栏*/
 @mixin hideAsideUnit {
   transform: translateX(-105%);
@@ -168,8 +164,9 @@ $commentFocusColor: rgb(184, 232, 247);
   position: absolute;
   top: 0;
   bottom: 0;
-  @include worksAsideLeft();
   overflow: hidden;
+  @include worksAsideLeft();
+  
 }
 
 .main-center-frame {
@@ -177,9 +174,10 @@ $commentFocusColor: rgb(184, 232, 247);
   vertical-align: top;
   font-size: 0px;
   width: 880px;
-  @include worksBodyWidth();
   height: auto;
   box-sizing: border-box;
+  @include worksBodyWidth();
+  
 }
 
 .main-center-frame {

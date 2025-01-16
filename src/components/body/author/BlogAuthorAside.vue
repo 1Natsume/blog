@@ -40,8 +40,8 @@
 </template>
 
 <script>
-    import blogKit from "../../../utils/BlogKit";
-    import BlogContext from "../../../context/BlogContext";
+    import blogKit from "@/utils/BlogKit";
+    import BlogContext from "@/context/BlogContext";
 
     export default {
         name: "BlogAuthorAside",

@@ -5,6 +5,7 @@ const config = require("../config");
 const utils = require("./utils");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const prodConfig = {
   mode: 'production', // 生产环境
@@ -30,7 +31,9 @@ const prodConfig = {
       },
       chunksSortMode: "auto",
     }),
-  ]
+    
+  ],
+  
 }
 
 module.exports = merge(commonConfig, prodConfig)

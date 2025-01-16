@@ -10,8 +10,8 @@
 
 <script>
     import $ from 'jquery';
-    import TocHelper from '../../../assets/lib/toc/toc-helper'
-    import blogUtils from "../../../utils/BlogUtils";
+    import TocHelper from '@/assets/lib/toc/toc-helper'
+    import blogUtils from "@/utils/BlogUtils";
     import $bus from '@/utils/mitt'
     export default {
         name: "BlogNavicatPage",
@@ -82,18 +82,3 @@
         }
     }
 </script>
-
-<!-- <style lang="scss">
-  #blog_navicat_page {
-    .blog-navicat-page::-webkit-scrollbar {
-      display: none
-    }
-
-    .blog-navicat-page {
-      font-size: 12px;
-      position: relative;
-      width: 235px;
-    }
-
-  }
-</style> -->

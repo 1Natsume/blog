@@ -1,4 +1,4 @@
-import BlogContext from "../context/BlogContext";
+import BlogContext from "@/context/BlogContext";
 let matchUrlType = (pathname) => {
   let regexps=[
     /*请求打开文章*/

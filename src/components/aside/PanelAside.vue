@@ -43,7 +43,7 @@
     components: {MenuItems, AvatarArea},
     data: () => {
       return {
-        mainExtNav: BlogContext.mainExtNav,
+        mainExtNav: BlogContext.menu,
         funcMenuNav: [],
         img: img
       }

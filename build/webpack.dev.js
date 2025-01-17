@@ -21,7 +21,8 @@ const devConfig = {
     filename: '[name].js',
   },
   devServer: {
-    hot:true,
+    open: true, // 是否自动打开浏览器
+    hot: true, // 开启HMR功能（只能用于开发环境，生产环境不需要了）
     historyApiFallback: {
       rewrites: [
         {

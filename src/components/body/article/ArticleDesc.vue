@@ -31,9 +31,9 @@
 </template>
 
 <script>
-  import blogApi from "../../../utils/BlogApi";
-  import blogUtils from "../../../utils/BlogUtils";
-  import blogKit from "../../../utils/BlogKit";
+  import blogApi from "@/utils/BlogApi";
+  import blogUtils from "@/utils/BlogUtils";
+  import blogKit from "@/utils/BlogKit";
   import $bus from '@/utils/mitt'
     export default {
         props: ['articleObj'],
@@ -80,7 +80,7 @@
           },
         },
         beforeUnmount: function () {
-          $bus.emit("articleDestroy", true);
+          this.$bus.emit("articleDestroy", true);
         },
 
     }

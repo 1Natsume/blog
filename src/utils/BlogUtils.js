@@ -102,7 +102,7 @@ let utils = {
       return;
     }
     dom.addClass(initFlag);
-    let copyBtn = $("<span class='copyBtn icon iconfont copy'></span>");
+    let copyBtn = $("<span class='copyBtn icon iconfont copy'>复制</span>");
     copyBtn.click((e) => {
       let codeDom = $(e.target).closest("pre").find("code");
       utils.copyToClip(codeDom.text());

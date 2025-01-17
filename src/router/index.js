@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
-import blogRedirect from "../utils/BlogRedirect";
+import blogRedirect from "@/utils/BlogRedirect";
 
 // 路由懒加载
-const BlogPanel = () => import('../components/BlogPanel.vue')
-const Admin  = () => import("../components/Admin.vue")
-const CategoryBody  = () => import("../components/body/CategoryBody.vue")
-const ArticleBody  = () => import("../components/body/article/ArticleBody.vue")
-const SubjectBody  = () => import("../components/body/SubjectBody.vue")
-const BlogAuthorBody  = () => import("../components/body/author/BlogAuthorBody.vue")
+const BlogPanel = () => import('@/components/BlogPanel.vue')
+const Admin  = () => import("@/components/Admin.vue")
+const CategoryBody  = () => import("@/components/body/CategoryBody.vue")
+const ArticleBody  = () => import("@/components/body/article/ArticleBody.vue")
+const SubjectBody  = () => import("@/components/body/SubjectBody.vue")
+const BlogAuthorBody  = () => import("@/components/body/author/BlogAuthorBody.vue")
 
 let routes = [
     {

@@ -1164,15 +1164,15 @@ p {
       left: 0;
 
 
-      // @include switchHeadBar() {
-      //   .blog-aside-show {
-      //     @include showAside();
-      //   }
+      @include switchHeadBar() {
+        .blog-aside-show {
+          @include showAside();
+        }
 
-      //   .blog-aside-hide {
-      //     @include hideAside();
-      //   }
-      // }
+        .blog-aside-hide {
+          @include hideAside();
+        }
+      }
 
       .panel-aside-shape {
         content: "";
@@ -1185,9 +1185,9 @@ p {
         background-color: rgba(0, 0, 0, .3);
         display: none;
 
-        // @include switchHeadBar() {
-        //   display: inline-block;
-        // }
+        @include switchHeadBar() {
+          display: inline-block;
+        }
       }
 
       .panel-aside-shape-hide {
@@ -1216,10 +1216,10 @@ p {
         width: calc(100% - 230px);
         left: 220px;
 
-        // @include switchHeadBar() {
-        //   width: 100%;
-        //   left: 0;
-        // }
+        @include switchHeadBar() {
+          width: 100%;
+          left: 0;
+        }
       }
 
       .loading-body-clz {
@@ -1230,30 +1230,28 @@ p {
         width: calc(100% - 230px);
         left: 230px;
 
-        // @include switchHeadBar() {
-        //   width: 100%;
-        //   left: 0;
-        // }
+        @include switchHeadBar() {
+          width: 100%;
+          left: 0;
+        }
       }
 
       .route-body {
 
         left: 220px;
         width: calc(100% - 220px);
-
-        // @include switchHeadBar() {
-        //   left: 0px;
-        //   width: 100%;
-        // }
-
         position: absolute;
         top: 0;
-
         overflow-y: scroll;
         display: inline-block;
         height: 100%;
         overflow-x: hidden;
         vertical-align: top;
+
+        @include switchHeadBar() {
+          left: 0px;
+          width: 100%;
+        }
 
         .router-view-wrap {
           min-height: calc(100% - 40px);
@@ -1495,6 +1493,8 @@ p {
     background-color: rgba(255, 255, 255, .9)
   }
 
+  
+  
   @media screen and (min-width: 1200px) {
     .panel-small .post-meta {
       padding: 13px 15px !important

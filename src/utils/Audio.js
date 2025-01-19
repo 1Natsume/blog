@@ -1,4 +1,5 @@
 import $ from "jquery";
+import text from '@/utils/canvasText'
 
 let AudCtx, analyser, dataArray, bufferLength = 0;
 function visualize(audio) {
@@ -25,8 +26,8 @@ function visualize(audio) {
     if (AudCtx) {
       analyser.getByteFrequencyData(dataArray);//获取当前时刻的音频数据
       //part6: 绘画声压条
-      for (var i = 0; i < bufferLength / 16; i++) {
-        
+      for (var i = 0; i < bufferLength; i++) {
+
         var data = dataArray[i];//int,0~255
 
         let barHeight = dataArray[i * 16];
@@ -50,6 +51,16 @@ function visualize(audio) {
 function parseTime(lrcTime) {
   let lrcTimeArr = lrcTime.split(":");
   return lrcTimeArr[0] * 60 + +lrcTimeArr[1];
+}
+ // 获取当前播放到的歌词的下标
+function getIndex(result, audio) {
+  let Time = audio.currentTime;
+  for (let i = 0; i < result.length; i++) {
+    if (result[i].time > Time) {
+      return result[i - 1].word;
+    }
+  }
+
 }
 let audio = {
 
@@ -76,15 +87,12 @@ let audio = {
     }
     return result
   },
-  // 获取当前播放到的歌词的下标
-  getIndex(result, audio,) {
-    let Time = audio.currentTime;
-    for (let i = 0; i < result.length; i++) {
-      if (result[i].time > Time) {
-        return result[i - 1].word;
-      }
+  setText(result, audio){
+    if(result.length==0||result==undefined){
+      return
     }
-
+    let word = getIndex(result, audio);
+    //text([word])
   }
 }
 export default audio;

@@ -1,6 +1,18 @@
 let BlogContext = {
   blogAcc: "newjersey",
-  logo:`<div>123<div>`,
+  logo:`<span class="logolink logo">
+						<a href="/" target="_parent">
+							<ruby>
+								<span class="sakuraso">雪覆盖</span>
+								<span class="no">の</span>
+								<span class="shironeko">誓言</span>
+								<rp></rp>
+								<rt class="chinese-font">newjersey</rt>
+								<rp></rp>
+							</ruby>
+						</a>
+					</span>
+`,
   blogName: `newjersey`,
   adDisplay: "",
   blogUrlPre: "https://www.cnblogs.com/",
@@ -17,10 +29,10 @@ let BlogContext = {
   commentLength: 10,
   openMathJax: false,
   urlMathJax: "https://mathjax.cnblogs.com/2_7_5/MathJax.js?config:TeX-AMS-MML_HTMLorMML",
-  musicApiUrl: "https://api.i-meto.com/meting/api?server:netease&type::type&id::id&r::r",
+  musicApiUrl: "https://api.i-meto.com/meting/api?server=netease&type=:type&id=:id&r=:r",
   extendStylePath: "https://cjunn.gitee.io/blog_theme_atum",
   headBackImg: `https://img2.baidu.com/it/u:1129333932,2974296147&fm:253&fmt:auto&app:138&f:JPEG?w:500&h:500`,
-  //bigBackImg: `${extendStylePath}/img/body/background.jpg`,
+  bg: `../assets/pic/background.jpg`,
   panelItemPic: Array.from(Array(35), (v, k) => (`https://cjunn.gitee.io/blog_theme_atum/img/pageItem/page-item-$I.jpg`).replace("$I", k + 1)),
   panelRightImgPic: Array.from(Array(10), (v, k) => (`https://cjunn.gitee.io/blog_theme_atum/img/menuIcon/menuicon-$I.png`).replace("$I", k)),
   musicSignImg: `https://cjunn.gitee.io/blog_theme_atum/img/body/music_play.png`,

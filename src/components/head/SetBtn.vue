@@ -1,5 +1,5 @@
 <template>
-  <div id="set_btn" class="head-back-color">
+  <div id="set_btn">
     <div class="set-btn-out-wrap">
     <div class="set-btn-wrap" @click="openManagerView">
         <span>设置</span>
@@ -15,10 +15,7 @@
         name: "SetBtn",
         methods:{
           openManagerView:()=>{
-            let res = this.$router.resolve({
-              path:'/admin'
-            })
-            window.open(res.href,'_blank')
+            
           }
         }
     }

@@ -1,7 +1,7 @@
 <template>
-  <div id="beer_list" class="head-back-color">
+  <div id="beer_list">
     <div class="beer-list-wrap">
-      <div class="beer-wrap head-back-color" @click="showPop=!showPop">
+      <div class="beer-wrap" @click="showPop=!showPop">
         <div class="beer-inner-wrap">
           <span class="icon iconfont bell"></span>
         </div>

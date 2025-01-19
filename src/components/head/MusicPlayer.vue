@@ -1,7 +1,7 @@
 <template>
   <div id="music_player">
     <div class="music-player-out-wrap">
-      <div class="music-player-wrap head-back-color">
+      <div class="music-player-wrap">
         <div class="music-img-wrap" :class="{Rotation:isPlay}">
           <div class="div-img head-music-pic" :style="getPicImgStyle"></div>
         </div>
@@ -31,18 +31,19 @@
           <span class="icon iconfont headphones"></span>
         </div>
       </div>
-      <div class="music-player-shade head-back-color"></div>
+      <div class="music-player-shade"></div>
       <transition name="trans">
         <pop-list class="pop-list" ref="popList" v-show="showPlay" :pop-list="musicList" pop-title="音乐列表" :flag="true"
                   @clickItem="clickItem"></pop-list>
       </transition>
     </div>
-    <div id="music_player_lrc"></div>
+    <!-- <div id="music_player_lrc"></div> -->
+    <!-- <canvas id="canvas"></canvas> -->
   </div>
 </template>
 
 <script>
-  import blogUtils from "../../utils/BlogUtils";
+  import blogUtils from "@/utils/BlogUtils";
   import PopList from "./PopList.vue";
   import blogApi from "@/utils/BlogApi";
   import BlogContext from "@/context/BlogContext";
@@ -115,7 +116,8 @@
       musicUpdate: function (even) {
         this.cssStyle.barWidth = ((this.audio.currentTime / this.audio.duration) * this.cssStyle.barMaxWidth).toFixed(0);
         if(this.audio.currentTime / this.audio.duration>0){
-          document.getElementById("music_player_lrc").textContent = audio.getIndex(this.lrc,this.audio);
+          //document.getElementById("music_player_lrc").textContent = audio.getIndex(this.lrc,this.audio);
+          audio.setText(this.lrc,this.audio)
         }
         
         

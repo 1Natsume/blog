@@ -2,11 +2,12 @@
   <div id="blog_panel">
     <blog-full-page></blog-full-page>
     <!-- <Headertop></Headertop> -->
-    <blog-head-bar class="blog-head-bar"></blog-head-bar>
+    <blog-head-bar class="blog-head-bar" :style="loadColor(config.headcolor)"></blog-head-bar>
     <div class="main-panel">
       <panel-aside id="panel_aside" class="panel-aside"
         :class="{ 'blog-aside-show': asideIsShow, 'blog-aside-hide': !asideIsShow }"></panel-aside>
-      <div class="panel-aside-shape" :class="!asideIsShow ? 'panel-aside-shape-hide' : ''" @click="asideIsShow = false">sss
+      <div class="panel-aside-shape" :class="!asideIsShow ? 'panel-aside-shape-hide' : ''" @click="asideIsShow = false">
+        sss
       </div>
       <loading-bar ref="loadingBar" class="loading-bar-clz"></loading-bar>
       <loading-body ref="loadingBody" class="loading-body-clz"></loading-body>
@@ -33,23 +34,31 @@ import BlogBottom from "./bottom/BlogBottom.vue";
 import BlogFullPage from "./full/BlogFullPage.vue";
 import Tools from "./common/Tools.vue"
 import Headertop from "./common/headertop.vue";
-
+import { mapState } from 'vuex';
 export default {
   name: "BlogPanel",
   methods: {
     panelScrollEvent: function (e) {
       this.$bus.emit("panelScrollEven", e);
+    },
+    loadColor(color){
+        return 'background-color: '+color+''
     }
+  },
+  computed: {
+    ...mapState(['config'])
   },
   data: () => {
     return {
       loading: true,
       lastPageId: '',
       routeMinHeight: '',
-      asideIsShow: false
+      asideIsShow: false,
+      headcolor : ''
     }
   },
-  created: function () {
+  created() {
+    
   },
   components: {
     BlogFullPage, Headertop,

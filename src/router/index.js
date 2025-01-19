@@ -29,7 +29,12 @@ let routes = [
                 { path: 'category/:categoryId', component: CategoryBody },
                 { path: 'archive/:archiveYear/:archiveMonth', component: CategoryBody },
                 { path: 'tag/:tagId/', component: CategoryBody },
-                { path: 'p/:articleId', component: ArticleBody }
+                { path: 'p/:articleId', component: ArticleBody },
+                {
+                    path: '/admin',
+                    name: 'Admin',
+                    component: Admin,
+                },
             ]
         },
         {
@@ -39,11 +44,11 @@ let routes = [
         }
         ]
     },
-    {
-        path: '/admin',
-        name: 'Admin',
-        component: Admin,
-    },
+    // {
+    //     path: '/admin',
+    //     name: 'Admin',
+    //     component: Admin,
+    // },
     {
         path: "/:catchAll(.*)", // 不识别的path自动匹配404
         redirect: '/',

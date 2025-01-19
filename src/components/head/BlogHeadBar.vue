@@ -1,5 +1,5 @@
 <template>
-  <div id="blog_head_bar" class="head-back-color" ref="blogHeadBar" :style="{height:minShowSet?'250px':'50px'}">
+  <div id="blog_head_bar" ref="blogHeadBar">
     <brand-title class="brand-title"></brand-title>
     <brand-name></brand-name>
     <min-set-btn class="min-set-btn" @clickSet="switchSetView"></min-set-btn>
@@ -25,7 +25,7 @@
     name: "BlogHeadBar",
     data: () => {
       return {
-        minShowSet:false,
+       
       }
     },
     mounted: function () {

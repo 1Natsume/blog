@@ -1,4 +1,4 @@
-import BlogContext from "../context/BlogContext";
+import BlogContext from "@/context/BlogContext";
 import $ from "jquery";
 import request from "./request";
 let blogApi = {

@@ -60,7 +60,7 @@ let toastObj = $MT(
     /* 默认值: 800
     只对动画 'originFade' 有效，原生fadeOut的时长
     */
-    "autoHideDelay": 5000,
+    "autoHideDelay": 3000,
     /* 默认值: 3000
     弹框自动隐藏的延迟时间
     */

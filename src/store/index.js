@@ -2,14 +2,16 @@ import Vuex from "vuex";
 
 function loadStateConfig() {
   try {
-    localStorage.clear();
+    //localStorage.clear();
     const serializedState = localStorage.getItem("config");
     if (serializedState) {
       return JSON.parse(serializedState);
     } else {
       const config = {
         theme: "style0",
-        bg:["https://api.2heng.xin/cover/"]
+        bg:["https://cdn.54yt.net/usr/uploads/61568506_p0.webp"],
+        headcolor:"#7266ba",
+        asidecolor:"",
       };
       localStorage.setItem("config", JSON.stringify(config));
       return config;

@@ -6,16 +6,20 @@ const utils = require("./utils");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require("webpack");
 
 const prodConfig = {
   mode: 'production', // 生产环境
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath("js/[name].js"),
-    chunkFilename: utils.assetsPath("js/[id].js"),
+    filename: "js/[name].js",
+    chunkFilename: "js/[id].js",
     clean: true, // 每次打包会清除之前的代码 
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env": require("../config/prod.env"),
+    }),
     new CleanWebpackPlugin(), // 自动清理 /dist 目录
     // new MiniCssExtractPlugin({
     //   filename: 'css/manifest.[contentHash:8].css'

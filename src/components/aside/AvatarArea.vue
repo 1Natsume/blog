@@ -1,7 +1,7 @@
 <template>
   <div id="avatar_area" class="panel-avatar-dec">
     <div class="avatar-area-wrap" @click="foucsMe">
-      <router-link :to="'c/author'"  :onerror="'this.src=\''+avatarObj.face+'\';this.onerror=null;'"><img :src="avatarObj.avatar"/></router-link>
+      <router-link :to="'/c/author'"  :onerror="'this.src=\''+avatarObj.face+'\';this.onerror=null;'"><img :src="avatarObj.avatar"/></router-link>
       <div class="panel-avatar-sign">
         <div class="name-wrap panel-aside-color">
           <span>{{avatarName}}</span>
@@ -32,7 +32,7 @@
       return {
         avatarSign: BlogContext.avatarSign,
         avatarName:BlogContext.blogName,
-        avatarObj:{face:'',avatar:''},
+        avatarObj:{face:'',avatar:''}
       }
     },
     methods:{

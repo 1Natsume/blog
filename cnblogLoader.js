@@ -1,14 +1,24 @@
-(function(){
-    var cnblogLoader = function(param) {
-      if (!param) {
-        console.log("缺少必要参数,param[js],param[css]");
+(function($){
+    var cnblogLoader = function(config) {
+      if (!config) {
+        console.log("缺少必要参数,staticSrc");
         return;
       }
+      var staticPath = config.staticSrc + "/";
+
+      var param = {
+        css: [staticPath + "css/app.css"],
+        js: [
+          staticPath + "js/433.js",
+          // staticPath + "js/vendor.js",
+          staticPath + "js/app.js",
+        ],
+        ico: config.staticIco,
+      };
+
       var c_css = param.css;
       var c_js = param.js;
       var c_ico = param.ico;
-      var c_extCss = param.extCss;
-      var c_extJs = param.extJs;
   
       function dynamicLoadIco(url, dom) {
         var link = document.createElement('link');
@@ -69,39 +79,8 @@
           }
         })();
   
-  
-        /*加载扩展Css*/
-        while (c_extCss.length > 0) {
-          dynamicLoadCss(c_extCss.shift(), '');
-        }
-        /*加载扩展JS*/
-        (function () {
-          if (c_extJs.length > 0) {
-            dynamicLoadJs(c_extJs.shift(), '', arguments.callee);
-          }
-        })();
       });
     };
-  
-    var _config = window._config || {};
-    var staticSrc = _config.staticSrc;
-    var staticVer = _config.staticVer;
-    var staticIco = _config.staticIco;
-    var extCss = _config.extCss || [];
-    var extJs = _config.extJs || [];
-    var staticPath = staticSrc + staticVer + "/";
-    var staticParam = {
-      css: [staticPath + "css/app.css"],
-      js: [
-        // staticPath + "js/manifest.js",
-        // staticPath + "js/vendor.js",
-        staticPath + "js/app.js",
-      ],
-      extCss: extCss,
-      extJs: extJs,
-      ico: staticIco,
-    };
-    cnblogLoader(staticParam);
-  })();
-  
+    $.cnblogLoader = cnblogLoader
+  })($);
   

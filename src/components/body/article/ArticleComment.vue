@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import blogUtils from "../../../utils/BlogUtils";
-import EmojiUtils from "../../../utils/EmojiUtils";
-import blogApi from "../../../utils/BlogApi";
+import blogUtils from "@/utils/BlogUtils";
+import EmojiUtils from "@/utils/EmojiUtils";
+import blogApi from "@/utils/BlogApi";
 export default {
   props: {
     articleId: {
@@ -54,13 +54,13 @@ export default {
     pushCommentEvent: function () {
       if (!this.commentId) {
         blogApi.addComment(this.articleId, this.commentBody, this.replayCommentId).then((obj) => {
-          this.$bus.$emit("commentCommitEvent");
+          this.$bus.emit("commentCommitEvent");
           blogUtils.showInfoMsg("评论提交成功");
           this.cancelCommentEvent();
         })
       } else {
         blogApi.updateComment(this.commentId, this.commentBody).then((obj) => {
-          this.$bus.$emit("commentUpdateEvent");
+          this.$bus.emit("commentUpdateEvent");
           blogUtils.showInfoMsg("评论更新成功");
           this.cancelCommentEvent();
         });

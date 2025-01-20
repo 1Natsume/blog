@@ -18,7 +18,7 @@ export default {
     let relPath = matchUrlType(pathname);
     relPath = relPath ? relPath : '/subject/category/default';
     return {
-      path: process.env.VUE_CTX + relPath
+      path:  process.env.VUE_CTX+ relPath
     };
   }
 }

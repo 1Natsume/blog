@@ -46,10 +46,10 @@
 </template>
 
 <script>
-  import emoji from "../../../utils/EmojiUtils";
-  import blogApi from "../../../utils/BlogApi";
+  import emoji from "@/utils/EmojiUtils";
+  import blogApi from "@/utils/BlogApi";
   import Pagination from "../../common/Pagination.vue";
-  import utils from "../../../utils/BlogUtils";
+  import utils from "@/utils/BlogUtils";
 
   export default {
     name: "ArticleMessage",

@@ -55,9 +55,8 @@ let routes = [
     },
 ]
 
-let base = process.env.BASE_URL;
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(process.env.BASE_URL),
     routes
 })
 

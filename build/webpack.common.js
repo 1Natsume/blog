@@ -8,6 +8,7 @@ const vueLoaderConfig = require('./vue-loader.conf')
 const config = require('../config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const cssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -35,95 +36,95 @@ module.exports = {
   //添加模块
   module: {
     rules: [
-        {//设置.vue文件的解析规则
-          test: /\.vue$/,
-          loader: 'vue-loader',
-          options: vueLoaderConfig
-        },
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              cacheDirectory: true, // 开启babel编译缓存
-              cacheCompression: false, // 缓存文件不要压缩
-            }
-          }
-        },
-        {
-          test: /\.css$/,
-          use: utils.getStyleLoaders()
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          // use: [
-          //   { loader: 'style-loader' },
-          //   { loader: 'css-loader' },
-          //   'postcss-loader',
-          //   //'sass-loader',
-          //   // {
-          //   //   loader: 'sass-resources-loader',
-          //   //   options: {
-          //   //     resources: [
-          //   //       path.resolve(__dirname, '../src/assets/scss/variables.scss'),
-          //   //       path.resolve(__dirname, '../src/assets/scss/global.scss'),
-          //   //       path.resolve(__dirname, '../src/assets/scss/deve.scss')
-          //   //       ]
-          //   //   }
-          //   // }
-          //   {
-          //     loader: 'sass-loader',
-          //     options: {
-          //       implementation: require('sass'), // 使用 dart-sass 或 node-sass（根据你的配置）
-          //       sassOptions: {
-          //         includePaths: ['../src/assets/scss'] // 确保你的变量文件路径正确
-          //       }
-          //     }
-          //   }
-          // ]
-          use: utils.getStyleLoaders("sass-loader"),
-        },
-        {
-          test: /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/,
-          type: "asset",
-          parser: {
-            dataUrlCondition: {
-              maxSize: 10 * 1024 // 小于10kb的图片会被base64处理
-            }
-          },
-          generator: {
-            // 将图片文件输出到 static/imgs 目录中
-            // 将图片文件命名 [hash:8][ext][query]
-            // [hash:8]: hash值取8位
-            // [ext]: 使用之前的文件扩展名
-            // [query]: 添加之前的query参数
-            filename: utils.assetsPath('img/[name].[hash:7].[ext]'),
-          },
-          // loader: 'url-loader',
-          // options: {
-          //   limit: 10000,
-          //   name: utils.assetsPath('img/[name].[hash:7].[ext]')
-          // }
-        },
-        {
-          test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-          loader: 'url-loader',
+      {//设置.vue文件的解析规则
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
           options: {
-            limit: 10000,
-            name: utils.assetsPath('media/[name].[hash:7].[ext]')
+            presets: ['@babel/preset-env'],
+            cacheDirectory: true, // 开启babel编译缓存
+            cacheCompression: false, // 缓存文件不要压缩
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: utils.getStyleLoaders()
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        // use: [
+        //   { loader: 'style-loader' },
+        //   { loader: 'css-loader' },
+        //   'postcss-loader',
+        //   //'sass-loader',
+        //   // {
+        //   //   loader: 'sass-resources-loader',
+        //   //   options: {
+        //   //     resources: [
+        //   //       path.resolve(__dirname, '../src/assets/scss/variables.scss'),
+        //   //       path.resolve(__dirname, '../src/assets/scss/global.scss'),
+        //   //       path.resolve(__dirname, '../src/assets/scss/deve.scss')
+        //   //       ]
+        //   //   }
+        //   // }
+        //   {
+        //     loader: 'sass-loader',
+        //     options: {
+        //       implementation: require('sass'), // 使用 dart-sass 或 node-sass（根据你的配置）
+        //       sassOptions: {
+        //         includePaths: ['../src/assets/scss'] // 确保你的变量文件路径正确
+        //       }
+        //     }
+        //   }
+        // ]
+        use: utils.getStyleLoaders("sass-loader"),
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024 // 小于10kb的图片会被base64处理
           }
         },
-        {
-          test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-          dependency: { not: ['url'] },
-          type: 'asset/resource', // 或者使用 'asset/resource' 和 'asset/inline' 根据需要选择
-          generator: {
-            filename: utils.assetsPath('font/[name].[hash:7].[ext]') // 输出目录和文件名格式
-          }
+        generator: {
+          // 将图片文件输出到 static/imgs 目录中
+          // 将图片文件命名 [hash:8][ext][query]
+          // [hash:8]: hash值取8位
+          // [ext]: 使用之前的文件扩展名
+          // [query]: 添加之前的query参数
+          filename: 'img/[name].[hash:7].[ext]',
         },
-      ],
+        // loader: 'url-loader',
+        // options: {
+        //   limit: 10000,
+        //   name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        // }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'media/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        dependency: { not: ['url'] },
+        type: 'asset/resource', // 或者使用 'asset/resource' 和 'asset/inline' 根据需要选择
+        generator: {
+          filename: 'font/[name].[hash:7].[ext]' // 输出目录和文件名格式
+        }
+      },
+    ],
   },
   optimization: {
     minimize: true,
@@ -140,47 +141,38 @@ module.exports = {
       // maxAsyncRequests: 30, // 按需加载时并行加载的文件的最大数量
       // maxInitialRequests: 30, // 入口js文件最大并行请求数量
       // enforceSizeThreshold: 50000, // 超过50kb一定会单独打包（此时会忽略minRemainingSize、maxAsyncRequests、maxInitialRequests）
-      // cacheGroups: { // 组，哪些模块要打包到一个组
-      //   defaultVendors: { // 组名
-      //     test: /[\\/]node_modules[\\/]/, // 需要打包到一起的模块
-      //     priority: -10, // 权重（越大越高）
-      //     reuseExistingChunk: true, // 如果当前 chunk 包含已从主 bundle 中拆分出的模块，则它将被重用，而不是生成新的模块
-      //   },
-      //   default: { // 其他没有写的配置会使用上面的默认值
-      //     minChunks: 2, // 这里的minChunks权重更大
+      // 修改配置
+      // cacheGroups: {
+      //   // 组，哪些模块要打包到一个组
+      //   // defaultVendors: { // 组名
+      //   //   test: /[\\/]node_modules[\\/]/, // 需要打包到一起的模块
+      //   //   priority: -10, // 权重（越大越高）
+      //   //   reuseExistingChunk: true, // 如果当前 chunk 包含已从主 bundle 中拆分出的模块，则它将被重用，而不是生成新的模块
+      //   // },
+      //   default: {
+      //     // 其他没有写的配置会使用上面的默认值
+      //     minSize: 0, // 我们定义的文件体积太小了，所以要改打包的最小文件体积
+      //     minChunks: 2,
       //     priority: -20,
       //     reuseExistingChunk: true,
       //   },
       // },
-      // 修改配置
-      cacheGroups: {
-        // 组，哪些模块要打包到一个组
-        // defaultVendors: { // 组名
-        //   test: /[\\/]node_modules[\\/]/, // 需要打包到一起的模块
-        //   priority: -10, // 权重（越大越高）
-        //   reuseExistingChunk: true, // 如果当前 chunk 包含已从主 bundle 中拆分出的模块，则它将被重用，而不是生成新的模块
-        // },
-        default: {
-          // 其他没有写的配置会使用上面的默认值
-          minSize: 0, // 我们定义的文件体积太小了，所以要改打包的最小文件体积
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
     },
   },
   // devtool: 'inline-source-map',	//错误追踪工具
   devtool: "cheap-module-source-map",
   plugins: [
+    new webpack.ProvidePlugin({
+      process:  require.resolve('process/browser'),
+    }),
     new VueLoaderPlugin(),
     // new HtmlWebpackPlugin({
     //   filename: 'index.html',	//配置输出后的html文件名（可携带目录）
     //   template: './public/index.html'	//配置模板
     // })
     new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].css'), // 生成的文件以10位hash值为文件名
-      chunkFilename: utils.assetsPath("css/[id].css"),
+      filename: 'css/[name].css', // 生成的文件以10位hash值为文件名
+      chunkFilename: "css/[id].css",
     })
-  ]
+  ],
 }

@@ -20,6 +20,7 @@ const app = createApp(App)
 // 创建axios实例并配置
 //app.config.globalProperties.$axios = axios
 app.config.globalProperties.$bus = bus
+
 app.use(router).use(store)
 app.directive('highlight', function (el) {
   let pres = el.querySelectorAll('pre');

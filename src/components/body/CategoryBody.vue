@@ -8,8 +8,7 @@
       </div>
       <div class="wrapper-md" id="post-panel">
         <div class="article-list-wrap blog-post">
-          <div v-for="(item, key) in arrList" :key="key"
-            :class="item.isTop == true ? 'panel-small' : 'panel'">
+          <div v-for="(item, key) in arrList" :key="key" :class="item.isTop == true ? 'panel-small' : 'panel'">
             <div :class="item.isTop == true ? 'index-img-small' : 'index-post-img'"><router-link :to="item.url">
                 <div :class="item.isTop == true ? 'item-thumb-small lazy' : 'item-thumb lazy'"
                   :style="'background-image: url(' + item.imgUrl + ')'"></div>
@@ -41,6 +40,7 @@ import blogKit from "@/utils/BlogKit";
 import blogApi from "@/utils/BlogApi";
 import BlogContext from "@/context/BlogContext";
 import PageLine from "../common/PageLine.vue";
+import { mapState, mapActions } from 'vuex'
 
 let imgList = Array.from(Array(BlogContext.panelItemPic.length - 1), (v, k) => k).sort(() => Math.random() >= 0.5 ? 1 : -1).map((item) => 1 + item);
 
@@ -99,13 +99,26 @@ export default {
       } else {
         blogApi.loadDefaultCategoryList(this.pageNum).then(setDataFunc);
       }
+    },
+    isTabRoute: function () {
+      let recruitScrollY = this.$store.state.recruitScrollY
+      document.documentElement.scrollTop = recruitScrollY;
+
     }
   },
   name: "ArticlesBody",
   watch: {
     $route() {
       this.initCategoryBody();
+      this.isTabRoute();
     },
   },
+  beforeRouteLeave(to, from, next) {
+    let position = document.documentElement && document.documentElement.scrollTop; //记录离开页面时的位置
+
+    if (position == null) position = 0
+    this.$store.commit('changeRecruitScrollY', position) //离开路由时把位置存起来
+    next()
+  }
 }
 </script>

@@ -225,14 +225,15 @@ p {
     }
   }
 
-  .blog-name{
+  .blog-name {
     position: relative;
     display: inline-block;
     width: auto;
     margin-left: 5px;
   }
-  .brand-title-wrap{
-    @include deve1(){
+
+  .brand-title-wrap {
+    @include deve1() {
       position: relative;
       display: inline-block;
       margin-top: -6px;
@@ -241,11 +242,12 @@ p {
       //margin:  0 auto;
     }
   }
-  .head-back-color,.panel-aside-back-color{
-    @include deve1(){
-      
-    }
+
+  .head-back-color,
+  .panel-aside-back-color {
+    @include deve1() {}
   }
+
   #blog_bottom {
     width: 100%;
     height: 40px;
@@ -323,7 +325,7 @@ p {
       height: 100%;
       vertical-align: top;
       //@include worksBodyWidth();
-      
+
     }
 
     .pub-aside {
@@ -331,7 +333,7 @@ p {
       // width: 248px;
       // vertical-align: top;
       // position: relative;
-      
+
       display: table-cell;
       float: none;
       width: 240px;
@@ -425,6 +427,16 @@ p {
     border-top-right-radius: 4px;
   }
 
+  .index-post-img-small {
+    overflow: hidden;
+  }
+
+  .index-img-small {
+    position: relative;
+    width: 30%;
+    float: left;
+  }
+
   .blog-post>.panel .index-post-img .item-thumb,
   .panel-small .index-post-img-small .item-thumb-small,
   .index-post-title a {
@@ -485,8 +497,6 @@ p {
     background-color: rgba(255, 255, 255, .9)
   }
 
-  
-  
   @media screen and (min-width: 1200px) {
     .panel-small .post-meta {
       padding: 13px 15px !important
@@ -499,7 +509,13 @@ p {
     .sticky {
       position: absolute;
       top: 12px;
-      left: 15px
+      left: 15px;
+      width: 50px;
+      background-color: #FF0000;
+      color:#fff;
+      padding: 3px 3px;
+      border-radius: 5px;
+      text-align: center;
     }
 
     .panel .item-thumb {
@@ -599,7 +615,7 @@ p {
 
     #post-panel>div.blog-post>.panel-small .post-meta {
       position: absolute;
-      margin-top: -300px;
+      //margin-top: -300px;
       height: 300px;
       width: calc(50% - 10px);
       padding: 133px 20px 0 20px !important;
@@ -1110,16 +1126,19 @@ p {
     margin-right: auto;
     background-color: rgba(255, 255, 255, .8);
   }
-  #brand_name{
-    position:absolute;
+
+  #brand_name {
+    position: absolute;
     height: 75px;
     line-height: 75px;
     left: 6px;
   }
-  #keyword_searcher{
+
+  #keyword_searcher {
     display: none;
   }
-  #float-right-wrap{
+
+  #float-right-wrap {
     display: none;
   }
 }

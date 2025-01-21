@@ -109,21 +109,21 @@ let blogApi = {
     );
   },
   loadAuthorHeadImg: () => {
-    // return BlogContext.apiLoadAuthorHeadImg(
-    //   $,
-    //   {blogAcc:BlogContext.blogAcc,
-    //     blogId:BlogContext.blogId,
-    //     postId:BlogContext.blogPostId,
-    //     blogUserGuid:BlogContext.blogUserGuid},
-    //     "/" + BlogContext.blogAcc + "/ajax/BlogPostInfo.aspx?blogId=" + BlogContext.blogId + "&postId=" + BlogContext.blogPostId + "&blogUserGuid=" + BlogContext.blogUserGuid
-    //   );
+    return BlogContext.apiLoadAuthorHeadImg(
+      $,
+      {blogAcc:BlogContext.blogAcc,
+        blogId:BlogContext.blogId,
+        postId:BlogContext.blogPostId,
+        blogUserGuid:BlogContext.blogUserGuid},
+        "/" + BlogContext.blogAcc + "/ajax/BlogPostInfo.aspx?blogId=" + BlogContext.blogId + "&postId=" + BlogContext.blogPostId + "&blogUserGuid=" + BlogContext.blogUserGuid
+      );
 
-    return request.get("/api/users").then((res) => {
-      return {
-        face: res["Face"],
-        avatar: res["Avatar"],
-      };
-    });
+    // return request.get("/api/users").then((res) => {
+    //   return {
+    //     face: res["Face"],
+    //     avatar: res["Avatar"],
+    //   };
+    // });
   },
   loadCloudLabel: () => {
     return BlogContext.apiLoadCloudLabel(

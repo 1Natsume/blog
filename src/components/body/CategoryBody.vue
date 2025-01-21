@@ -8,17 +8,15 @@
       </div>
       <div class="wrapper-md" id="post-panel">
         <div class="article-list-wrap blog-post">
-          <div v-for="(item, key) in arrList" :key="key" :class="item.isTop == true?'panel-small item-wrap':'panel item-wrap'">
-            <div :class="item.isTop == true?'index-img-small':'index-post-img'"><router-link :to="item.url">
-                <div :class="item.isTop == true?'item-thumb-small lazy':'item-thumb lazy'"
-                  :style="'background-image: url('+item.imgUrl+')'"></div>
+          <div v-for="(item, key) in arrList" :key="key"
+            :class="item.isTop == true ? 'panel-small' : 'panel'">
+            <div :class="item.isTop == true ? 'index-img-small' : 'index-post-img'"><router-link :to="item.url">
+                <div :class="item.isTop == true ? 'item-thumb-small lazy' : 'item-thumb lazy'"
+                  :style="'background-image: url(' + item.imgUrl + ')'"></div>
               </router-link>
             </div>
-            <div class="complex-item post-meta wrapper-lg p-b-none" v-if="item.desc">
-              <!-- <div class="item-img">
-                <div class="div-img" :style="getRandomImgClz()"></div>
-                <img :src="item.img" v-if="item.img">
-              </div> -->
+            <div class="sticky" v-if="item.isTop">置顶</div>
+            <div class="post-meta wrapper-lg p-b-none" v-if="item.desc">
               <h2 class="m-t-none index-post-title">
                 <router-link :to="item.url">{{ item.title }}</router-link>
               </h2>
@@ -29,39 +27,7 @@
                 <i class="icon iconfont talk text-muted"></i>&nbsp;{{ item.commentNum }} 条评论
                 <i class="icon iconfont see text-muted"></i>&nbsp;{{ item.readNum }}<span class="hidden-xs"> 次浏览</span>
               </div>
-              <!-- <div class="item-body">
-                <div class="item-title sing-ellipsis panel-item-title-color" :title="item.title">{{ item.title }}</div>
-                <div class="item-desc three-ellipsis" :title="item.desc">{{ item.desc }}</div>
-                <div class="item-bottom">
-                  <div class="item-author">
-                    <span class="icon iconfont renyuanguanli"></span>
-                    <span>{{ articleName }}</span>
-                  </div>
-                  <div class="item-time">
-                    <span class="icon iconfont ios-shijian"></span>
-                    <span>{{ item.time }}</span>
-                  </div>
-                  <div class="item-read">
-                    <span class="icon iconfont see"></span>
-                    <span>{{ item.readNum }}条阅读</span>
-                  </div>
-                  <div class="item-comment">
-                    <span class="icon iconfont talk"></span>
-                    <span>{{ item.commentNum }}条评论</span>
-                  </div>
-                </div>
-              </div> -->
             </div>
-            <!-- <div class="simple-item" v-if="!item.desc">
-              <div class="simple-item-body">
-                <div class="simple-item-title">
-                  {{ item.title }}
-                </div>
-                <div class="simple-item-bottom">
-                  {{ articleName }} {{ item.time }} 阅读:{{ item.readNum }} 评论:{{ item.commentNum }}
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
         <page-line :page-lines="pageList" @clickItem="clickItem"></page-line>
@@ -75,7 +41,6 @@ import blogKit from "@/utils/BlogKit";
 import blogApi from "@/utils/BlogApi";
 import BlogContext from "@/context/BlogContext";
 import PageLine from "../common/PageLine.vue";
-import router from "@/router";
 
 let imgList = Array.from(Array(BlogContext.panelItemPic.length - 1), (v, k) => k).sort(() => Math.random() >= 0.5 ? 1 : -1).map((item) => 1 + item);
 
@@ -120,8 +85,8 @@ export default {
       /*设置对应值*/
       let setDataFunc = (dataList) => {
         this.arrList = blogKit.convertSubjectUrls(dataList.list);
-        this.title=dataList.title;
-        this.pageList=dataList.pageList;
+        this.title = dataList.title;
+        this.pageList = dataList.pageList;
         this.$bus.emit("fullLoadingClose");
       }
       /*初始化目录*/

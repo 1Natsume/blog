@@ -48,7 +48,7 @@ let BlogContext = {
   menu: [
     { title: "首页", url: "/subject/category/default", icon: "fc-lol-huli fc-icon-40" },
     { title: "反馈", url: '/c/subject/p/12494785', icon: "fc-lol-naima fc-icon-40" },
-    { title: "赞赏", url: '/c/subject/p/12495086', icon: "fc-lol-ruiwen fc-icon-40" },
+    { title: "关注", url: 'me', icon: "fc-lol-ruiwen fc-icon-40" },
     { title: "后台", url: '/admin', icon: "fc-lol-goutou fc-icon-40" }
   ],
   contact:[

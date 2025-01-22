@@ -38,6 +38,9 @@
 </template>
 
 <script>
+  import blogUtils from "@/utils/BlogUtils";
+  import BlogContext from "@/context/BlogContext";
+  import blogApi from "@/utils/BlogApi";
   /*菜单*/
   export default {
     name: "MenuItems",
@@ -46,8 +49,17 @@
         let childrenHeight = 33;
         return 'height:' + ((size * childrenHeight)) + 'px';
       },
+      foucsMe: () => {
+        blogApi.blogFollow().then((data) => {
+          blogUtils.showInfoMsg(data);
+        });
+      },
       clickItem:function(url){
         if(!url){
+          return;
+        }
+        if(url.startsWith("me")){
+          this.foucsMe()
           return;
         }
         if(url.startsWith("http")){

@@ -40,17 +40,17 @@ export default {
 </script>
 
 <style lang="scss">
-#blog {
-    background-size: 100% 100%;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-}
+// #blog {
+//     background-size: 100% 100%;
+//     width: 100%;
+//     height: 100%;
+//     position: fixed;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     text-align: center;
+// }
 
 #bg {
     background-size: cover;

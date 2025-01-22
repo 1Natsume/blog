@@ -31,7 +31,7 @@ exports.cssLoaders = function (options) {
   }
 
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
+  function generateLoaders(loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
 
     if (loader) {
@@ -127,6 +127,17 @@ exports.getStyleLoaders = (preProcessor) => {
         },
       },
     },
-    preProcessor,
+    preProcessor && {
+      loader: preProcessor,
+      options:
+        preProcessor === "sass-loader"
+          ? {
+            // 自定义主题：自动引入我们定义的scss文件
+            additionalData: `@use '@/assets/scss/global.scss' as *;
+@use '@/assets/scss/deve.scss' as *;
+@use '@/assets/scss/variables.scss' as *;`,
+          }
+          : {},
+    },
   ].filter(Boolean);
 };

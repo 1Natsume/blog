@@ -108,7 +108,7 @@ export default {
         this.$refs.loadingBar ? this.$refs.loadingBar.closeLoadingBar() : '';
       })
     });
-    //routeMinHeight = (this.$refs.routerView.clientHeight - 40);
+    //this.routeMinHeight = (this.$refs.routerView.clientHeight - 40);
   }
 }
 </script>

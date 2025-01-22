@@ -3,7 +3,6 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import App from './App.vue'
-import '@/assets/scss/global.scss'
 import '@/assets/font/icon/iconfont.css'
 import '@/assets/font/lol/fclol.css'
 import "@/assets/css/reset.css"

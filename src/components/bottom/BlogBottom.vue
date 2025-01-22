@@ -35,7 +35,7 @@
         copyright: 'Copyright © ' + new Date().getFullYear() + ' ' + BlogContext.blogName,
         plugName: "c_blog",
         author: "cjunn",
-        technology: 'Powered by vue on cnblogs',
+        technology: 'Them modified by <a href="https://moe.best" target="_blank">JindaiKirin</a>',
       }
     }
   }

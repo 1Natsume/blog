@@ -5,6 +5,7 @@ const webpack = require("webpack");
 const utils = require("./utils");
 const config = require("../config");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const devConfig = {
   mode: 'development', // 开发环境
@@ -37,12 +38,14 @@ const devConfig = {
     new webpack.DefinePlugin({
       "process.env": require("../config/dev.env"),
     }),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "index.html",
       inject: true,
     }),
 
-  ]
+  ],
+  devtool: "cheap-module-source-map",
 }
 module.exports = merge(commonConfig, devConfig)

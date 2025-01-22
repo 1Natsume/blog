@@ -8,7 +8,7 @@ function loadStateConfig() {
       return JSON.parse(serializedState);
     } else {
       const config = {
-        theme: "style0",
+        theme: "handsome",
         bg: ["https://cdn.54yt.net/usr/uploads/61568506_p0.webp"],
         headcolor: "#7266ba",
         asidecolor: "",
@@ -37,7 +37,7 @@ function loadStateThemes() {
         },
         {
           id: 2,
-          theme: "style0",
+          theme: "handsome",
           icon: "icon iconfont link",
           dec: ""
         },

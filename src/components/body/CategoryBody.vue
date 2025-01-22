@@ -9,12 +9,13 @@
       <div class="wrapper-md" id="post-panel">
         <div class="article-list-wrap blog-post">
           <div v-for="(item, key) in arrList" :key="key" :class="item.isTop == true ? 'panel-small' : 'panel'">
+            <div class="sticky" v-if="item.isTop">置顶</div>
             <div :class="item.isTop == true ? 'index-img-small' : 'index-post-img'"><router-link :to="item.url">
                 <div :class="item.isTop == true ? 'item-thumb-small lazy' : 'item-thumb lazy'"
                   :style="'background-image: url(' + item.imgUrl + ')'"></div>
               </router-link>
             </div>
-            <div class="sticky" v-if="item.isTop">置顶</div>
+            
             <div class="post-meta wrapper-lg p-b-none" v-if="item.desc">
               <h2 class="m-t-none index-post-title">
                 <router-link :to="item.url">{{ item.title }}</router-link>
@@ -101,9 +102,11 @@ export default {
       }
     },
     isTabRoute: function () {
-        console.log(this.$store.state.recruitScrollY)
-        let recruitScrollY = this.$store.state.recruitScrollY
-        document.documentElement.scrollTop = recruitScrollY;
+        // if(this.$route.path =='/c/subject/category'){
+        //   let recruitScrollY = this.$store.state.recruitScrollY
+        //   document.documentElement.scrollTop = recruitScrollY;
+        // }
+        
       
     }
   },
@@ -117,7 +120,6 @@ export default {
   beforeRouteLeave(to, from, next) {
     let position = document.documentElement && document.documentElement.scrollTop; //记录离开页面时的位置
     
-    console.log( position)
     if (position == null) position = 0
     this.$store.commit('changeRecruitScrollY', position) //离开路由时把位置存起来
     next()

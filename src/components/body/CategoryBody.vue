@@ -101,21 +101,23 @@ export default {
       }
     },
     isTabRoute: function () {
-      let recruitScrollY = this.$store.state.recruitScrollY
-      document.documentElement.scrollTop = recruitScrollY;
-
+        console.log(this.$store.state.recruitScrollY)
+        let recruitScrollY = this.$store.state.recruitScrollY
+        document.documentElement.scrollTop = recruitScrollY;
+      
     }
   },
   name: "ArticlesBody",
   watch: {
     $route() {
       this.initCategoryBody();
-      this.isTabRoute();
+      this.isTabRoute()
     },
   },
   beforeRouteLeave(to, from, next) {
     let position = document.documentElement && document.documentElement.scrollTop; //记录离开页面时的位置
-
+    
+    console.log( position)
     if (position == null) position = 0
     this.$store.commit('changeRecruitScrollY', position) //离开路由时把位置存起来
     next()

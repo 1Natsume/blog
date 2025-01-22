@@ -1,6 +1,6 @@
 <template>
   <div id="avatar_area" class="panel-avatar-dec">
-    <div class="avatar-area-wrap" @click="foucsMe">
+    <div class="avatar-area-wrap">
       <router-link :to="'/c/author'"  :onerror="'this.src=\''+avatarObj.face+'\';this.onerror=null;'"><img :src="avatarObj.avatar"/></router-link>
       <div class="panel-avatar-sign">
         <div class="name-wrap panel-aside-color">
@@ -50,41 +50,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  #avatar_area:hover{
-    background: url("https://cjunn.gitee.io/blog_theme_atum/img/body/float.gif");
-    background-size: cover;
-  }
-  #avatar_area {
-    font-size: 0;
-    .avatar-area-wrap {
-      position: relative;
-      cursor: pointer;
-      img {
-        box-shadow: 2px 2px 3px #e1e1e1;
-      }
-
-      .name-wrap {
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 8px;
-        margin-bottom: 2px;
-
-        .icon {
-          font-size: 2px;
-          position: relative;
-          top: 1px;
-        }
-      }
-
-      .sign-wrap {
-        cursor: pointer;
-        text-align: center;
-        margin-top: 4px;
-        font-size: 12px;
-      }
-    }
-  }
-</style>

@@ -40,7 +40,6 @@ export default {
 </script>
 
 <style lang="scss">
-#app,
 #blog {
     background-size: 100% 100%;
     width: 100%;

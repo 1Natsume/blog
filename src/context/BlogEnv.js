@@ -40,13 +40,10 @@ let BlogContext = {
   //aboutmeHtml: `<img src:'${extendStylePath}/img/ing/aboutme.jpg'/>`,
   avatarSign: "",
   ingTitle: "你的一字一句犹如刀疤划心上，我的一举一动随你改变多荒唐。",
-  blogFriendList: [],                     //{name: '', url: ''}格式
-  blogUsedLinks: [],                      //{name: '', url: ''}格式
+   //{name: '', url: ''}格式
+  blogFriendList: [],
+  blogUsedLinks: [],
   musicIds: ["7282638202"],
-  qq: "592571519",
-  email: "592571519@qq.com",
-  github: "cjunn",
-  defHeadImg: `https://img2.baidu.com/it/u:1129333932,2974296147&fm:253&fmt:auto&app:138&f:JPEG?w:500&h:500`,
   feelingBlogId: 13393903,
   menu: [
     { title: "首页", url: "/subject/category/default", icon: "fc-lol-huli fc-icon-40" },
@@ -54,20 +51,9 @@ let BlogContext = {
     { title: "赞赏", url: '/c/subject/p/12495086', icon: "fc-lol-ruiwen fc-icon-40" },
     { title: "后台", url: '/admin', icon: "fc-lol-goutou fc-icon-40" }
   ],
-  // setBlogAccAndId: (acc, id) => {
-  //   blogAcc: acc;
-  //   blogId: id;
-  //   sendPage: sendPage.replace(`${blogAcc}`, acc);
-  //   subPage: subPage.replace(`${blogAcc}`, acc);
-  //   indexPage: indexPage.replace(`${blogAcc}`, acc);
-  // },
-  // setGidAndName:(gid, name)=> {
-  //   blogUserGuid: gid;
-  //   blogName: name;
-  // },
-  // setPid: (pId)=> {
-  //   blogPostId: pId;
-  // }
+  contact:[
+    {title:"",dec:"",icon:""}
+  ]
 }
 
 export default BlogContext

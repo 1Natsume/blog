@@ -1,4 +1,4 @@
-import BlogContext from "../context/BlogContext";
+import BlogContext from "@/context/BlogContext";
 import $ from 'jquery';
 /*博客收藏*/
 let addToWz = (pageId) => window.AddToWz(pageId);

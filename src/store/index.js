@@ -58,7 +58,7 @@ function loadStateThemes() {
 }
 const config = loadStateConfig();
 const themes = loadStateThemes();
-export default createStore({
+export default new Vuex.Store({
   state: {
     config: config,
     themes: themes,

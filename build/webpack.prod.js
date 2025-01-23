@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const webpack = require("webpack");
+const { name } = require('file-loader');
 
 const prodConfig = {
   mode: 'production', // 生产环境
@@ -45,11 +46,11 @@ const prodConfig = {
 
   ],
   optimization: {
+    minimize: true,
     // 压缩的操作
     minimizer: [
       new CssMinimizerPlugin(),
     ],
-    // minimize: true,
     //代码分割配置
     splitChunks: {
       chunks: "all", // 对所有模块都进行分割
@@ -68,12 +69,18 @@ const prodConfig = {
         //   priority: -10, // 权重（越大越高）
         //   reuseExistingChunk: true, // 如果当前 chunk 包含已从主 bundle 中拆分出的模块，则它将被重用，而不是生成新的模块
         // },
+        vendor:{
+          name:'vendor',
+          priority:1,
+          test: /[\\/]node_modules[\\/]/,
+          minSize: 0,
+          minChunks: 1,
+        },
         default: {
-          // 其他没有写的配置会使用上面的默认值
-          minSize: 0, // 我们定义的文件体积太小了，所以要改打包的最小文件体积
           minChunks: 2,
           priority: -20,
           reuseExistingChunk: true,
+          name: 'common',
         },
       },
     },

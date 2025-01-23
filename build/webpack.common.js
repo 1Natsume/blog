@@ -37,7 +37,7 @@ module.exports = {
       {//设置.vue文件的解析规则
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        
       },
       {
         test: /\.js$/,

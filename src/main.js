@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import router from './router'
 import store from './store'
-import axios from 'axios'
 import App from './App.vue'
 import '@/assets/font/icon/iconfont.css'
 import '@/assets/font/lol/fclol.css'
@@ -14,6 +13,9 @@ import bus from '@/utils/mitt'
 import 'highlight.js/styles/stackoverflow-light.css'
 import 'highlight.js/lib/common';
 import hljs from "highlight.js";
+import "@/assets/scss/theme/style.scss";
+import "@/assets/scss/theme/style0.scss";
+import "static/logo/logo.css";
 
 const app = createApp(App)
 // 创建axios实例并配置

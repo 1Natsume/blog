@@ -6,10 +6,6 @@
 </template>
 <script>
 import BlogContext from "@/context/BlogContext";
-import "@/assets/scss/theme/style.scss";
-import "@/assets/scss/theme/style0.scss";
-
-import "static/logo/logo.css";
 
 import { mapState } from 'vuex';
 export default {

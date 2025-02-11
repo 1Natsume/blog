@@ -591,7 +591,11 @@ p {
     #post-panel>div.blog-post>.panel-small .index-img-small,
     #post-panel>div.blog-post>.panel-small .index-img-small .item-thumb-small {
       height: 100%;
-      width: 100%
+      width: 100%;
+      margin-top: -15px;
+      background-size: cover;
+      background-position: right bottom;
+      background-repeat: no-repeat;
     }
 
     #post-panel>div.blog-post>.panel-small .post-meta {

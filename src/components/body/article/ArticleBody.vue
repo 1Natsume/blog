@@ -17,7 +17,7 @@
   import ArticleComment from "./ArticleComment.vue";
   import ArticleMessage from "./ArticleMessage.vue";
   import ArticlePrePos from "./ArticlePrePos.vue";
-import $bus from '@/utils/mitt'
+  import $bus from '@/utils/mitt'
   export default {
       name: "ArticleBody",
       components: {ArticlePrePos, ArticleMessage, ArticleComment, ArticleDesc, ArticleTitle,ArticlePreLine},

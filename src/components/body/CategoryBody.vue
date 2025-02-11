@@ -16,7 +16,7 @@
               </router-link>
             </div>
             
-            <div class="post-meta wrapper-lg p-b-none" v-if="item.desc">
+            <div class="post-meta wrapper-lg p-b-none">
               <h2 class="m-t-none index-post-title">
                 <router-link :to="item.url">{{ item.title }}</router-link>
               </h2>
@@ -74,6 +74,7 @@ export default {
       // return "panel-item-pic-"+imgSrc;
     },
     clickItem: function (pageNum) {
+      window.scrollTo(0, 0);
       this.initCategoryBody(pageNum);
     },
     initCategoryBody: function (pageNum) {
@@ -100,29 +101,13 @@ export default {
       } else {
         blogApi.loadDefaultCategoryList(this.pageNum).then(setDataFunc);
       }
-    },
-    isTabRoute: function () {
-        // if(this.$route.path =='/c/subject/category'){
-        //   let recruitScrollY = this.$store.state.recruitScrollY
-        //   document.documentElement.scrollTop = recruitScrollY;
-        // }
-        
-      
     }
   },
   name: "ArticlesBody",
   watch: {
     $route() {
       this.initCategoryBody();
-      this.isTabRoute()
     },
-  },
-  beforeRouteLeave(to, from, next) {
-    let position = document.documentElement && document.documentElement.scrollTop; //记录离开页面时的位置
-    
-    if (position == null) position = 0
-    this.$store.commit('changeRecruitScrollY', position) //离开路由时把位置存起来
-    next()
   }
 }
 </script>

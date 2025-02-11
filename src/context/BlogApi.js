@@ -360,7 +360,7 @@ let api = {
           obj.url = postTitle.find("a").attr("href");
           let postCon=$(v).find(".postCon");
           if($(v).find(".desc_img").length>0){
-            obj.imgUrl = $(v).find(".desc_img")[0]['attributes'][0].value;
+            obj.imgUrl = 'https://images.weserv.nl/?url='+$(v).find(".desc_img")[0]['attributes'][0].value;
           }
           else{
             obj.imgUrl =''

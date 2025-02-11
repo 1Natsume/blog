@@ -57,7 +57,18 @@ let routes = [
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes,
+    // 每次切换路由的时候滚动到页面顶部
+    //页面跳转显示在顶部
+
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return { left: 0, top: 0}
+            //return savedPosition
+        } else {
+            return { left: 0, top: 0 }
+        }
+    }
 })
 
 export default router

@@ -11,7 +11,7 @@
 
 <script>
 import BlogContext from "@/context/BlogContext";
-
+import $ from "jquery";
 let page = BlogContext.myPage;
 let detail = BlogContext.myUrl;
 export default {

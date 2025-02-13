@@ -41,9 +41,6 @@ p {
     box-sizing: border-box;
   }
 
-  /*BODY样式表*/
-  .body-pic {}
-
   /*HEAD样式表*/
   .head-back-color {
     background-color: #3a3f51;
@@ -57,12 +54,6 @@ p {
     background-color: rgba(234, 235, 237, 0.98);
   }
 
-  .head-music-pic {}
-
-  /*PANEL样式表*/
-  .panel-aside-back-color {
-    //background-color: #edf1f2;
-  }
 
   .panel-aside-color {
     color: #4e5c64;
@@ -192,7 +183,6 @@ p {
       }
 
       .route-body {
-        margin-left: 200px;
         height: 100%;
         @include switchHeadBar() {
           left: 0px;
@@ -226,7 +216,7 @@ p {
   }
 
   #blog_bottom {
-    width: 800px;
+    width: 100%;
     height: 40px;
     box-sizing: border-box;
     position: absolute;
@@ -265,7 +255,6 @@ p {
       font-size: 28px;
       font-family: "黑体";
       color: #8c888b;
-      background: -webkit-linear-gradient(45deg, #FF0000, #FF9900, #FFCC00, #66CC00, #00FFCC);
       color: transparent;
       -webkit-background-clip: text;
       animation: ran 10s linear infinite;
@@ -374,10 +363,6 @@ p {
   }
 
   .panel {
-    border-radius: 4px;
-  }
-
-  .panel {
     margin-bottom: 20px;
     //background-color: #fff;
     border: 1px solid transparent;
@@ -473,6 +458,9 @@ p {
   }
 
   @media screen and (min-width: 1200px) {
+    .route-body {
+      margin-left: 200px;
+    }
     .panel-small .post-meta {
       padding: 13px 15px !important
     }
@@ -593,6 +581,7 @@ p {
       background-size: cover;
       background-position: right bottom;
       background-repeat: no-repeat;
+      border-radius: 5px
     }
 
     #post-panel>div.blog-post>.panel-small .post-meta {

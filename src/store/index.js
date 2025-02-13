@@ -2,7 +2,7 @@ import Vuex from "vuex";
 import { createStore } from 'vuex';
 function loadStateConfig() {
   try {
-    localStorage.clear();
+    //localStorage.clear();
     const serializedState = localStorage.getItem("config");
     if (serializedState) {
       return JSON.parse(serializedState);
@@ -93,6 +93,9 @@ export default new Vuex.Store({
   mutations: {
     changeRecruitScrollY(state, recruitScrollY) {
       state.recruitScrollY = recruitScrollY;
+    },
+    updateConfig(state,config){
+      state.config = config
     }
   },
   actions: {},

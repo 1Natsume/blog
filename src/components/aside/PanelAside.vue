@@ -102,7 +102,7 @@ export default {
   .panel-aside-bottom {
 
     position: absolute;
-    bottom: 0px;
+    bottom: 50px;
     height: 50px;
     width: 100%;
 

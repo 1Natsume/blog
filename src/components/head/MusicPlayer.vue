@@ -46,7 +46,6 @@
   import blogUtils from "@/utils/BlogUtils";
   import PopList from "./PopList.vue";
   import blogApi from "@/utils/BlogApi";
-  import BlogContext from "@/context/BlogContext";
   import audio from '@/utils/Audio'
 
   export default {
@@ -57,7 +56,7 @@
       this.audio.onerror = this.musicError;
       this.audio.oncanplay = this.musicCanplay;
       this.audio.onended = this.musicEnded;
-      blogApi.loadMusicList().then((list) => {
+      blogApi.loadMusicList(this.$store.state.config.musicIds).then((list) => {
         this.playList = list;
         //this.musicState();
       });
@@ -92,7 +91,7 @@
     },
     computed: {
       getPicImgStyle:function(){
-        let src=this.playing.pic?this.playing.pic:BlogContext.musicSignImg;
+        let src=this.playing.pic?this.playing.pic:'';
         return {
           "background":"url('"+src+"') 0% 0% / 100% no-repeat",
         }

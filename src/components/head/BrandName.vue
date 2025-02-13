@@ -17,19 +17,18 @@
 
 <script>
 import $ from "jquery";
-import BlogContext from "@/context/BlogContext";
 export default {
   name: "BrandName",
   data: () => {
     return {
-      blogName: BlogContext.blogName,
+      blogName: '',
     }
   },
   created(){
     
   },
   mounted(){
-    $('.blog-name').append(BlogContext.logo)
+    $('.blog-name').append(this.$store.state.config.logo)
   }
   , methods: {
     switchPanelAside() {

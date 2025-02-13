@@ -30,10 +30,10 @@ let blogApi = {
         .replace(":r", Math.random())
     );
   },
-  loadMusicSongExt: () => {
+  loadMusicSongExt: (musicIds) => {
     return new Promise((oubresolve, oubreject) => {
       let proArr = [];
-      BlogContext.musicIds.forEach((item) => {
+      musicIds.forEach((item) => {
         proArr.push(
           new Promise((resolve, reject) => {
             blogApi.loadMusicSong(item).then((data) => {
@@ -47,9 +47,9 @@ let blogApi = {
       });
     });
   },
-  loadMusicPlayListExt: () => {
+  loadMusicPlayListExt: (musicIds) => {
     return new Promise((oubresolve, oubreject) => {
-      blogApi.loadMusicPlayList(BlogContext.musicIds).then((list) => {
+      blogApi.loadMusicPlayList(musicIds).then((list) => {
         oubresolve(list);
       });
     });
@@ -69,12 +69,12 @@ let blogApi = {
     });
     return reData;
   },
-  loadMusicList: () => {
+  loadMusicList: (musicIds) => {
     let promis;
-    if (Array.isArray(BlogContext.musicIds)) {
-      promis = blogApi.loadMusicPlayListExt();
+    if (Array.isArray(musicIds)) {
+      promis = blogApi.loadMusicPlayListExt(musicIds);
     } else {
-      promis = blogApi.loadMusicSongExt();
+      promis = blogApi.loadMusicSongExt(musicIds);
     }
     return new Promise((resolve, reject) => {
       promis.then((list) => {

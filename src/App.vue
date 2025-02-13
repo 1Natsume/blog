@@ -5,8 +5,6 @@
     </div>
 </template>
 <script>
-import BlogContext from "@/context/BlogContext";
-
 import { mapState } from 'vuex';
 export default {
     name: "App",
@@ -26,9 +24,6 @@ export default {
             return null
         },
         bg(bg){
-            if (bg ==undefined){
-                bg = BlogContext.bg
-            }
             return "background-image:url('"+ bg+"')"
         }
     },

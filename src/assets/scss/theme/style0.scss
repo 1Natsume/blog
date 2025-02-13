@@ -226,13 +226,10 @@ p {
   }
 
   #blog_bottom {
-    width: 100%;
+    width: 800px;
     height: 40px;
-    background-color: #edf1f2;
-    border-top: 1px solid #dee5e7;
     box-sizing: border-box;
     position: absolute;
-    font-size: 0px;
     line-height: 43px;
     overflow: hidden;
     white-space: nowrap;
@@ -277,9 +274,9 @@ p {
       float: right;
       padding-right: 10px;
 
-      // @include switchHeadBar {
-      //   display: none;
-      // }
+      @include switchHeadBar {
+        display: none;
+      }
     }
 
   }
@@ -659,6 +656,10 @@ p {
     .blog-post>.panel-small:hover .index-post-img-small,
     .blog-post>.panel:hover .index-post-img {
       filter: blur(3px)
+    }
+
+    #blog_bottom{
+      position: relative;
     }
   }
 }

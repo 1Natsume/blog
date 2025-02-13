@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const { name } = require('file-loader');
 
@@ -27,8 +28,6 @@ const prodConfig = {
       filename: 'css/[name].css', // 生成的文件以10位hash值为文件名
       chunkFilename: "css/[id].css",
     }),
-    // css压缩
-    //new CssMinimizerPlugin(),
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: "index.html",
@@ -50,6 +49,7 @@ const prodConfig = {
     // 压缩的操作
     minimizer: [
       new CssMinimizerPlugin(),
+      new TerserWebpackPlugin(),
     ],
     //代码分割配置
     splitChunks: {
@@ -69,6 +69,13 @@ const prodConfig = {
         //   priority: -10, // 权重（越大越高）
         //   reuseExistingChunk: true, // 如果当前 chunk 包含已从主 bundle 中拆分出的模块，则它将被重用，而不是生成新的模块
         // },
+        // 将vue相关的库单独打包，减少node_modules的chunk体积。
+        vue: {
+          name: "vue",
+          test: /[\\/]node_modules[\\/]vue(.*)[\\/]/,
+          chunks: "initial",
+          priority: 20,
+        },
         vendor:{
           name:'vendor',
           priority:1,

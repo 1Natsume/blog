@@ -5,17 +5,16 @@
 </template>
 
 <script>
-import BlogContext from "@/context/BlogContext";
 import $ from "jquery";
 export default {
   name: "BrandTitle",
   data: () => {
     return {
-      blogName: BlogContext.blogName,
+      blogName: '',
     }
   },
   mounted(){
-    $('.brand-title-wrap').append(BlogContext.logo)
+    $('.brand-title-wrap').append(this.$store.state.config.logo)
   }
 }
 </script>

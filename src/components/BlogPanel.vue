@@ -15,7 +15,7 @@
         <div id="panel_top_target"></div>
         <router-view class="router-view-wrap" ref="routeViewWrap"
           :style="{ 'min-Height': this.routeMinHeight + 'px' }"></router-view>
-        <blog-bottom></blog-bottom>
+        
         <div id="panel_bottom_target"></div>
       </div>
     </div>
@@ -30,7 +30,6 @@ import ArticlesBody from "./body/CategoryBody.vue";
 import RouteBody from "./body/SubjectBody.vue";
 import LoadingBody from "./common/LoadingBody.vue";
 import LoadingBar from "./common/LoadingBar.vue";
-import BlogBottom from "./bottom/BlogBottom.vue";
 import BlogFullPage from "./full/BlogFullPage.vue";
 import Tools from "./common/Tools.vue"
 import Headertop from "./common/headertop.vue";
@@ -58,7 +57,7 @@ export default {
   },
   components: {
     BlogFullPage, Headertop,
-    BlogBottom, LoadingBar, LoadingBody, RouteBody, ArticlesBody, PanelAside, BlogHeadBar, Tools
+    LoadingBar, LoadingBody, RouteBody, ArticlesBody, PanelAside, BlogHeadBar, Tools
   },
   beforeRouteUpdate: function (to, from, next) {
     this.$bus.emit("fullLoadingOpen", next);

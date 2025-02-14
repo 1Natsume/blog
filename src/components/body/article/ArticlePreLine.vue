@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import blogKit from "../../../utils/BlogKit";
+  import blogKit from "@/utils/BlogKit";
     export default {
         name: "ArticlePreLine",
         methods:{

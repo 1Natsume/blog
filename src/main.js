@@ -16,11 +16,13 @@ import hljs from "highlight.js";
 import "@/assets/scss/theme/style.scss";
 import "@/assets/scss/theme/style0.scss";
 import "static/logo/logo.css";
+import $ from "jquery";
 
 const app = createApp(App)
 // 创建axios实例并配置
 //app.config.globalProperties.$axios = axios
 app.config.globalProperties.$bus = bus
+window.$ = window.jQuery = $
 
 app.use(router).use(store)
 app.directive('highlight', function (el) {

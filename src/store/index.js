@@ -5,7 +5,11 @@ function loadStateConfig() {
     //localStorage.clear();
     const serializedState = localStorage.getItem("config");
     if (serializedState) {
-      return JSON.parse(serializedState);
+      let json1 = JSON.parse(serializedState);
+      let json2 = window._config;
+
+      let configjson =Object.assign(json1, json2);
+      return configjson
     } else {
       const config = {
         theme: "handsome",

@@ -4,6 +4,7 @@
         console.log("缺少必要参数,staticSrc");
         return;
       }
+      window._config = config;
       var staticPath = config.staticSrc + "/";
 
       var param = {
@@ -12,7 +13,7 @@
           staticPath + "css/vendor.css"
         ],
         js: [
-          //staticPath + "js/856.js",
+          staticPath + "js/vue.js",
           staticPath + "js/vendor.js",
           staticPath + "js/app.js",
         ],

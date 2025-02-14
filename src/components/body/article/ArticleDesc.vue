@@ -34,7 +34,6 @@
 import blogApi from "@/utils/BlogApi";
 import blogUtils from "@/utils/BlogUtils";
 import blogKit from "@/utils/BlogKit";
-import $bus from '@/utils/mitt'
 export default {
   props: ['articleObj'],
   name: "ArticleDesc",

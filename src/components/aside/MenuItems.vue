@@ -38,7 +38,6 @@
 
 <script>
 import blogUtils from "@/utils/BlogUtils";
-import $ from "jquery";
 import blogApi from "@/utils/BlogApi";
 /*菜单*/
 export default {

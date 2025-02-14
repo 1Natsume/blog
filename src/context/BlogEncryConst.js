@@ -1,5 +1,5 @@
 /*恳请您二次开发时能够保留该信息*/
-import CryptoUtils from "../utils/CryptoUtils.js";
+import CryptoUtils from "@/utils/CryptoUtils.js";
 
 let myfriend = {};
 myfriend[CryptoUtils.o("Par5Nt==")] = CryptoUtils.o("t+Xta+lOoDXCaRXRcn==");

@@ -20,7 +20,6 @@
   import SetBtn from "./SetBtn.vue";
   import MinSetBtn from "./MinSetBtn.vue";
   import BrandTitle from "./BrandTitle.vue";
-  import $ from "jquery";
   export default {
     name: "BlogHeadBar",
     data: () => {

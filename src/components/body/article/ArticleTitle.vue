@@ -45,7 +45,7 @@
 </template>
 
 <script>
-    import BlogContext from "../../../context/BlogContext";
+    import BlogContext from "@/context/BlogContext";
 
     export default {
         props: {

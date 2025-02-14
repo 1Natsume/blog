@@ -9,7 +9,6 @@
 </template>
 
 <script>
-    import $ from 'jquery';
     import TocHelper from '@/assets/lib/toc/toc-helper'
     import blogUtils from "@/utils/BlogUtils";
     import $bus from '@/utils/mitt'

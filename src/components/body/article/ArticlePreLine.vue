@@ -3,7 +3,7 @@
     <div class="post-body-head post-body-title">
       <span class="icon iconfont home"></span>
       <span>首页</span>
-      <span class="sep">/</span>
+      <span class="sep"> / </span>
       <span>正文</span>
       <span class="right-area">
         <span>分享到 :</span>

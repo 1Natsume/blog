@@ -102,6 +102,7 @@ p {
     height: auto;
     min-height: 100%;
     overflow: hidden;
+
     .blog-head-bar {
       position: fixed;
       top: 0;
@@ -111,6 +112,7 @@ p {
 
     .main-panel {
       padding-top: 50px;
+
       @include switchHeadBar() {
         .blog-aside-show {
           @include showAside();
@@ -184,21 +186,23 @@ p {
 
       .route-body {
         height: 100%;
+
         @include switchHeadBar() {
           left: 0px;
           width: 100%;
         }
 
-        
+
       }
     }
   }
 
-  #brand_name{
+  #brand_name {
     position: relative;
     margin-left: 16px;
     margin-top: -3px;
   }
+
   .brand-title-wrap {
     @include deve1() {
       position: relative;
@@ -253,8 +257,8 @@ p {
       color: #58666e;
       font-size: 13px;
       float: right;
-      
-      
+
+
 
       @include switchHeadBar {
         display: none;
@@ -270,7 +274,7 @@ p {
     height: 100%;
     border-spacing: 0;
     table-layout: fixed;
-    
+
 
     .inner-route-body {
       // display: inline-block;
@@ -450,10 +454,21 @@ p {
     background-color: rgba(255, 255, 255, .9)
   }
 
+  .panel-small {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    overflow: hidden;
+    background: #fff;
+  }
+
   @media screen and (min-width: 1200px) {
     .route-body {
       margin-left: 200px;
     }
+
     .panel-small .post-meta {
       padding: 13px 15px !important
     }
@@ -469,7 +484,7 @@ p {
       width: 50px;
       height: 30px;
       background-color: #FF0000;
-      color:#fff;
+      color: #fff;
       padding: 3px 3px;
       border-radius: 5px;
       text-align: center;
@@ -486,6 +501,16 @@ p {
       flex-wrap: wrap;
       justify-content: space-between
     }
+
+    #post-panel .ahover {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
 
     #post-panel>div.blog-post>.panel {
       overflow: hidden;
@@ -563,7 +588,7 @@ p {
       display: inline-block;
       height: 300px;
       width: calc(50% - 10px);
-      margin-bottom: 20px;
+
     }
 
     #post-panel>div.blog-post>.panel-small .index-img-small,
@@ -640,7 +665,7 @@ p {
       filter: blur(3px)
     }
 
-    #blog_bottom{
+    #blog_bottom {
       position: relative;
     }
   }

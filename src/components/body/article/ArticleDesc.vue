@@ -1,6 +1,7 @@
 <template>
   <div id="article_desc">
     <div class="article-page-body-wrap">
+      <!-- <div class="entry-thumbnail" aria-hidden="true"><div class="item-thumb lazy" style="background-image: url(articleObj.imgUrl)"></div></div> -->
       <div class="inner-body-wrap">
         <div v-html="articleObj.body" ref="articleBody" v-highlight></div>
         <div class="body-wrap-bottom"><span class="icon iconfont ios-shijian"></span> 最后修改时间：{{ articleObj.time }}</div>

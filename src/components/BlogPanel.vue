@@ -5,7 +5,8 @@
     <blog-head-bar class="blog-head-bar" :style="loadColor(this.$store.state.config.headcolor)"></blog-head-bar>
     <div class="main-panel">
       <panel-aside id="panel_aside" class="panel-aside"
-        :class="{ 'blog-aside-show': asideIsShow, 'blog-aside-hide': !asideIsShow }" :style="loadColor(this.$store.state.config.asidecolor)"></panel-aside>
+        :class="{ 'blog-aside-show': asideIsShow, 'blog-aside-hide': !asideIsShow }"
+        :style="loadColor(this.$store.state.config.asidecolor)"></panel-aside>
       <div class="panel-aside-shape" :class="!asideIsShow ? 'panel-aside-shape-hide' : ''" @click="asideIsShow = false">
         sss
       </div>
@@ -15,7 +16,7 @@
         <div id="panel_top_target"></div>
         <router-view class="router-view-wrap" ref="routeViewWrap"
           :style="{ 'min-Height': this.routeMinHeight + 'px' }"></router-view>
-        
+        <blog-bottom></blog-bottom>
         <div id="panel_bottom_target"></div>
       </div>
     </div>
@@ -33,14 +34,15 @@ import LoadingBar from "./common/LoadingBar.vue";
 import BlogFullPage from "./full/BlogFullPage.vue";
 import Tools from "./common/Tools.vue"
 import Headertop from "./common/headertop.vue";
+import BlogBottom from "./bottom/BlogBottom.vue";
 export default {
   name: "BlogPanel",
   methods: {
     panelScrollEvent: function (e) {
       this.$bus.emit("panelScrollEven", e);
     },
-    loadColor(color){
-        return 'background-color: '+color+''
+    loadColor(color) {
+      return 'background-color: ' + color + ''
     },
   },
   data: () => {
@@ -49,14 +51,14 @@ export default {
       lastPageId: '',
       routeMinHeight: '',
       asideIsShow: false,
-      headcolor : ''
+      headcolor: ''
     }
   },
   created() {
-    
+
   },
   components: {
-    BlogFullPage, Headertop,
+    BlogFullPage, Headertop, BlogBottom,
     LoadingBar, LoadingBody, RouteBody, ArticlesBody, PanelAside, BlogHeadBar, Tools
   },
   beforeRouteUpdate: function (to, from, next) {

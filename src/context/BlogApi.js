@@ -13,7 +13,7 @@ let removeUselessTag = (response) => {
   response = response.replace(/src=/g, '_src=');
   return "<div>" + response + "</div>";
 };
-let remoteCallByHtmlCache=function($,url){
+let remoteCallByHtmlCache = function ($, url) {
   if (promiseCache[url]) {
     return promiseCache[url];
   }
@@ -21,7 +21,7 @@ let remoteCallByHtmlCache=function($,url){
     $.ajax({
       url: url,
       complete: function (XHR, TS) {
-        resolve((XHR.responseText||""));
+        resolve((XHR.responseText || ""));
         delete promiseCache[url];
       }
     });
@@ -29,9 +29,9 @@ let remoteCallByHtmlCache=function($,url){
   promiseCache[url] = rePromise;
   return rePromise;
 }
-let remoteCallByHtml = function ($,url, parser) {
-  return new Promise((resolve,reject)=>{
-    remoteCallByHtmlCache($,url).then((htmlBody)=>{
+let remoteCallByHtml = function ($, url, parser) {
+  return new Promise((resolve, reject) => {
+    remoteCallByHtmlCache($, url).then((htmlBody) => {
       try {
         let tmpDom = $(removeUselessTag(htmlBody));
         let resObj = parser(tmpDom);
@@ -46,8 +46,8 @@ let remoteCallByHtml = function ($,url, parser) {
     });
   });
 };
-let remoteCallByPost = function ($,url,param,parser){
-  let cacheKey=url+JSON.stringify(param||{});
+let remoteCallByPost = function ($, url, param, parser) {
+  let cacheKey = url + JSON.stringify(param || {});
   if (promiseCache[cacheKey]) {
     return promiseCache[cacheKey];
   }
@@ -56,17 +56,17 @@ let remoteCallByPost = function ($,url,param,parser){
       type: "post",
       url: url,
       data: JSON.stringify(param),
-      headers: {RequestVerificationToken: $("#antiforgery_token").val()},
+      headers: { RequestVerificationToken: $("#antiforgery_token").val() },
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       complete: function (XHR, TS) {
-        try{
-          resolve(parser?parser((XHR.responseJSON||XHR.responseText)):(XHR.responseJSON||XHR.responseText));
-        }catch (e) {
+        try {
+          resolve(parser ? parser((XHR.responseJSON || XHR.responseText)) : (XHR.responseJSON || XHR.responseText));
+        } catch (e) {
           //console.error(e);
           console.log("解析地址:" + url + "出现异常,请联系作者");
           resolve(undefined);
-        }finally {
+        } finally {
           delete promiseCache[cacheKey];
         }
       }
@@ -77,10 +77,10 @@ let remoteCallByPost = function ($,url,param,parser){
 }
 
 let api = {
-  apiRemoteCallByHtml:remoteCallByHtml,
-  apiRemoteCallByPost:remoteCallByPost,
+  apiRemoteCallByHtml: remoteCallByHtml,
+  apiRemoteCallByPost: remoteCallByPost,
   //加载歌曲
-  apiLoadMusicSong:($,param,url)=>{
+  apiLoadMusicSong: ($, param, url) => {
     //{pic,author,title,url,lrc}
     return new Promise((resolve, reject) => {
       $.get(url, (data) => {
@@ -89,7 +89,7 @@ let api = {
     });
   },
   //加载歌曲列表
-  apiLoadMusicPlayList:($,param,url)=>{
+  apiLoadMusicPlayList: ($, param, url) => {
     //[{pic,author,title,url,lrc}]
     return new Promise((resolve, reject) => {
       $.get(url, (data) => {
@@ -98,19 +98,19 @@ let api = {
     });
   },
   //加载文章数量
-  apiLoadArticleNum:($,param,url)=>{
+  apiLoadArticleNum: ($, param, url) => {
     //{pageNum,commentNum}
-    return remoteCallByHtml($,url,(dom)=>{
+    return remoteCallByHtml($, url, (dom) => {
       console.log(dom.html())
-      let pageNum=parseInt((dom.find("#stats_post_count").html() || "").replace("随笔", "").replace("-", "").trim());
-      let commentNum=parseInt((dom.find("#stats-comment_count").html() || "").replace("评论", "").replace("-", "").trim());
-      console.log({pageNum,commentNum});
-      return {pageNum,commentNum};
+      let pageNum = parseInt((dom.find("#stats_post_count").html() || "").replace("随笔", "").replace("-", "").trim());
+      let commentNum = parseInt((dom.find("#stats-comment_count").html() || "").replace("评论", "").replace("-", "").trim());
+      console.log({ pageNum, commentNum });
+      return { pageNum, commentNum };
     });
   },
-  apiLoadBlogPostInfo:($,param,url)=>{
+  apiLoadBlogPostInfo: ($, param, url) => {
     //{fucus,digg}
-    return remoteCallByHtml($,url,(dom)=> {
+    return remoteCallByHtml($, url, (dom) => {
       let reData = {};
       reData.fucus = (dom.find("#green_channel_follow").html() || "").trim() == "关注我" ? true : false;
       reData.digg = (dom.find("#green_channel_digg").html() || "").trim() == "好文要顶" ? true : false;
@@ -118,105 +118,105 @@ let api = {
     });
   },
   //加载作者头像
-  apiLoadAuthorHeadImg:($,param,url)=>{
+  apiLoadAuthorHeadImg: ($, param, url) => {
     //{face,avatar}
-    return remoteCallByHtml($,url,(dom)=>{
-      let src=dom.find(".author_avatar").attr("_src");
+    return remoteCallByHtml($, url, (dom) => {
+      let src = dom.find(".author_avatar").attr("_src");
       return {
-        face:src,
-        avatar:src.replace("face","avatar")
+        face: src,
+        avatar: src.replace("face", "avatar")
       }
     });
   },
   //加载标签云
-  apiLoadCloudLabel:($,param,url)=>{
+  apiLoadCloudLabel: ($, param, url) => {
     //{name,url}
-    return remoteCallByHtml($,url,(dom)=>{
+    return remoteCallByHtml($, url, (dom) => {
       return dom.find("#taglist td a").map((i, v) => {
-        let name=$(v).html();
-        let url=$(v).attr("href");
+        let name = $(v).html();
+        let url = $(v).attr("href");
         return {
-          name,url
+          name, url
         };
       });
     });
   },
-  apiLoadAuthorBlogInfo:($,param,url)=>{
+  apiLoadAuthorBlogInfo: ($, param, url) => {
     //{username,age,follow,focus,guid}
-    return remoteCallByHtml($,url,(dom)=>{
-      let aAttr=dom.find("#profile_block a");
-      let reObj={};
-      reObj.username=($(aAttr[0]).html()||"").trim();
-      reObj.age=($(aAttr[1]).html()||"").trim();
-      reObj.follow=($(aAttr[2]).html()||"").trim();
-      reObj.focus=($(aAttr[3]).html()||"").trim();
-      reObj.guid=dom.find("cjunscript:contains(getFollowStatus(')").html().replace("getFollowStatus('","").replace("');","");
+    return remoteCallByHtml($, url, (dom) => {
+      let aAttr = dom.find("#profile_block a");
+      let reObj = {};
+      reObj.username = ($(aAttr[0]).html() || "").trim();
+      reObj.age = ($(aAttr[1]).html() || "").trim();
+      reObj.follow = ($(aAttr[2]).html() || "").trim();
+      reObj.focus = ($(aAttr[3]).html() || "").trim();
+      reObj.guid = dom.find("cjunscript:contains(getFollowStatus(')").html().replace("getFollowStatus('", "").replace("');", "");
       return reObj;
     });
   },
-  apiBlogFollow:($,param,url)=>{
+  apiBlogFollow: ($, param, url) => {
     //msg
-    return remoteCallByPost($,url,{
+    return remoteCallByPost($, url, {
       blogUserGuid: param.blogUserGuid
     });
   },
-  apiGetCommentBody:($,param,url)=>{
-    return remoteCallByPost($,url,{
+  apiGetCommentBody: ($, param, url) => {
+    return remoteCallByPost($, url, {
       commentId: param.commentId
     });
   },
-  apiAddComment:($,param,url)=>{
-    return remoteCallByPost($,url,{
+  apiAddComment: ($, param, url) => {
+    return remoteCallByPost($, url, {
       postId: param.postId,
-      body:param.body,
-      parentCommentId:param.parentCommentId
+      body: param.body,
+      parentCommentId: param.parentCommentId
     });
   },
-  apiUpdateComment:($,param,url)=>{
-    return remoteCallByPost($,url,{
+  apiUpdateComment: ($, param, url) => {
+    return remoteCallByPost($, url, {
       commentId: param.commentId,
-      body:param.body
+      body: param.body
     });
   },
-  apiDeleteComment:($,param,url)=>{
-    return remoteCallByPost($,url,{
+  apiDeleteComment: ($, param, url) => {
+    return remoteCallByPost($, url, {
       commentId: param.commentId,
-      pageIndex:param.pageIndex,
-      parentId:param.parentId
+      pageIndex: param.pageIndex,
+      parentId: param.parentId
     });
   },
-  apiDiggComment:($,param,url)=>{
-    return remoteCallByPost($,url,{
-      commentId:param.commentId,
-      isAbandoned:param.isAbandoned,
-      postId:param.postId,
+  apiDiggComment: ($, param, url) => {
+    return remoteCallByPost($, url, {
+      commentId: param.commentId,
+      isAbandoned: param.isAbandoned,
+      postId: param.postId,
       voteType: "Digg"
     })
   },
-  apiBuryComment:($,param,url)=>{
-    return remoteCallByPost($,url,{
-      commentId:param.commentId,
-      isAbandoned:param.isAbandoned,
-      postId:param.postId,
+  apiBuryComment: ($, param, url) => {
+    return remoteCallByPost($, url, {
+      commentId: param.commentId,
+      isAbandoned: param.isAbandoned,
+      postId: param.postId,
       voteType: "Bury"
     })
   },
-  apiVoteBlogPost:($,param,url)=>{
-    return remoteCallByPost($,url,{
-      isAbandoned:param.isAbandoned,
-      postId:param.postId,
+  apiVoteBlogPost: ($, param, url) => {
+    return remoteCallByPost($, url, {
+      isAbandoned: param.isAbandoned,
+      postId: param.postId,
       voteType: "Digg"
     })
   },
-  apiBuryBlogPost:($,param,url)=>{
-    return remoteCallByPost($,url,{
-      isAbandoned:param.isAbandoned,
-      postId:param.postId,
+  apiBuryBlogPost: ($, param, url) => {
+    return remoteCallByPost($, url, {
+      isAbandoned: param.isAbandoned,
+      postId: param.postId,
       voteType: "Bury"
     })
   },
-  apiLoadCommentList:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadCommentList: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       return dom.find(".feedbackItem").map((i, v) => {
         let obj = {};
         obj.commentId = parseInt($(v).find("[class='layer']").attr("href").replace("#", ""));
@@ -228,61 +228,62 @@ let api = {
         obj.desc = $(v).find("[id^='comment_body_']").html().replace(new RegExp("_src", 'g'), "src").trim();
         obj.digg = $(v).find(".comment_digg").length >= 1 ? $(v).find(".comment_digg").html().trim().replace("支持(", "").replace(")", "") : undefined;
         obj.burry = $(v).find(".comment_burry").length >= 1 ? $(v).find(".comment_burry").html().trim().replace("反对(", "").replace(")", "") : undefined;
-        obj.avatarUrl = ($(v).find("[id^='comment_'][id$='_avatar']").html()||"").trim();
-        obj.avatarHdUrl=(($(v).find("[id^='comment_'][id$='_avatar']").html()||"").trim()).replace("face","avatar");
-        obj.replayBtn=$(v).find("[onclick^='return ReplyComment']").length>0;
-        obj.quoteBtn=$(v).find("[onclick^='return QuoteComment']").length>0;
-        obj.delBtn=$(v).find("[onclick^='return DelComment']").length>0;
-        obj.updateBtn=$(v).find("[onclick^='return GetCommentBody']").length>0;
+        obj.avatarUrl = ($(v).find("[id^='comment_'][id$='_avatar']").html() || "").trim();
+        obj.avatarHdUrl = (($(v).find("[id^='comment_'][id$='_avatar']").html() || "").trim()).replace("face", "avatar");
+        obj.replayBtn = $(v).find("[onclick^='return ReplyComment']").length > 0;
+        obj.quoteBtn = $(v).find("[onclick^='return QuoteComment']").length > 0;
+        obj.delBtn = $(v).find("[onclick^='return DelComment']").length > 0;
+        obj.updateBtn = $(v).find("[onclick^='return GetCommentBody']").length > 0;
         return obj;
       });
     });
   },
-  apiLoadCategoriesTags:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadCategoriesTags: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       let obj = {};
       obj.categorys = dom.find("#BlogPostCategory a").map((i, v) => {
         let title = $(v).html();
         let url = $(v).attr("href");
-        return {title, url};
+        return { title, url };
       })
       obj.tags = dom.find("#EntryTag a").map((i, v) => {
         let title = $(v).html();
         let url = $(v).attr("href");
-        return {title, url};
+        return { title, url };
       })
       return obj;
     });
   },
-  apiLoadCommentCount:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadCommentCount: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       return dom.html();
     });
   },
-  apiLoadViewCount:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadViewCount: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       return dom.html();
     });
   },
 
-  apiLoadArticle:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadArticle: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       let obj = {};
+      console.log(dom)
       obj.title = dom.find("#topics").find("#cb_post_title_url span").html();
       obj.body = "<div class=\"postBody\">" + dom.find("#topics").find(".postBody").html().replace(new RegExp("_src", 'g'), "src") + "</div>";
       obj.time = dom.find("#topics .postDesc #post-date").html();
       obj.editUrl = dom.find("#topics .postDesc [rel='nofollow']").attr("href");
       obj.fontNum = dom.find("#topics").find(".postBody").text().length;
-      obj.readNum=dom.find("#post_view_count").text();
-      obj.pageId=param.articleId;
+      obj.readNum = dom.find("#post_view_count").text();
+      obj.pageId = param.articleId;
       return obj;
     });
   },
 
-  apiLoadTagList:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
-      let title=(dom.find(".PostListTitle").html()||"").trim();
-      let list=dom.find("#mainContent .PostList").map((i, v) => {
+  apiLoadTagList: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
+      let title = (dom.find(".PostListTitle").html() || "").trim();
+      let list = dom.find("#mainContent .PostList").map((i, v) => {
         let obj = {};
         obj.title = $(v).find("[id*='TitleUrl'] span").html().trim();
         obj.url = $(v).find("[id*='TitleUrl']").attr("href").trim();
@@ -301,8 +302,8 @@ let api = {
     });
   },
   __loadCommonListParser: (dom) => {
-    let title=(dom.find(".entrylistTitle").html()||"").trim();
-    let list=dom.find("#mainContent .entrylistItem").map((i, v) => {
+    let title = (dom.find(".entrylistTitle").html() || "").trim();
+    let list = dom.find("#mainContent .entrylistItem").map((i, v) => {
       let obj = {};
       obj.title = $(v).find(".entrylistItemTitle span").html().trim();
       obj.url = $(v).find(".entrylistItemTitle").attr("href").trim();
@@ -315,100 +316,100 @@ let api = {
       return obj;
     });
     return {
-      list,title
+      list, title
     }
   },
-  apiLoadArchiveList:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadArchiveList: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       return api.__loadCommonListParser(dom);
     });
   },
-  apiLoadCategoryList:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadCategoryList: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       return api.__loadCommonListParser(dom);
     });
   },
-  apiLoadPrevnext:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
-      let pre=dom.find(".p_n_p_prefix:contains(«)").attr("href");
-      let pos=dom.find(".p_n_p_prefix:contains(»)").attr("href");
-      let preId,posId;
-      if(pre){
-        let preArr=pre.split("/");
-        preId=preArr[preArr.length-1].replace(".html","");
+  apiLoadPrevnext: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
+      let pre = dom.find(".p_n_p_prefix:contains(«)").attr("href");
+      let pos = dom.find(".p_n_p_prefix:contains(»)").attr("href");
+      let preId, posId;
+      if (pre) {
+        let preArr = pre.split("/");
+        preId = preArr[preArr.length - 1].replace(".html", "");
       }
-      if(pos){
-        let posArr=pos.split("/");
-        posId=posArr[posArr.length-1].replace(".html","");
+      if (pos) {
+        let posArr = pos.split("/");
+        posId = posArr[posArr.length - 1].replace(".html", "");
       }
-      return {preId,posId}
+      return { preId, posId }
     });
   },
-  apiLoadDefaultCategoryList:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
-      let title="";
-      let list=dom.find("#mainContent .day").map((i, v) => {
-        let objArray=[];
+  apiLoadDefaultCategoryList: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
+      let title = "";
+      let list = dom.find("#mainContent .day").map((i, v) => {
+        let objArray = [];
         let archiveTime = $(v).find(".dayTitle a").html().trim();
-        let blockSize=$(v).find(".postTitle").length;
-        for (let i=0;i<blockSize;i++){
+        let blockSize = $(v).find(".postTitle").length;
+        for (let i = 0; i < blockSize; i++) {
           let obj = {};
-          obj.archiveTime=archiveTime;
+          obj.archiveTime = archiveTime;
           obj.isTop = $(v).hasClass('pinned');
-          let postTitle=$(v).find(".postTitle").eq(i);
-          obj.title = postTitle.find("a span").text().trim().replace("[置顶]","").replace(" [置顶]","");
+          let postTitle = $(v).find(".postTitle").eq(i);
+          obj.title = postTitle.find("a span").text().trim().replace("[置顶]", "").replace(" [置顶]", "");
           obj.url = postTitle.find("a").attr("href");
-          let postCon=$(v).find(".postCon");
-          if($(v).find(".desc_img").length>0){
-            obj.imgUrl = 'https://images.weserv.nl/?url='+$(v).find(".desc_img")[0]['attributes'][0].value;
+          let postCon = $(v).find(".postCon");
+          if ($(v).find(".desc_img").length > 0) {
+            obj.imgUrl = 'https://images.weserv.nl/?url=' + $(v).find(".desc_img")[0]['attributes'][0].value;
           }
-          else{
-            obj.imgUrl =''
+          else {
+            obj.imgUrl = ''
           }
-          
+
           postCon.find(".c_b_p_desc a").remove();
           obj.desc = postCon.find(".c_b_p_desc").html().trim();
-          let postDesc=$(v).find(".postDesc");
+          let postDesc = $(v).find(".postDesc");
           obj.time = postDesc.html().split("\n")[0].split("@")[1].trim();
           obj.readNum = parseInt(postDesc.text().split("\n")[2].replace("阅读(", "").replace(")", "").trim());
           obj.commentNum = parseInt(postDesc.text().split("\n")[3].replace("评论(", "").replace(")", ""));
           obj.recommendNum = parseInt(postDesc.text().split("\n")[4].replace("推荐(", "").replace(")", ""));
           obj.editUrl = postDesc.find("a").attr("href").trim();
-          let idArr= obj.url.split("/");
-          obj.pageId=idArr[idArr.length-1].replace(".html","");
+          let idArr = obj.url.split("/");
+          obj.pageId = idArr[idArr.length - 1].replace(".html", "");
           objArray.push(obj);
         }
         return objArray;
       }).toArray().flat();
-      let parseToNum=function(url){
-        return parseInt((url.split("page=")[1]||"").trim());
+      let parseToNum = function (url) {
+        return parseInt((url.split("page=")[1] || "").trim());
       }
-      let pageList=[];
-      pageList=dom.find("#nav_next_page a").map((i, item)=>{
-        item=$(item);
-        let num=parseToNum(item.attr("href"));
-        let text=item.html().trim();
-        let focus=true;
-        return {num,text,focus}
+      let pageList = [];
+      pageList = dom.find("#nav_next_page a").map((i, item) => {
+        item = $(item);
+        let num = parseToNum(item.attr("href"));
+        let text = item.html().trim();
+        let focus = true;
+        return { num, text, focus }
       });
-      pageList=pageList.length>0?pageList:dom.find("#homepage_top_pager .pager").text().split("\n").map(( item)=> item.trim()).filter((item)=> item!="").map((item)=>{
-        let pageNumDom=dom.find("#homepage_top_pager .pager").find("a:contains("+item+")");
-        let num=pageNumDom.length>0?parseToNum(pageNumDom.attr("href")):item;
-        let text=item;
-        let focus=pageNumDom.length==0;
-        return {num,text,focus}
+      pageList = pageList.length > 0 ? pageList : dom.find("#homepage_top_pager .pager").text().split("\n").map((item) => item.trim()).filter((item) => item != "").map((item) => {
+        let pageNumDom = dom.find("#homepage_top_pager .pager").find("a:contains(" + item + ")");
+        let num = pageNumDom.length > 0 ? parseToNum(pageNumDom.attr("href")) : item;
+        let text = item;
+        let focus = pageNumDom.length == 0;
+        return { num, text, focus }
       });
 
-      return {list,title,pageList }
+      return { list, title, pageList }
     });
   },
-  apiLoadSideColumn:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadSideColumn: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       /*通用解析器*/
       let commonParser = (i, v) => {
         let url = $(v).attr("href");
         let title = $(v).text();
-        return {url, title}
+        return { url, title }
       }
       /*获取常用链接*/
       let catListLink = dom.find(".catListLink li a").map(commonParser);
@@ -418,7 +419,7 @@ let api = {
       let catListTag = dom.find(".catListTag li a").map((i, v) => {
         let re = commonParser(i, v);
         let splitTmp = $(v).parent().remove("a").text().trim().split("(");
-        if(splitTmp[1]){
+        if (splitTmp[1]) {
           re.num = parseInt(splitTmp[1].replace(")", ""));
         }
         return re;
@@ -466,31 +467,31 @@ let api = {
       }
     });
   },
-  apiLoadTopLists:($,param,url)=>{
-    return remoteCallByHtml($,url,(dom) => {
+  apiLoadTopLists: ($, param, url) => {
+    return remoteCallByHtml($, url, (dom) => {
       let commonParser = (i, v) => {
         let url = $(v).attr("href");
         let splTmp = $(v).text().trim().split("(");
         let title = splTmp[0];
         let num = parseInt(splTmp[1].replace(")", "").trim());
-        return {url, title, num}
+        return { url, title, num }
       };
       let topViewPostsBlock = dom.find("#TopViewPostsBlock li a").map(commonParser);
       let topFeedbackPostsBlock = dom.find("#TopFeedbackPostsBlock li a").map(commonParser);
       let topDiggPostsBlock = dom.find("#TopDiggPostsBlock li a").map(commonParser);
-      return {topViewPostsBlock, topFeedbackPostsBlock, topDiggPostsBlock}
+      return { topViewPostsBlock, topFeedbackPostsBlock, topDiggPostsBlock }
     });
   },
-  __loadFaceCache:{},
-  apiLoadCommitterFaceUrl:($,param,url)=>{
-    let dataCache=api.__loadFaceCache;
-    let committerName=param.committerName;
+  __loadFaceCache: {},
+  apiLoadCommitterFaceUrl: ($, param, url) => {
+    let dataCache = api.__loadFaceCache;
+    let committerName = param.committerName;
     if (dataCache[committerName]) {
       return new Promise((resolve, reject) => {
         resolve(dataCache[committerName]);
       })
     }
-    return remoteCallByHtml($,url,(dom) => {
+    return remoteCallByHtml($, url, (dom) => {
       dom.find(".feedbackItem").each((i, v) => {
         let cacheName = ($(v).find("[id^='a_comment_author_']").html() || "").trim();
         let cacheValue = ($(v).find("[id$='_avatar']").html() || "").trim();

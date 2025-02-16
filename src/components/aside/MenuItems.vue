@@ -1,4 +1,3 @@
-<!--eslint-disable-->
 <template>
   <div id="menu_items">
     <div class="menu-items-wrap">

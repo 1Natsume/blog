@@ -27,6 +27,7 @@
                 <i class="icon iconfont talk text-muted"></i>&nbsp;{{ item.commentNum }} 条评论
                 <i class="icon iconfont see text-muted"></i>&nbsp;{{ item.readNum }}<span class="hidden-xs"> 次浏览</span>
               </div>
+              <router-link :to="item.url" class="ahover"></router-link>
             </div>
           </div>
         </div>
@@ -35,7 +36,7 @@
       </div>
 
     </div>
-    <blog-bottom></blog-bottom>
+    
   </div>
 </template>
 <script>
@@ -43,13 +44,12 @@ import blogKit from "@/utils/BlogKit";
 import blogApi from "@/utils/BlogApi";
 import BlogContext from "@/context/BlogContext";
 import PageLine from "../common/PageLine.vue";
-import BlogBottom from "../bottom/BlogBottom.vue";
 import { mapState, mapActions } from 'vuex'
 
 let imgList = Array.from(Array(BlogContext.panelItemPic.length - 1), (v, k) => k).sort(() => Math.random() >= 0.5 ? 1 : -1).map((item) => 1 + item);
 
 export default {
-  components: { PageLine,BlogBottom },
+  components: { PageLine },
   data: () => {
     return {
       arrList: [],

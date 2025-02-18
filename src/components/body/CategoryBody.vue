@@ -2,14 +2,14 @@
   <div id="category_body">
     <div class="category-body-wrap">
       <div class="head-title">
-        <div class="title-font" v-if="title">{{ title }}</div>
-        <div class="title-thumb" v-if="!title">{{ categoryTitle }}</div>
-        <div class="title-sign " v-if="!title">{{ categorySign }}</div>
+        <div class="title-font">{{ title }}</div>
+        <div class="title-thumb">{{ categoryTitle }}</div>
+        <div class="title-sign ">{{ categorySign }}</div>
       </div>
       <div class="wrapper-md" id="post-panel">
         <div class="article-list-wrap blog-post">
           <div v-for="(item, key) in arrList" :key="key" :class="item.isTop == true ? 'panel-small' : 'panel'">
-            <div class="sticky" v-if="item.isTop">置顶</div>
+            <div class="sticky" v-show="item.isTop">置顶</div>
             <div :class="item.isTop == true ? 'index-img-small' : 'index-post-img'"><router-link :to="item.url">
                 <div :class="item.isTop == true ? 'item-thumb-small lazy' : 'item-thumb lazy'"
                   :style="'background-image: url(' + item.imgUrl + ')'"></div>
@@ -44,7 +44,6 @@ import blogKit from "@/utils/BlogKit";
 import blogApi from "@/utils/BlogApi";
 import BlogContext from "@/context/BlogContext";
 import PageLine from "../common/PageLine.vue";
-import { mapState, mapActions } from 'vuex'
 
 let imgList = Array.from(Array(BlogContext.panelItemPic.length - 1), (v, k) => k).sort(() => Math.random() >= 0.5 ? 1 : -1).map((item) => 1 + item);
 

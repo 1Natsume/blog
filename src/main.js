@@ -15,6 +15,8 @@ import 'highlight.js/lib/common';
 import hljs from "highlight.js";
 import "@/assets/scss/theme/style.scss";
 import "@/assets/scss/theme/style0.scss";
+import "@/assets/scss/theme/handsome.scss";
+import "@/assets/scss/theme/gal.scss";
 import "static/logo/logo.css";
 import $ from "jquery";
 

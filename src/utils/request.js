@@ -1,4 +1,3 @@
-import axios from "axios";
 let access_token = 'AEB65EDA8CA9D962C1379033EF864662A06E3E7E5504CFB7C685B8EFD76FBEB2'
 // 创建一个 axios 实例
 

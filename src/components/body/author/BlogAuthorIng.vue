@@ -66,8 +66,8 @@
 </template>
 
 <script>
-    import blogApi from "../../../utils/BlogApi";
-    import BlogContext from "../../../context/BlogContext";
+    import blogApi from "@/utils/BlogApi";
+    import BlogContext from "@/context/BlogContext";
     import Pagination from "../../common/Pagination.vue";
     export default {
       name: "BlogAuthorIng",

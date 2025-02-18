@@ -1,6 +1,5 @@
 <template>
   <div id="blog_panel">
-    <blog-full-page></blog-full-page>
     <!-- <Headertop></Headertop> -->
     <blog-head-bar class="blog-head-bar" :style="loadColor(this.$store.state.config.headcolor)"></blog-head-bar>
     <div class="main-panel">
@@ -31,7 +30,6 @@ import ArticlesBody from "./body/CategoryBody.vue";
 import RouteBody from "./body/SubjectBody.vue";
 import LoadingBody from "./common/LoadingBody.vue";
 import LoadingBar from "./common/LoadingBar.vue";
-import BlogFullPage from "./full/BlogFullPage.vue";
 import Tools from "./common/Tools.vue"
 import Headertop from "./common/headertop.vue";
 import BlogBottom from "./bottom/BlogBottom.vue";
@@ -58,7 +56,7 @@ export default {
 
   },
   components: {
-    BlogFullPage, Headertop, BlogBottom,
+    Headertop, BlogBottom,
     LoadingBar, LoadingBody, RouteBody, ArticlesBody, PanelAside, BlogHeadBar, Tools
   },
   beforeRouteUpdate: function (to, from, next) {

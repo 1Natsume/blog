@@ -1,0 +1,11 @@
+.gal{
+    #bg,#blog_head_bar,.blog-post,#pub_aside,#category_body,.panel-aside-bottom{
+        display: none;
+    }
+    .menu-item-area{
+        display: block;
+        height: 40%;
+        font-size: 14px;
+        z-index: 99;
+    }
+}

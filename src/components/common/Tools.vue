@@ -7,9 +7,8 @@
     <div class="skin-menu no-select">
       <div class="theme-controls row-container">
         <ul class="menu-list">
-          <li v-for="(item, index) in themes" :key="index">
-            <a href="javascript:void(0)" @click="switchTheme(item)"><i :class="item.icon"
-                aria-hidden="true"></i></a>
+          <li v-for="(item, index) in this.$store.state.themes" :key="index">
+            <a href="javascript:void(0)" @click="switchTheme(item)"><i :class="item.icon" aria-hidden="true"></i></a>
           </li>
         </ul>
       </div>
@@ -19,13 +18,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 export default {
   name: "Tools",
-  components: {},
-  computed: {
-    ...mapState(["themes"]),
-  },
   data: () => {
     return {
       styles: [],
@@ -33,15 +27,16 @@ export default {
   },
   methods: {
     open: () => {
-      document.querySelector(".skin-menu").classList.toggle('show');
+      $(".skin-menu").toggleClass('show');
     },
     switchTheme: (res) => {
-      localStorage.removeItem("config");
-      const config = {
-        theme: res.theme,
-      };
-      localStorage.setItem("config", JSON.stringify(config));
-      document.querySelector("#blog").className = res.theme;
+      let config = localStorage.getItem('config')
+      if (config) {
+        let theme = JSON.parse(config);
+        theme.theme = res.theme
+        localStorage.setItem('config', JSON.stringify(theme)); // 重新存储数据
+        $("#blog").attr('class', res.theme);
+      }
     },
   },
 };
@@ -72,15 +67,16 @@ export default {
   //transiton-property: transform, background;
   transition-duration: 0.3s, 0.3s;
 }
+
 .skin-menu:after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
-    border-style: solid;
-    border-color: #fff transparent transparent;
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #fff transparent transparent;
 }
 
 .skin-menu .row-container {
@@ -100,7 +96,7 @@ export default {
 .skin-menu .row-container .menu-list li {
   display: inline-block;
   margin: 6px;
-  height:36px;
+  height: 36px;
   line-height: 36px;
   width: 36px;
   background-color: #f5f5f5;

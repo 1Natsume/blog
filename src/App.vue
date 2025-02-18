@@ -1,16 +1,12 @@
 <template>
-    <div id="blog" :class="config.theme">
-        <div id="bg" :style="bg(config.bg)"></div>
+    <div id="blog" :class="this.$store.state.config.theme">
+        <div id="bg" :style="bg(this.$store.state.config.bg)"></div>
         <router-view />
     </div>
 </template>
 <script>
-import { mapState } from 'vuex';
 export default {
     name: "App",
-    computed: {
-        ...mapState(['config'])
-    },
     data() {
 
         return {
@@ -18,7 +14,6 @@ export default {
         }
 
     },
-
     methods: {
         themeStyle: () => {
             return null

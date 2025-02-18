@@ -12,7 +12,7 @@ function loadStateConfig() {
       return configjson
     } else {
       const config = {
-        theme: "handsome",
+        theme: "gal",
         bg: ["http://www.dmoe.cc/random.php"],
         headcolor: "#7266ba",
         asidecolor: "#fff",
@@ -74,6 +74,12 @@ function loadStateThemes() {
           icon: "icon iconfont link",
           dec: "Sakura"
         },
+        {
+          id: 4,
+          theme: "Gal",
+          icon: "icon iconfont link",
+          dec: "Gal"
+        },
       ];
       localStorage.setItem("themes", JSON.stringify(themes));
       return themes;
@@ -97,10 +103,8 @@ export default new Vuex.Store({
   mutations: {
     changeRecruitScrollY(state, recruitScrollY) {
       state.recruitScrollY = recruitScrollY;
-    },
-    updateConfig(state,config){
-      state.config = config
     }
   },
-  actions: {},
+  actions: {
+  },
 });

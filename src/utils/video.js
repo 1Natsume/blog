@@ -49,7 +49,7 @@ let video = {
         })
     }
 
-    var s = $('#bgvideo')[0],
+    var s = $('#bgvideo'),
         Siren = {
             splay: function() {
                 $('#video-btn')
@@ -59,7 +59,7 @@ let video = {
                 $('.video-stu').css({
                     bottom: '-100px',
                 })
-
+                
                 s.play()
                 $('#bgimg').hide()
                 $('.video-container').css({ height: 'auto' })
@@ -71,11 +71,11 @@ let video = {
                 s.pause()
             },
             liveplay: function() {
-                if (s.oncanplay != undefined && $('.haslive').length > 0) {
+                // if (s.oncanplay != undefined && $('.haslive').length > 0) {
                     if ($('.videolive').length > 0) {
                         Siren.splay()
                     }
-                }
+                //}
             },
             livepause: function() {
                 if (s.oncanplay != undefined && $('.haslive').length > 0) {
@@ -102,17 +102,20 @@ let video = {
                         _t = t[Math.floor(Math.random() * t.length)]
                     // $('#bgvideo').attr('src', Poi.movies.url + '/' + _t)
                     $('#bgvideo').attr('src', _t)
-                    // $('#bgvideo').attr('video-name', _t)
+                    //$('#bgvideo').attr('video-name', _t)
                 }
             },
             LV: function() {
                 var _btn = $('#video-btn')
                 _btn.on('click', function() {
+                    
                     if ($(this).hasClass('loadvideo')) {
+                        console.log(1)
                         $(this)
                             .addClass('video-pause')
                             .removeClass('loadvideo')
                             .hide()
+                        
                         Siren.addsource()
                         s.oncanplay = function() {
                             Siren.splay()
@@ -149,7 +152,7 @@ let video = {
             },
             AH: function() {
                 // if (Poi.windowheight == 'auto') {
-                if ($('h1.main-title').length > 0) {
+                // if ($('h1.main-title').length > 0) {
                     var _height = $(window).height()
                     $('#centerbg').css({
                         height: _height,
@@ -161,17 +164,17 @@ let video = {
                         Siren.AH()
                     })
                     //   }
-                } else {
-                    var _height = $(window).height()
-                    $('#centerbg').css({
-                        height: _height,
-                    })
-                    $('.headertop').addClass('headertop-bar')
+                // } else {
+                //     var _height = $(window).height()
+                //     $('#centerbg').css({
+                //         height: _height,
+                //     })
+                //     $('.headertop').addClass('headertop-bar')
                     
-                }
+                // }
             },
             PE: function() {
-                // if ($('.headertop').length > 0) {
+                if ($('.headertop').length > 0) {
                 //   if ($('h1.main-title').length > 0) {
                 //     $('.blank').css({
                 //       'padding-top': '0px'
@@ -190,7 +193,7 @@ let video = {
                 //     }).hide()
                 //     Siren.livepause()
                 //   }
-                // }
+                 }
             },
             IM: function() {
                 
@@ -209,10 +212,10 @@ let video = {
             MP: function() {}
         }
     $(function() {
-        //   Siren.addsource()
+        Siren.addsource()
         Siren.AH()
-        // Siren.PE()
-        // Siren.LV()
+        //Siren.PE()
+        Siren.LV()
         //Siren.IM()
         //Siren.MP()
         

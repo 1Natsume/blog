@@ -38,7 +38,8 @@ function loadStateConfig() {
         ],
         link: [
           { title: 'C君博客', url: 'https://www.cnblogs.com/cjunn/' }
-        ]
+        ],
+        movies:[' https://cdn.jsdelivr.net/gh/Hiy0ri/cdn/mp4/1.mp4']
       };
       localStorage.setItem("config", JSON.stringify(config));
       return config;

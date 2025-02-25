@@ -1,6 +1,6 @@
 <template>
     <div id="blog" :class="this.$store.state.config.theme">
-        <div id="bg" :style="bg(this.$store.state.config.bg)"></div>
+        <!-- <div id="bg" :style="bg(this.$store.state.config.bg)"></div> -->
         <router-view />
     </div>
 </template>

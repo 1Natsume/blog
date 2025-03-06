@@ -2,7 +2,7 @@ import Vuex from "vuex";
 import { createStore } from 'vuex';
 function loadStateConfig() {
   try {
-    //localStorage.clear();
+    localStorage.clear();
     const serializedState = localStorage.getItem("config");
     if (serializedState) {
       let json1 = JSON.parse(serializedState);
@@ -31,15 +31,15 @@ function loadStateConfig() {
 `,
         musicIds: ["7282638202"],
         menu: [
-          { title: "首页", url: "/subject/category/default", icon: "fc-lol-huli fc-icon-40" },
-          { title: "反馈", url: '/c/subject/p/12494785', icon: "fc-lol-naima fc-icon-40" },
-          { title: "关注", url: 'me', icon: "fc-lol-ruiwen fc-icon-40" },
-          { title: "后台", url: '/admin', icon: "fc-lol-goutou fc-icon-40" }
+          { name:"HOME",title: "首页", url: "/c/subject/category/default", icon: "fc-lol-huli fc-icon-40" },
+          { name:"BUG",title: "反馈", url: '', icon: "fc-lol-naima fc-icon-40" },
+          { name:"FOLLOW",title: "关注", url: 'me', icon: "fc-lol-ruiwen fc-icon-40" },
+          { name:"ADMIN",title: "后台", url: '/admin', icon: "fc-lol-goutou fc-icon-40" }
         ],
         link: [
           { title: 'C君博客', url: 'https://www.cnblogs.com/cjunn/' }
         ],
-        movies:[' https://cdn.jsdelivr.net/gh/Hiy0ri/cdn/mp4/1.mp4']
+        movies:['https://video.cdn.queniuqe.com/store_trailers/256982456/movie480_vp9.webm?t=1703239286']
       };
       localStorage.setItem("config", JSON.stringify(config));
       return config;

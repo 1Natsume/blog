@@ -1,7 +1,7 @@
 <template>
   <div id="blog_panel">
     <Headertop></Headertop>
-    <!-- <blog-head-bar class="blog-head-bar" :style="loadColor(this.$store.state.config.headcolor)"></blog-head-bar>
+    <blog-head-bar class="blog-head-bar" :style="loadColor(this.$store.state.config.headcolor)"></blog-head-bar>
     <div class="main-panel">
       <panel-aside id="panel_aside" class="panel-aside"
         :class="{ 'blog-aside-show': asideIsShow, 'blog-aside-hide': !asideIsShow }"
@@ -18,7 +18,7 @@
         <blog-bottom></blog-bottom>
         <div id="panel_bottom_target"></div>
       </div>
-    </div>-->
+    </div>
     <Tools></Tools> 
   </div>
 </template>

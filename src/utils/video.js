@@ -60,7 +60,7 @@ let video = {
                     bottom: '-100px',
                 })
                 
-                s.play()
+                document.getElementById('bgvideo').play()
                 $('#bgimg').hide()
                 $('.video-container').css({ height: 'auto' })
             },
@@ -68,14 +68,14 @@ let video = {
                 $('#video-btn')
                     .addClass('video-play')
                     .removeClass('video-pause')
-                s.pause()
+                    document.getElementById('bgvideo').pause()
             },
             liveplay: function() {
-                // if (s.oncanplay != undefined && $('.haslive').length > 0) {
+                 if (s.oncanplay != undefined && $('.haslive').length > 0) {
                     if ($('.videolive').length > 0) {
                         Siren.splay()
                     }
-                //}
+                }
             },
             livepause: function() {
                 if (s.oncanplay != undefined && $('.haslive').length > 0) {
@@ -110,19 +110,23 @@ let video = {
                 _btn.on('click', function() {
                     
                     if ($(this).hasClass('loadvideo')) {
-                        console.log(1)
+                        
                         $(this)
                             .addClass('video-pause')
                             .removeClass('loadvideo')
                             .hide()
                         
                         Siren.addsource()
+                        
+                        
                         s.oncanplay = function() {
                             Siren.splay()
                             $('#video-add').show()
                             _btn.addClass('videolive')
                             _btn.addClass('haslive')
-                        }
+                        
+                    }
+                    
                     } else {
                         if ($(this).hasClass('video-pause')) {
                             Siren.spause()
@@ -138,6 +142,7 @@ let video = {
                         }
                     }
                     s.onended = function() {
+                        
                         $('#bgvideo').attr('src', '')
                         $('#video-add').hide()
                         _btn.addClass('loadvideo').removeClass('video-pause')
@@ -145,6 +150,7 @@ let video = {
                         _btn.removeClass('haslive')
                         $('#bgvideo').show()
                     }
+                    
                 })
                 $('#video-add').on('click', function() {
                     Siren.addsource()
@@ -157,6 +163,10 @@ let video = {
                     $('#centerbg').css({
                         height: _height,
                     })
+                    $('#video-container').css({
+                        height: _height,
+                    })
+                    
                     $('#bgvideo').css({
                         'min-height': _height,
                     })
@@ -182,17 +192,17 @@ let video = {
                 //     $('.headertop').css({
                 //       'height': 'auto'
                 //     }).show()
-                // if (Poi.movies.live == 'open')
+                 if (Poi.movies.live == 'open'){
                 Siren.liveplay()
-                //   } else {
-                //     $('.blank').css({
-                //       'padding-top': '75px'
-                //     })
-                //     $('.headertop').css({
-                //       'height': '0px'
-                //     }).hide()
-                //     Siren.livepause()
-                //   }
+                  } else {
+                    // $('.blank').css({
+                    //   'padding-top': '75px'
+                    // })
+                    // $('.headertop').css({
+                    //   'height': '0px'
+                    // }).hide()
+                    Siren.livepause()
+                  }
                  }
             },
             IM: function() {
@@ -214,7 +224,7 @@ let video = {
     $(function() {
         Siren.addsource()
         Siren.AH()
-        //Siren.PE()
+        Siren.PE()
         Siren.LV()
         //Siren.IM()
         //Siren.MP()

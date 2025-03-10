@@ -2248,7 +2248,7 @@ li.seatClz {
 }
 
 .logolink .sakuraso {
-    background-color: rgba(255, 255, 255, .5);
+    //background-color: rgba(255, 255, 255, .5);
     border-radius: 5px;
     color: #464646;
     height: auto;
@@ -2261,8 +2261,9 @@ li.seatClz {
 }
 
 .logolink a:hover .sakuraso {
-    background-color: orange;
-    color: #fff;
+    //background-color: orange;
+    //color: #fff;
+    color: orange;
 }
 
 .logolink a:hover .shironeko,

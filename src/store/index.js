@@ -2,7 +2,7 @@ import Vuex from "vuex";
 import { createStore } from 'vuex';
 function loadStateConfig() {
   try {
-    localStorage.clear();
+    //localStorage.clear();
     const serializedState = localStorage.getItem("config");
     if (serializedState) {
       let json1 = JSON.parse(serializedState);

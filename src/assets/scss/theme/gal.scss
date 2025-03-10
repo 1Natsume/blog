@@ -1,5 +1,5 @@
 .gal{
-    #bg,#blog_head_bar,.blog-post,#pub_aside,#category_body,.panel-aside-bottom,.main-panel{
+    #bg,#brand_name,#keyword_searcher,.float-right-wrap,.blog-post,#pub_aside,#category_body,.panel-aside-bottom,.main-panel{
         display: none;
     }
     .menu-item-area{
@@ -237,19 +237,54 @@
         
     }
     .headertop-menu ul li a{
-        -webkit-text-stroke: 1px #e54d42; /* 黑色描边，宽度为1px */
-        color: white; /* 文字颜色 */
+        
+        //-webkit-text-stroke: 1px #E3170D; /* 黑色描边，宽度为1px */
+        color: #f57878; /* 文字颜色 */
         text-decoration: none;
+    }
+    .headertop-menu ul li a:hover{
+        color:aqua; 
     }
     .font-big{
         position: relative;
         font-size: 40px;
         text-align: right;
+        text-shadow:-1px 0 white,0 1px white,1px 0 white,0 -1px white;
     }
     .font-small{
         position: relative;
         //margin-top: -20px;
         height: 30px;
         text-align: right;
+        text-shadow:-1px 0 white,0 1px white,1px 0 white,0 -1px white;
+    }
+    #blog_head_bar{
+        position: absolute;
+        top: 70px;
+        width: 420px;
+        height: auto;
+        right: 0;
+    }
+    #brand_title{
+        position: absolute;
+        display: block;
+        
+    }
+    .logo ruby{
+        font-size: 50px;
+    }
+    .logolink.logo .sakuraso, .logolink.logo .no{
+        font-size: 50px;
+        
+        
+    }
+
+    .logolink a:hover .sakuraso {
+        color:aqua; 
+    }
+    
+    .logolink a:hover .shironeko,
+    .logolink a:hover rt {
+        color:aqua; 
     }
 }

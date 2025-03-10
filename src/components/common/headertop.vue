@@ -48,8 +48,6 @@ export default {
                 window.open(url);
                 return;
             }
-            console.log(this.$route.path)
-            console.log(url)
             if (this.$route.path == url) {
                 $("#blog").attr('class', 'handsome');
                 return;

@@ -37,7 +37,7 @@
                   @clickItem="clickItem"></pop-list>
       </transition>
     </div>
-    <!-- <div id="music_player_lrc"></div> -->
+    <div id="music_player_lrc"></div>
     <!-- <canvas id="canvas"></canvas> -->
   </div>
 </template>
@@ -47,6 +47,7 @@
   import PopList from "./PopList.vue";
   import blogApi from "@/utils/BlogApi";
   import audio from '@/utils/Audio'
+  import BlogContext from "@/context/BlogContext";
 
   export default {
     name: "MusicPlayer",
@@ -56,7 +57,7 @@
       this.audio.onerror = this.musicError;
       this.audio.oncanplay = this.musicCanplay;
       this.audio.onended = this.musicEnded;
-      blogApi.loadMusicList(this.$store.state.config.musicIds).then((list) => {
+      blogApi.loadMusicList(BlogContext.musicIds).then((list) => {
         this.playList = list;
         //this.musicState();
       });
@@ -115,7 +116,7 @@
       musicUpdate: function (even) {
         this.cssStyle.barWidth = ((this.audio.currentTime / this.audio.duration) * this.cssStyle.barMaxWidth).toFixed(0);
         if(this.audio.currentTime / this.audio.duration>0){
-          //document.getElementById("music_player_lrc").textContent = audio.getIndex(this.lrc,this.audio);
+          document.getElementById("music_player_lrc").textContent = audio.getIndex(this.lrc,this.audio);
           audio.setText(this.lrc,this.audio)
         }
         
@@ -159,7 +160,6 @@
         }
         
       },
-
       musicSetInfo: function (item) {
         this.playing.url = item.url;
         this.playing.index = item.index;

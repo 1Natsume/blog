@@ -7,7 +7,7 @@
     <div class="skin-menu no-select">
       <div class="theme-controls row-container">
         <ul class="menu-list">
-          <li v-for="(item, index) in this.$store.state.themes" :key="index">
+          <li v-for="(item, index) in themes" :key="index">
             <a href="javascript:void(0)" @click="switchTheme(item)"><i :class="item.icon" aria-hidden="true"></i></a>
           </li>
         </ul>
@@ -18,11 +18,13 @@
 </template>
 
 <script>
+import BlogContext from "@/context/BlogContext";
 export default {
   name: "Tools",
   data: () => {
     return {
       styles: [],
+      themes:[]
     };
   },
   methods: {
@@ -39,6 +41,9 @@ export default {
       }
     },
   },
+  created(){
+    this.themes = BlogContext.themes
+  }
 };
 </script>
 

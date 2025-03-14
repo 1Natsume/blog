@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import BlogContext from "@/context/BlogContext";
 export default {
   name: "BrandName",
   data: () => {
@@ -23,11 +24,11 @@ export default {
       blogName: '',
     }
   },
-  created(){
-    
+  created() {
+
   },
-  mounted(){
-    $('.blog-name').append(this.$store.state.config.logo)
+  mounted() {
+    $('.blog-name').append(BlogContext.logo)
   }
   , methods: {
     switchPanelAside() {

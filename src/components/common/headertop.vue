@@ -11,7 +11,7 @@
         </div> -->
         <div class="headertop-menu">
             <ul>
-                <li v-for="item in this.$store.state.config.menu">
+                <li v-for="item in menu">
                     <a href="javascript:void(0)" @click="clickItem(item.url)">
                         <div class="font-big">{{ item.name }}</div>
                         <div class="font-small">{{ item.title }}</div>
@@ -22,14 +22,18 @@
     </div>
 </template>
 <script>
+import BlogContext from "@/context/BlogContext";
 import blogUtils from "@/utils/BlogUtils";
 import blogApi from "@/utils/BlogApi";
 import video from "@/utils/video"
 export default {
     name: "headertop",
+    data() {
+        menu: []
+    },
     methods: {
         loadvideo() {
-            video.loadvideo(this.$store.state.config)
+            video.loadvideo(BlogContext)
         },
         foucsMe: () => {
             blogApi.blogFollow().then((data) => {
@@ -58,6 +62,7 @@ export default {
     },
     created() {
         this.loadvideo();
+        this.menu = BlogContext.menu
     },
 }
 

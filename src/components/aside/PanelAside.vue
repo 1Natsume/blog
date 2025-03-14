@@ -2,7 +2,7 @@
   <div id="panel_aside" class="panel-aside-back-color panel-aside-color">
     <div class="panel-aside-wrap none-base-scroll">
       <avatar-area></avatar-area>
-      <menu-items menu-identify="1" menu-title="导航" :menu-list="this.$store.state.config.menu"></menu-items>
+      <menu-items menu-identify="1" menu-title="导航" :menu-list="MenuNav"></menu-items>
       <menu-items menu-identify="2" menu-title="组成" :menu-list="funcMenuNav"></menu-items>
     </div>
     <div class="panel-aside-img" :style="'background-image: url(' + img + ');'">
@@ -42,6 +42,7 @@ export default {
      AvatarArea:Component.AvatarArea },
   data: () => {
     return {
+      MenuNav: [],
       funcMenuNav: [],
       img: img
     }
@@ -78,9 +79,10 @@ export default {
       }, {
         title: '友链',
         icon: 'icon iconfont links',
-        children: this.$store.state.config.link
+        children: BlogContext.link
       })
     })
+    this.MenuNav = BlogContext.menu
   }
 
 }

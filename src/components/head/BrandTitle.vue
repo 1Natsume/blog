@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import BlogContext from "@/context/BlogContext";
 export default {
   name: "BrandTitle",
   data: () => {
@@ -12,8 +13,8 @@ export default {
       blogName: '',
     }
   },
-  mounted(){
-    $('.brand-title-wrap').append(this.$store.state.config.logo)
+  mounted() {
+    $('.brand-title-wrap').append(BlogContext.logo)
   }
 }
 </script>

@@ -34,12 +34,15 @@ app.directive('highlight', function (el) {
   })
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block, index) => {
+    
+    hljs.highlightElement(block);
+    block.removeAttribute('data-highlighted')
     // setTimeout(() => {
     //   if (!block.highInit) {
         
     //     block.highInit = true;
     //     hljs.initHighlighting();
-
+        
     //     block.setAttribute('style', 'margin-top: 8px;');
     //     hljs.highlightBlock(block)
     //   }
@@ -47,4 +50,5 @@ app.directive('highlight', function (el) {
 
   })
 })
+
 app.mount('#app')

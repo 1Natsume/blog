@@ -1,6 +1,6 @@
 <template>
   <div id="blog_panel">
-    <Headertop></Headertop>
+    <!-- <Headertop></Headertop> -->
     <blog-head-bar class="blog-head-bar" :style="loadColor(this.$store.state.config.headcolor)"></blog-head-bar>
     <div class="main-panel">
       <panel-aside id="panel_aside" class="panel-aside"

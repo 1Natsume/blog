@@ -19,48 +19,13 @@
         <div id="panel_bottom_target"></div>
       </div>
     </div>
-    <Tools></Tools> 
+    <Tool></Tool>
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
-const PanelAside = defineAsyncComponent(() =>
-  import('./aside/PanelAside.vue')
-);
-const LoadingBody = defineAsyncComponent(() =>
-  import('./common/LoadingBody.vue')
-);
-const LoadingBar = defineAsyncComponent(() =>
-  import('./common/LoadingBar.vue')
-);
-const BlogHeadBar = defineAsyncComponent(() =>
-  import('./head/BlogHeadBar.vue')
-);
-const ArticlesBody = defineAsyncComponent(() =>
-  import('./body/CategoryBody.vue')
-);
-const RouteBody = defineAsyncComponent(() =>
-  import('./body/SubjectBody.vue')
-);
-const Tools = defineAsyncComponent(() =>
-  import('./common/Tools.vue')
-);
-const Headertop = defineAsyncComponent(() =>
-  import('./common/headertop.vue')
-);
-const BlogBottom = defineAsyncComponent(() =>
-  import('./bottom/BlogBottom.vue')
-);
-// import BlogHeadBar from "./head/BlogHeadBar.vue";
-// import PanelAside from "./aside/PanelAside.vue";
-// import ArticlesBody from "./body/CategoryBody.vue";
-// import RouteBody from "./body/SubjectBody.vue";
-// import LoadingBody from "./common/LoadingBody.vue";
-// import LoadingBar from "./common/LoadingBar.vue";
-// import Tools from "./common/Tools.vue"
-// import Headertop from "./common/headertop.vue";
-// import BlogBottom from "./bottom/BlogBottom.vue";
+import Component from "@/utils/Component";
+
 export default {
   name: "BlogPanel",
   methods: {
@@ -69,12 +34,6 @@ export default {
     },
     loadColor(color) {
       return 'background-color: ' + color + ''
-    },
-    IsShow(a){
-      if(a=="handsome"){
-        return true
-      }
-      return false
     }
   },
   data: () => {
@@ -90,8 +49,10 @@ export default {
 
   },
   components: {
-    Headertop, BlogBottom,
-    LoadingBar, LoadingBody, RouteBody, ArticlesBody,PanelAside, BlogHeadBar, Tools
+    Headertop: Component.Headertop, BlogBottom: Component.BlogBottom,
+    LoadingBar: Component.LoadingBar, LoadingBody: Component.LoadingBody,
+    RouteBody: Component.RouteBody, ArticlesBody: Component.ArticlesBody,
+    PanelAside: Component.PanelAside, BlogHeadBar: Component.BlogHeadBar, Tool: Component.Tool
   },
   beforeRouteUpdate: function (to, from, next) {
     this.$bus.emit("fullLoadingOpen", next);

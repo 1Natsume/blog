@@ -1,13 +1,6 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import blogRedirect from "@/utils/BlogRedirect";
-
-// 路由懒加载
-const BlogPanel = () => import('@/components/BlogPanel.vue')
-const Admin = () => import("@/components/Admin.vue")
-const CategoryBody = () => import("@/components/body/CategoryBody.vue")
-const ArticleBody = () => import("@/components/body/article/ArticleBody.vue")
-const SubjectBody = () => import("@/components/body/SubjectBody.vue")
-const BlogAuthorBody = () => import("@/components/body/author/BlogAuthorBody.vue")
+import Component from "@/utils/Component";
 
 let routes = [
     {
@@ -19,36 +12,36 @@ let routes = [
     {
         path: '/c',
         name: 'BlogPanel',
-        component: BlogPanel,
+        component: Component.BlogPanel,
         children: [{
             path: 'subject/',
             name: "SubjectBody",
-            component: SubjectBody,
+            component: Component.SubjectBody,
             redirect: "/",
             children: [
-                { path: 'category/:categoryId', component: CategoryBody },
-                { path: 'archive/:archiveYear/:archiveMonth', component: CategoryBody },
-                { path: 'tag/:tagId/', component: CategoryBody },
-                { path: 'p/:articleId', component: ArticleBody },
+                { path: 'category/:categoryId', component: Component.CategoryBody },
+                { path: 'archive/:archiveYear/:archiveMonth', component: Component.CategoryBody },
+                { path: 'tag/:tagId/', component: Component.CategoryBody },
+                { path: 'p/:articleId', component: Component.ArticleBody },
                 {
                     path: '/admin',
                     name: 'Admin',
-                    component: Admin,
+                    component: Component.Admin,
                 },
             ]
         },
         {
             path: 'author/',
             name: "AuthorBody",
-            component: BlogAuthorBody
+            component: Component.BlogAuthorBody
         }
         ]
     },
-    // {
-    //     path: '/admin',
-    //     name: 'Admin',
-    //     component: Admin,
-    // },
+    {
+        path: '/song',
+        name: 'PlayList',
+        component: Component.PlayList,
+    },
     {
         path: "/:catchAll(.*)", // 不识别的path自动匹配404
         redirect: '/',

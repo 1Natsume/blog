@@ -30,15 +30,16 @@
 <script>
 
 /*面板侧边控件*/
-import AvatarArea from "./AvatarArea.vue";
-import MenuItems from "./MenuItems.vue";
+import Component from "@/utils/Component";
 import BlogContext from "@/context/BlogContext";
 import blogApi from "@/utils/BlogApi";
 import blogKit from "@/utils/BlogKit";
 import img from "@/assets/Natsume.png";
+Component.MenuItems
 export default {
   name: "PanelAside",
-  components: { MenuItems, AvatarArea },
+  components: { MenuItems:Component.MenuItems,
+     AvatarArea:Component.AvatarArea },
   data: () => {
     return {
       funcMenuNav: [],

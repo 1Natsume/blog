@@ -62,13 +62,15 @@
 import emoji from "@/utils/EmojiUtils";
 import blogApi from "@/utils/BlogApi";
 import blogKit from "@/utils/BlogKit";
-import AsideInfoPage from "./AsideInfoPage.vue";
-import BlogCloudPage from "./BlogCloudPage.vue";
-import BlogNavicatPage from "./BlogNavicatPage.vue";
-import BlogCloudAd from "./BlogCloudAd.vue";
+import Component from "@/utils/Component";
 import BlogContext from "@/context/BlogContext";
 export default {
-  components: { BlogCloudAd, BlogNavicatPage, BlogCloudPage, AsideInfoPage },
+  components: {
+    BlogCloudAd: Component.BlogCloudAd,
+    BlogNavicatPage: Component.BlogNavicatPage,
+    BlogCloudPage: Component.BlogCloudPage,
+    AsideInfoPage: Component.AsideInfoPage
+  },
   name: "BodyAside",
   data: () => {
     return {

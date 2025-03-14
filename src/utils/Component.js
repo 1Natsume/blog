@@ -1,0 +1,42 @@
+import { defineAsyncComponent } from 'vue';
+
+let Components = {
+    BlogPanel: defineAsyncComponent(() => import('@/components/BlogPanel.vue')),
+    PanelAside: defineAsyncComponent(() => import('@/components/aside/PanelAside.vue')),
+    LoadingBody: defineAsyncComponent(() => import('@/components/common/LoadingBody.vue')),
+    LoadingBar: defineAsyncComponent(() => import('@/components/common/LoadingBar.vue')),
+    BlogHeadBar: defineAsyncComponent(() => import('@/components/head/BlogHeadBar.vue')),
+    ArticleBody: defineAsyncComponent(() => import('@/components/body/article/ArticleBody.vue')),
+    RouteBody: defineAsyncComponent(() => import('@/components/body/SubjectBody.vue')),
+    Tool: defineAsyncComponent(() => import('@/components/common/Tool.vue')),
+    Headertop: defineAsyncComponent(() =>import('@/components/common/headertop.vue')),
+    BlogBottom: defineAsyncComponent(() =>import('@/components/bottom/BlogBottom.vue')),
+    Admin: defineAsyncComponent(() =>import('@/components/Admin.vue')),
+    CategoryBody: defineAsyncComponent(() =>import('@/components/body/CategoryBody.vue')),
+    SubjectBody: defineAsyncComponent(() =>import('@/components/body/SubjectBody.vue')),
+    BlogAuthorBody: defineAsyncComponent(() =>import('@/components/body/author/BlogAuthorBody.vue')),
+    PlayList: defineAsyncComponent(() =>import('@/components/PlayList.vue')),
+    AvatarArea: defineAsyncComponent(() =>import('@/components/aside/AvatarArea.vue')),
+    MenuItems: defineAsyncComponent(() =>import('@/components/aside/MenuItems.vue')),
+    ArticleTitle: defineAsyncComponent(() =>import("@/components/body/article/ArticleTitle.vue")),
+    ArticlePreLine: defineAsyncComponent(() => import("@/components/body/article/ArticlePreLine.vue")),
+    ArticleDesc: defineAsyncComponent(() =>import("@/components/body/article/ArticleDesc.vue")),
+    ArticleComment: defineAsyncComponent(() =>import("@/components/body/article/ArticleComment.vue")),
+    ArticleMessage: defineAsyncComponent(() =>import("@/components/body/article/ArticleMessage.vue")),
+    ArticlePrePos: defineAsyncComponent(() =>import("@/components/body/article/ArticlePrePos.vue")),
+    AsideInfoPage: defineAsyncComponent(() =>import("@/components/body/aside/AsideInfoPage.vue")),
+    BlogCloudPage: defineAsyncComponent(() =>import("@/components/body/aside/BlogCloudPage.vue")),
+    BlogNavicatPage: defineAsyncComponent(() =>import("@/components/body/aside/BlogNavicatPage.vue")),
+    BlogCloudAd: defineAsyncComponent(() =>import("@/components/body/aside/BlogCloudAd.vue")),
+    BlogAuthorIng: defineAsyncComponent(() => import("@/components/body/author/BlogAuthorIng.vue")),
+    BrandName: defineAsyncComponent(() =>import("@/components/head/BrandName.vue")),
+    KeywordSearcher: defineAsyncComponent(() => import("@/components/head/KeywordSearcher.vue")),
+    MusicPlayer: defineAsyncComponent(() => import("@/components/head/MusicPlayer.vue")),
+    BeerList: defineAsyncComponent(() => import("@/components/head/BeerList.vue")),
+    SetBtn: defineAsyncComponent(() => import("@/components/head/SetBtn.vue")),
+    MinSetBtn: defineAsyncComponent(() => import("@/components/head/MinSetBtn.vue")),
+    BrandTitle: defineAsyncComponent(() => import("@/components/head/BrandTitle.vue")),
+
+}
+
+export default Components;

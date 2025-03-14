@@ -13,47 +13,49 @@
 </template>
 
 <script>
-  import BrandName from "./BrandName.vue";
-  import KeywordSearcher from "./KeywordSearcher.vue";
-  import MusicPlayer from "./MusicPlayer.vue";
-  import BeerList from "./BeerList.vue";
-  import SetBtn from "./SetBtn.vue";
-  import MinSetBtn from "./MinSetBtn.vue";
-  import BrandTitle from "./BrandTitle.vue";
-  export default {
-    name: "BlogHeadBar",
-    data: () => {
-      return {
-       
-      }
-    },
-    mounted: function () {
-      let self=this;
-      function resetHeadView(){
-        $(self.$refs.blogHeadBar).css('overflow',$(window).width()<900?'hidden':'');
-        self.minShowSet=false;
-      }
-      resetHeadView();
-      $(window).resize((e)=>{resetHeadView()});
-      this.$refs.blogHeadBar.addEventListener('transitionstart',(e)=>{
-        $(e.target).css('overflow','hidden');
-      });
-      this.$refs.blogHeadBar.addEventListener('transitionend',(e)=>{
-        if($(e.target).height()=='250'){
-          $(e.target).css('overflow','');
-        }
-      });
-    },
-    computed: {
+import Component from "@/utils/Component";
+export default {
+  name: "BlogHeadBar",
+  data: () => {
+    return {
 
-    },
-    components: {BrandTitle, MinSetBtn, SetBtn, BeerList, MusicPlayer, KeywordSearcher, BrandName},
-    methods:{
-      switchSetView:function(){
-        setTimeout(()=>{
-          this.minShowSet=!this.minShowSet;
-        },this.minShowSet&&$("#blog_head_bar .pop-list").is(":visible")?300:0);
+    }
+  },
+  mounted: function () {
+    let self = this;
+    function resetHeadView() {
+      $(self.$refs.blogHeadBar).css('overflow', $(window).width() < 900 ? 'hidden' : '');
+      self.minShowSet = false;
+    }
+    resetHeadView();
+    $(window).resize((e) => { resetHeadView() });
+    this.$refs.blogHeadBar.addEventListener('transitionstart', (e) => {
+      $(e.target).css('overflow', 'hidden');
+    });
+    this.$refs.blogHeadBar.addEventListener('transitionend', (e) => {
+      if ($(e.target).height() == '250') {
+        $(e.target).css('overflow', '');
       }
+    });
+  },
+  computed: {
+
+  },
+  components: {
+    BrandTitle: Component.BrandTitle,
+    MinSetBtn: Component.MinSetBtn,
+    SetBtn: Component.SetBtn,
+    BeerList: Component.BeerList,
+    MusicPlayer: Component.MusicPlayer,
+    KeywordSearcher: Component.KeywordSearcher,
+    BrandName: Component.BrandName,
+  },
+  methods: {
+    switchSetView: function () {
+      setTimeout(() => {
+        this.minShowSet = !this.minShowSet;
+      }, this.minShowSet && $("#blog_head_bar .pop-list").is(":visible") ? 300 : 0);
     }
   }
+}
 </script>

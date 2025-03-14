@@ -49,6 +49,7 @@ export default {
                 return;
             }
             if (this.$route.path == url) {
+                document.getElementById('bgvideo').pause()
                 $("#blog").attr('class', 'handsome');
                 return;
             }

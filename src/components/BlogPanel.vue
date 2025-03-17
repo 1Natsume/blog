@@ -1,11 +1,11 @@
 <template>
   <div id="blog_panel">
     <!-- <Headertop></Headertop> -->
-    <blog-head-bar class="blog-head-bar" :style="loadColor(this.$store.state.config.headcolor)"></blog-head-bar>
+    <blog-head-bar class="blog-head-bar" :style="loadColor(headcolor)"></blog-head-bar>
     <div class="main-panel">
       <panel-aside id="panel_aside" class="panel-aside"
         :class="{ 'blog-aside-show': asideIsShow, 'blog-aside-hide': !asideIsShow }"
-        :style="loadColor(this.$store.state.config.asidecolor)"></panel-aside>
+        :style="loadColor(asidecolor)"></panel-aside>
       <div class="panel-aside-shape" :class="!asideIsShow ? 'panel-aside-shape-hide' : ''" @click="asideIsShow = false">
         sss
       </div>
@@ -25,7 +25,7 @@
 
 <script>
 import Component from "@/utils/Component";
-
+import BlogContext from "@/context/BlogContext";
 export default {
   name: "BlogPanel",
   methods: {
@@ -42,11 +42,13 @@ export default {
       lastPageId: '',
       routeMinHeight: '',
       asideIsShow: false,
+      asidecolor :'',
       headcolor: ''
     }
   },
   created() {
-
+    this.headcolor = BlogContext.headcolor
+    this.asidecolor = BlogContext.asidecolor
   },
   components: {
     Headertop: Component.Headertop, BlogBottom: Component.BlogBottom,

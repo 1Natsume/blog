@@ -8,6 +8,7 @@
     </div>
 </template>
 <script>
+import BlogContext from "@/context/BlogContext";
 import blogApi from "@/utils/BlogApi";
 export default{
     name:"",
@@ -30,7 +31,7 @@ export default{
     },
     created(){
         $("#blog").attr('class', 'handsome');
-        blogApi.loadMusicList(this.$store.state.config.musicIds).then((list) => {
+        blogApi.loadMusicList(BlogContext.musicIds).then((list) => {
         this.playList = list;
         //this.musicState();
       });

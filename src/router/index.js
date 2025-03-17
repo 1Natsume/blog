@@ -43,13 +43,18 @@ let routes = [
         component: Component.PlayList,
     },
     {
+        path: '/home',
+        name: 'Home',
+        component: Component.Headertop,
+    },
+    {
         path: "/:catchAll(.*)", // 不识别的path自动匹配404
         redirect: '/',
     },
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHashHistory(process.env.BASE_URL),
     routes,
     // 每次切换路由的时候滚动到页面顶部
     //页面跳转显示在顶部

@@ -9,6 +9,7 @@
         <!-- <div class="headertop-down faa-float animated" onclick="headertop_down()">
             <span> <i class="fa fa-chevron-down" aria-hidden="true"></i> </span>
         </div> -->
+        <div class="headertop-logo"></div>
         <div class="headertop-menu">
             <ul>
                 <li v-for="item in menu">
@@ -54,7 +55,6 @@ export default {
             }
             if (this.$route.path == url) {
                 document.getElementById('bgvideo').pause()
-                $("#blog").attr('class', 'handsome');
                 return;
             }
             this.$router.push(url);
@@ -63,7 +63,11 @@ export default {
     created() {
         this.loadvideo();
         this.menu = BlogContext.menu
+        
     },
+    mounted(){
+        $('.headertop-logo').append(BlogContext.logo)
+    }
 }
 
 </script>

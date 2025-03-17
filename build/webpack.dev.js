@@ -24,14 +24,7 @@ const devConfig = {
   devServer: {
     open: true, // 是否自动打开浏览器
     hot: true, // 开启HMR功能（只能用于开发环境，生产环境不需要了）
-    historyApiFallback: {
-      rewrites: [
-        {
-          from: /.*/,
-          to: path.posix.join(config.dev.assetsPublicPath, "index.html"),
-        },
-      ],
-    },
+    historyApiFallback: true,
     proxy: config.dev.proxyTable,
   },
   plugins: [

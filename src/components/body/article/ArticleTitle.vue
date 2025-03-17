@@ -1,4 +1,3 @@
-<!--eslint-disable-->
 <template>
     <div id="article_title">
       <div class="article-page-head-wrap">

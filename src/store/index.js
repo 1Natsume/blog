@@ -12,10 +12,9 @@ function loadStateConfig() {
       return configjson
     } else {
       const config = {
-        theme: "gal",
+        theme: "handsome",
         bg: ["http://www.dmoe.cc/random.php"],
-        headcolor: "#7266ba",
-        asidecolor: "#fff",
+        
       };
       localStorage.setItem("config", JSON.stringify(config));
       return config;
@@ -27,7 +26,7 @@ function loadStateConfig() {
   }
 }
 const config = loadStateConfig();
-export default new Vuex.Store({
+export default createStore({
   state: {
     config: config,
     recruitScrollY: 0

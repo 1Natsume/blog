@@ -16,9 +16,10 @@ export default {
   redirect: function (e) {
     let pathname = window.location.pathname;
     let relPath = matchUrlType(pathname);
-    relPath = relPath ? relPath : '/subject/category/default';
+    relPath = relPath ? relPath : '/home';
+    //process.env.VUE_CTX+ 
     return {
-      path:  process.env.VUE_CTX+ relPath
+      path:  relPath
     };
   }
 }

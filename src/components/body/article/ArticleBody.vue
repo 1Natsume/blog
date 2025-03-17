@@ -51,7 +51,6 @@ export default {
       this.$refs.articleComment.setQuoteCommentId(commentId, commenter);
     },
     initArticle: function () {
-      $("#blog").attr('class', 'handsome');
       this.articleId = this.$route.params.articleId;
 
       Promise.all([

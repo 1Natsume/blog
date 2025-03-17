@@ -28,6 +28,8 @@ let BlogContext = {
   contact: [
     { title: "", dec: "", icon: "" }
   ],
+  headcolor: "#7266ba",
+  asidecolor: "#fff",
   musicIds: ["7282638202"],
   logo: `<span class="logolink logo">
 						<a href="/" target="_parent">
@@ -70,12 +72,6 @@ let BlogContext = {
       theme: "Sakura",
       icon: "icon iconfont link",
       dec: "Sakura"
-    },
-    {
-      id: 4,
-      theme: "Gal",
-      icon: "icon iconfont link",
-      dec: "Gal"
     },
   ],
 }

@@ -15,7 +15,7 @@
                   :style="'background-image: url(' + item.imgUrl + ')'"></div>
               </router-link>
             </div>
-            
+
             <div class="post-meta wrapper-lg p-b-none">
               <h2 class="m-t-none index-post-title">
                 <router-link :to="item.url">{{ item.title }}</router-link>
@@ -32,23 +32,24 @@
           </div>
         </div>
         <page-line :page-lines="pageList" @clickItem="clickItem"></page-line>
-        
+
       </div>
 
     </div>
-    
+
   </div>
 </template>
 <script>
+import Component from "@/utils/Component";
 import blogKit from "@/utils/BlogKit";
 import blogApi from "@/utils/BlogApi";
 import BlogContext from "@/context/BlogContext";
-import PageLine from "../common/PageLine.vue";
+
 
 let imgList = Array.from(Array(BlogContext.panelItemPic.length - 1), (v, k) => k).sort(() => Math.random() >= 0.5 ? 1 : -1).map((item) => 1 + item);
 
 export default {
-  components: { PageLine },
+  components: { PageLine: Component.PageLine },
   data: () => {
     return {
       arrList: [],

@@ -33,10 +33,12 @@ let Components = {
     KeywordSearcher: defineAsyncComponent(() => import("@/components/head/KeywordSearcher.vue")),
     MusicPlayer: defineAsyncComponent(() => import("@/components/head/MusicPlayer.vue")),
     BeerList: defineAsyncComponent(() => import("@/components/head/BeerList.vue")),
+    PopList: defineAsyncComponent(() => import("@/components/head/PopList.vue")),
     SetBtn: defineAsyncComponent(() => import("@/components/head/SetBtn.vue")),
     MinSetBtn: defineAsyncComponent(() => import("@/components/head/MinSetBtn.vue")),
     BrandTitle: defineAsyncComponent(() => import("@/components/head/BrandTitle.vue")),
-
+    PubAside: defineAsyncComponent(() => import("@/components/body/aside/PubAside.vue")),
+    PageLine: defineAsyncComponent(() => import("@/components/common/PageLine.vue")),
 }
 
 export default Components;

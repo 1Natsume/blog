@@ -1,10 +1,11 @@
 <template>
-    <div id="blog" :class="this.$store.state.config.theme">
+    <div id="blog" :class="themeStyle()">
         <!-- <div id="bg" :style="bg(this.$store.state.config.bg)"></div> -->
         <router-view />
     </div>
 </template>
 <script>
+import BlogContext from "@/context/BlogContext";
 export default {
     name: "App",
     data() {
@@ -16,7 +17,7 @@ export default {
     },
     methods: {
         themeStyle: () => {
-            return null
+            return BlogContext.theme
         },
         bg(bg){
             return "background-image:url('"+ bg+"')"

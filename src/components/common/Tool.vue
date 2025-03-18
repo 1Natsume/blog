@@ -32,13 +32,13 @@ export default {
       $(".skin-menu").toggleClass('show');
     },
     switchTheme: (res) => {
-      let config = localStorage.getItem('config')
-      if (config) {
-        let theme = JSON.parse(config);
-        theme.theme = res.theme
-        localStorage.setItem('config', JSON.stringify(theme)); // 重新存储数据
-        $("#blog").attr('class', res.theme);
-      }
+      // let config = localStorage.getItem('config')
+      // if (config) {
+      //   let theme = JSON.parse(config);
+      //   theme.theme = res.theme
+      //   localStorage.setItem('config', JSON.stringify(theme)); // 重新存储数据
+      // }
+      $("#blog").attr('class', res.theme);
     },
   },
   created(){

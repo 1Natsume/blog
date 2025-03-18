@@ -1,4 +1,3 @@
-import Vuex from "vuex";
 import { createStore } from 'vuex';
 function loadStateConfig() {
   try {
@@ -12,8 +11,6 @@ function loadStateConfig() {
       return configjson
     } else {
       const config = {
-        theme: "handsome",
-        bg: ["http://www.dmoe.cc/random.php"],
         
       };
       localStorage.setItem("config", JSON.stringify(config));

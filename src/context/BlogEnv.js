@@ -28,6 +28,8 @@ let BlogContext = {
   contact: [
     { title: "", dec: "", icon: "" }
   ],
+  theme: "handsome",
+  bg: ["http://www.dmoe.cc/random.php"],
   headcolor: "#7266ba",
   asidecolor: "#fff",
   musicIds: ["7282638202"],

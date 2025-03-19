@@ -19,10 +19,10 @@ let routes = [
             component: Component.SubjectBody,
             redirect: "/",
             children: [
-                { path: 'category/:categoryId', component: Component.CategoryBody },
-                { path: 'archive/:archiveYear/:archiveMonth', component: Component.CategoryBody },
-                { path: 'tag/:tagId/', component: Component.CategoryBody },
-                { path: 'p/:articleId', component: Component.ArticleBody },
+                { path: 'category/:categoryId', component: Component.CategoryBody, alias: '/category/:categoryId' },
+                { path: 'archive/:archiveYear/:archiveMonth', component: Component.CategoryBody, alias: '/archive/:archiveYear/:archiveMonth' },
+                { path: 'tag/:tagId/', component: Component.CategoryBody, alias: '/tag/:tagId/' },
+                { path: 'p/:articleId', component: Component.ArticleBody, alias: '/p/:articleId' },
                 {
                     path: '/admin',
                     name: 'Admin',
@@ -33,7 +33,8 @@ let routes = [
         {
             path: 'author/',
             name: "AuthorBody",
-            component: Component.BlogAuthorBody
+            component: Component.BlogAuthorBody,
+            alias: '/author/'
         }
         ]
     },
@@ -61,7 +62,7 @@ const router = createRouter({
 
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
-            return { left: 0, top: 0}
+            return { left: 0, top: 0 }
             //return savedPosition
         } else {
             return { left: 0, top: 0 }

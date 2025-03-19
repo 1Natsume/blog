@@ -11,7 +11,7 @@ import Component from "@/utils/Component";
 
 export default {
   name: "RouteBody",
-  components: { ArticlesBody: Component.ArticleBody, PubAside: Component.PubAside },
+  components: { ArticleBody: Component.ArticleBody, PubAside: Component.PubAside },
   mounted: function () {
   },
   data: () => {

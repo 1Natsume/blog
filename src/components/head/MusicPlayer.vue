@@ -64,7 +64,6 @@ export default {
     blogUtils.registerUnClick("#music_player", () => {
       this.showPlay = false;
     });
-
   },
   data: () => {
     return {
@@ -119,8 +118,6 @@ export default {
         document.getElementById("music_player_lrc").textContent = audio.getIndex(this.lrc, this.audio);
         audio.setText(this.lrc, this.audio)
       }
-
-
     },
     musicError: function (even) {
       blogUtils.showInfoMsg('播放失败,5秒后自动切换下一首');

@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 /*缓存池*/
 let dataCache = {};
 /*進行池*/
@@ -13,7 +15,7 @@ let removeUselessTag = (response) => {
   response = response.replace(/src=/g, '_src=');
   return "<div>" + response + "</div>";
 };
-let remoteCallByHtmlCache = function ($, url) {
+let remoteCallByHtmlCache = function (url) {
   if (promiseCache[url]) {
     return promiseCache[url];
   }
@@ -29,9 +31,9 @@ let remoteCallByHtmlCache = function ($, url) {
   promiseCache[url] = rePromise;
   return rePromise;
 }
-let remoteCallByHtml = function ($, url, parser) {
+let remoteCallByHtml = function (url, parser) {
   return new Promise((resolve, reject) => {
-    remoteCallByHtmlCache($, url).then((htmlBody) => {
+    remoteCallByHtmlCache(url).then((htmlBody) => {
       try {
         let tmpDom = $(removeUselessTag(htmlBody));
         let resObj = parser(tmpDom);
@@ -46,7 +48,7 @@ let remoteCallByHtml = function ($, url, parser) {
     });
   });
 };
-let remoteCallByPost = function ($, url, param, parser) {
+let remoteCallByPost = function (url, param, parser) {
   let cacheKey = url + JSON.stringify(param || {});
   if (promiseCache[cacheKey]) {
     return promiseCache[cacheKey];
@@ -80,7 +82,7 @@ let api = {
   apiRemoteCallByHtml: remoteCallByHtml,
   apiRemoteCallByPost: remoteCallByPost,
   //加载歌曲
-  apiLoadMusicSong: ($, param, url) => {
+  apiLoadMusicSong: (url,param) => {
     //{pic,author,title,url,lrc}
     return new Promise((resolve, reject) => {
       $.get(url, (data) => {
@@ -89,7 +91,7 @@ let api = {
     });
   },
   //加载歌曲列表
-  apiLoadMusicPlayList: ($, param, url) => {
+  apiLoadMusicPlayList: (url,param) => {
     //[{pic,author,title,url,lrc}]
     return new Promise((resolve, reject) => {
       $.get(url, (data) => {
@@ -98,9 +100,9 @@ let api = {
     });
   },
   //加载文章数量
-  apiLoadArticleNum: ($, param, url) => {
+  apiLoadArticleNum: (url,param) => {
     //{pageNum,commentNum}
-    return remoteCallByHtml($, url, (dom) => {
+    return remoteCallByHtml(url, (dom) => {
       console.log(dom.html())
       let pageNum = parseInt((dom.find("#stats_post_count").html() || "").replace("随笔", "").replace("-", "").trim());
       let commentNum = parseInt((dom.find("#stats-comment_count").html() || "").replace("评论", "").replace("-", "").trim());
@@ -108,9 +110,9 @@ let api = {
       return { pageNum, commentNum };
     });
   },
-  apiLoadBlogPostInfo: ($, param, url) => {
+  apiLoadBlogPostInfo: (url,param) => {
     //{fucus,digg}
-    return remoteCallByHtml($, url, (dom) => {
+    return remoteCallByHtml(url, (dom) => {
       let reData = {};
       reData.fucus = (dom.find("#green_channel_follow").html() || "").trim() == "关注我" ? true : false;
       reData.digg = (dom.find("#green_channel_digg").html() || "").trim() == "好文要顶" ? true : false;
@@ -118,9 +120,9 @@ let api = {
     });
   },
   //加载作者头像
-  apiLoadAuthorHeadImg: ($, param, url) => {
+  apiLoadAuthorHeadImg: (url,param) => {
     //{face,avatar}
-    return remoteCallByHtml($, url, (dom) => {
+    return remoteCallByHtml(url, (dom) => {
       let src = dom.find(".author_avatar").attr("_src");
       return {
         face: src,
@@ -129,9 +131,9 @@ let api = {
     });
   },
   //加载标签云
-  apiLoadCloudLabel: ($, param, url) => {
+  apiLoadCloudLabel: (url,param) => {
     //{name,url}
-    return remoteCallByHtml($, url, (dom) => {
+    return remoteCallByHtml(url, (dom) => {
       return dom.find("#taglist td a").map((i, v) => {
         let name = $(v).html();
         let url = $(v).attr("href");
@@ -141,9 +143,9 @@ let api = {
       });
     });
   },
-  apiLoadAuthorBlogInfo: ($, param, url) => {
+  apiLoadAuthorBlogInfo: (url,param) => {
     //{username,age,follow,focus,guid}
-    return remoteCallByHtml($, url, (dom) => {
+    return remoteCallByHtml(url, (dom) => {
       let aAttr = dom.find("#profile_block a");
       let reObj = {};
       reObj.username = ($(aAttr[0]).html() || "").trim();
@@ -154,69 +156,69 @@ let api = {
       return reObj;
     });
   },
-  apiBlogFollow: ($, param, url) => {
+  apiBlogFollow: (url,param) => {
     //msg
-    return remoteCallByPost($, url, {
+    return remoteCallByPost(url, {
       blogUserGuid: param.blogUserGuid
     });
   },
-  apiGetCommentBody: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiGetCommentBody: (url,param) => {
+    return remoteCallByPost(url, {
       commentId: param.commentId
     });
   },
-  apiAddComment: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiAddComment: (url,param) => {
+    return remoteCallByPost(url, {
       postId: param.postId,
       body: param.body,
       parentCommentId: param.parentCommentId
     });
   },
-  apiUpdateComment: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiUpdateComment: (url,param) => {
+    return remoteCallByPost(url, {
       commentId: param.commentId,
       body: param.body
     });
   },
-  apiDeleteComment: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiDeleteComment: (url,param) => {
+    return remoteCallByPost(url, {
       commentId: param.commentId,
       pageIndex: param.pageIndex,
       parentId: param.parentId
     });
   },
-  apiDiggComment: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiDiggComment: (url,param) => {
+    return remoteCallByPost(url, {
       commentId: param.commentId,
       isAbandoned: param.isAbandoned,
       postId: param.postId,
       voteType: "Digg"
     })
   },
-  apiBuryComment: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiBuryComment: (url,param) => {
+    return remoteCallByPost(url, {
       commentId: param.commentId,
       isAbandoned: param.isAbandoned,
       postId: param.postId,
       voteType: "Bury"
     })
   },
-  apiVoteBlogPost: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiVoteBlogPost: (url,param) => {
+    return remoteCallByPost(url, {
       isAbandoned: param.isAbandoned,
       postId: param.postId,
       voteType: "Digg"
     })
   },
-  apiBuryBlogPost: ($, param, url) => {
-    return remoteCallByPost($, url, {
+  apiBuryBlogPost: (url,param) => {
+    return remoteCallByPost(url, {
       isAbandoned: param.isAbandoned,
       postId: param.postId,
       voteType: "Bury"
     })
   },
-  apiLoadCommentList: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadCommentList: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       return dom.find(".feedbackItem").map((i, v) => {
         let obj = {};
         obj.commentId = parseInt($(v).find("[class='layer']").attr("href").replace("#", ""));
@@ -238,8 +240,8 @@ let api = {
       });
     });
   },
-  apiLoadCategoriesTags: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadCategoriesTags: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       let obj = {};
       obj.categorys = dom.find("#BlogPostCategory a").map((i, v) => {
         let title = $(v).html();
@@ -254,19 +256,19 @@ let api = {
       return obj;
     });
   },
-  apiLoadCommentCount: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadCommentCount: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       return dom.html();
     });
   },
-  apiLoadViewCount: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadViewCount: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       return dom.html();
     });
   },
 
-  apiLoadArticle: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadArticle: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       let obj = {};
       console.log(dom)
       obj.title = dom.find("#topics").find("#cb_post_title_url span").html();
@@ -280,8 +282,8 @@ let api = {
     });
   },
 
-  apiLoadTagList: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadTagList: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       let title = (dom.find(".PostListTitle").html() || "").trim();
       let list = dom.find("#mainContent .PostList").map((i, v) => {
         let obj = {};
@@ -319,18 +321,18 @@ let api = {
       list, title
     }
   },
-  apiLoadArchiveList: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadArchiveList: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       return api.__loadCommonListParser(dom);
     });
   },
-  apiLoadCategoryList: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadCategoryList: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       return api.__loadCommonListParser(dom);
     });
   },
-  apiLoadPrevnext: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadPrevnext: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       let pre = dom.find(".p_n_p_prefix:contains(«)").attr("href");
       let pos = dom.find(".p_n_p_prefix:contains(»)").attr("href");
       let preId, posId;
@@ -345,8 +347,8 @@ let api = {
       return { preId, posId }
     });
   },
-  apiLoadDefaultCategoryList: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadDefaultCategoryList: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       let title = "";
       let list = dom.find("#mainContent .day").map((i, v) => {
         let objArray = [];
@@ -403,8 +405,8 @@ let api = {
       return { list, title, pageList }
     });
   },
-  apiLoadSideColumn: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadSideColumn: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       /*通用解析器*/
       let commonParser = (i, v) => {
         let url = $(v).attr("href");
@@ -467,8 +469,8 @@ let api = {
       }
     });
   },
-  apiLoadTopLists: ($, param, url) => {
-    return remoteCallByHtml($, url, (dom) => {
+  apiLoadTopLists: (url,param) => {
+    return remoteCallByHtml(url, (dom) => {
       let commonParser = (i, v) => {
         let url = $(v).attr("href");
         let splTmp = $(v).text().trim().split("(");
@@ -483,7 +485,7 @@ let api = {
     });
   },
   __loadFaceCache: {},
-  apiLoadCommitterFaceUrl: ($, param, url) => {
+  apiLoadCommitterFaceUrl: (url,param) => {
     let dataCache = api.__loadFaceCache;
     let committerName = param.committerName;
     if (dataCache[committerName]) {
@@ -491,7 +493,7 @@ let api = {
         resolve(dataCache[committerName]);
       })
     }
-    return remoteCallByHtml($, url, (dom) => {
+    return remoteCallByHtml(url, (dom) => {
       dom.find(".feedbackItem").each((i, v) => {
         let cacheName = ($(v).find("[id^='a_comment_author_']").html() || "").trim();
         let cacheValue = ($(v).find("[id$='_avatar']").html() || "").trim();

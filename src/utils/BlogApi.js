@@ -1,12 +1,9 @@
 import BlogContext from "@/context/BlogContext";
-import $ from "jquery";
 import request from "./request";
 let blogApi = {
   /*音乐播放器API*/
   loadMusicSong: (id) => {
     return BlogContext.apiLoadMusicSong(
-      $,
-      { id: id },
       BlogContext.musicApiUrl
         .replace(":type", "song")
         .replace(":id", id)
@@ -17,13 +14,11 @@ let blogApi = {
     return request.get(url).then((res) => {
       return res
     });
-    
-   
+
+
   },
   loadMusicPlayList: (id) => {
     return BlogContext.apiLoadMusicPlayList(
-      $,
-      { id: id },
       BlogContext.musicApiUrl
         .replace(":type", "playlist")
         .replace(":id", id)
@@ -84,58 +79,51 @@ let blogApi = {
   },
   loadArticleNum: () => {
     return BlogContext.apiLoadArticleNum(
-      $,
-      { blogAcc: BlogContext.blogAcc },
       "/" + BlogContext.blogAcc + "/ajax/blogStats/"
     );
   },
   loadBlogPostInfo: (pageId) => {
     return BlogContext.apiLoadBlogPostInfo(
-      $,
-      {
-        blogAcc: BlogContext.blogAcc,
-        blogId: BlogContext.blogId,
-        pageId: pageId,
-        blogUserGuid: BlogContext.blogUserGuid,
-      },
       "/" +
-        BlogContext.blogAcc +
-        "/ajax/BlogPostInfo.aspx?blogId=" +
-        BlogContext.blogId +
-        "&postId=" +
-        pageId +
-        "&blogUserGuid=" +
-        BlogContext.blogUserGuid
+      BlogContext.blogAcc +
+      "/ajax/BlogPostInfo.aspx?blogId=" +
+      BlogContext.blogId +
+      "&postId=" +
+      pageId +
+      "&blogUserGuid=" +
+      BlogContext.blogUserGuid
     );
   },
   loadAuthorHeadImg: () => {
-    return BlogContext.apiLoadAuthorHeadImg(
-      $,
-      {blogAcc:BlogContext.blogAcc,
-        blogId:BlogContext.blogId,
-        postId:BlogContext.blogPostId,
-        blogUserGuid:BlogContext.blogUserGuid},
-        "/" + BlogContext.blogAcc + "/ajax/BlogPostInfo.aspx?blogId=" + BlogContext.blogId + "&postId=" + BlogContext.blogPostId + "&blogUserGuid=" + BlogContext.blogUserGuid
-      );
+    let url = "/" + BlogContext.blogAcc + "/ajax/BlogPostInfo.aspx?blogId=" + BlogContext.blogId + "&postId=" + BlogContext.blogPostId + "&blogUserGuid=" + BlogContext.blogUserGuid
+    return BlogContext.apiLoadAuthorHeadImg(url);
 
-    // return request.get("/api/users").then((res) => {
-    //   return {
-    //     face: res["Face"],
-    //     avatar: res["Avatar"],
-    //   };
-    // });
+    return request.get("/api/users").then((res) => {
+      return {
+        face: res["Face"],
+        avatar: res["Avatar"],
+      };
+    });
+  },
+  loadConfig() {
+    return request.get("/api/users").then((res) => {
+      
+      return {
+        blogAcc :res["blogAcc"],
+        face :'https://images.weserv.nl/?url=' + res["Face"],
+        avatar : 'https://images.weserv.nl/?url=' + res["Avatar"],
+        userId: res["UserId"]
+      }
+    })
+
   },
   loadCloudLabel: () => {
     return BlogContext.apiLoadCloudLabel(
-      $,
-      { blogAcc: BlogContext.blogAcc },
       "/" + BlogContext.blogAcc + "/tag/"
     );
   },
   loadAuthorBlogInfo: () => {
     return BlogContext.apiLoadAuthorBlogInfo(
-      $,
-      { blogAcc: BlogContext.blogAcc },
       "/" + BlogContext.blogAcc + "/ajax/news"
     );
     return request.get("/api/users").then((res) => {
@@ -149,34 +137,28 @@ let blogApi = {
   },
   blogFollow: () => {
     return BlogContext.apiBlogFollow(
-      $,
-      { blogAcc: BlogContext.blogAcc, blogUserGuid: BlogContext.blogUserGuid },
-      "/" + BlogContext.blogAcc + "/ajax/Follow/FollowBlogger.aspx"
+      "/" + BlogContext.blogAcc + "/ajax/Follow/FollowBlogger.aspx",{ blogAcc: BlogContext.blogAcc, blogUserGuid: BlogContext.blogUserGuid }
     );
   },
   getCommentBody: (commentId) => {
     return BlogContext.apiGetCommentBody(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/comment/GetCommentBody.aspx",{
         blogAcc: BlogContext.blogAcc,
         blogUserGuid: BlogContext.blogUserGuid,
         commentId: commentId,
       },
-      "/" + BlogContext.blogAcc + "/ajax/comment/GetCommentBody.aspx"
     );
   },
   addComment: (postId, body, parentCommentId) => {
     postId = parseInt(postId);
     parentCommentId = parentCommentId ? parseInt(parentCommentId) : 0;
     return BlogContext.apiAddComment(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/PostComment/Add.aspx",{
         blogAcc: BlogContext.blogAcc,
         postId: postId,
         body: body,
         parentCommentId: parentCommentId,
       },
-      "/" + BlogContext.blogAcc + "/ajax/PostComment/Add.aspx"
     );
     var data = {
       body: body,
@@ -189,34 +171,28 @@ let blogApi = {
   /*更新评论*/
   updateComment: (commentId, body) => {
     return BlogContext.apiUpdateComment(
-      $,
-      { blogAcc: BlogContext.blogAcc, commentId: commentId, body: body },
-      "/" + BlogContext.blogAcc + "/ajax/PostComment/Update.aspx"
+      "/" + BlogContext.blogAcc + "/ajax/PostComment/Update.aspx",{ blogAcc: BlogContext.blogAcc, commentId: commentId, body: body },
     );
   },
   deleteComment: (commentId, pageIndex, parentId) => {
     return BlogContext.apiDeleteComment(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/comment/DeleteComment.aspx",{
         blogAcc: BlogContext.blogAcc,
         commentId: parseInt(commentId),
         pageIndex: pageIndex,
         parentId: parentId,
       },
-      "/" + BlogContext.blogAcc + "/ajax/comment/DeleteComment.aspx"
     );
   },
   diggComment: (postId, commentId, isAbandoned) => {
     return BlogContext.apiDiggComment(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/vote/comment",{
         blogAcc: BlogContext.blogAcc,
         commentId: parseInt(commentId),
         isAbandoned: isAbandoned,
         postId: parseInt(postId),
         voteType: "Digg",
       },
-      "/" + BlogContext.blogAcc + "/ajax/vote/comment"
     );
   },
   buryComment: (postId, commentId, isAbandoned) => {
@@ -262,11 +238,11 @@ let blogApi = {
         $,
         { blogAcc: BlogContext.blogAcc, postId: articleId, pageIndex: page },
         "/" +
-          BlogContext.blogAcc +
-          "/ajax/comments-block?postId=" +
-          articleId +
-          "&pageIndex=" +
-          page
+        BlogContext.blogAcc +
+        "/ajax/comments-block?postId=" +
+        articleId +
+        "&pageIndex=" +
+        page
       ).then((obj) => {
         if (!obj.avatarUrl && !obj.avatarHdUrl) {
           obj.avatarUrl = BlogContext.defHeadImg;
@@ -285,11 +261,11 @@ let blogApi = {
         postId: articleId,
       },
       "/" +
-        BlogContext.blogAcc +
-        "/ajax/CategoriesTags.aspx?blogId=" +
-        BlogContext.blogId +
-        "&postId=" +
-        articleId
+      BlogContext.blogAcc +
+      "/ajax/CategoriesTags.aspx?blogId=" +
+      BlogContext.blogId +
+      "&postId=" +
+      articleId
     );
   },
   loadCommentCount: (articleId) => {
@@ -297,9 +273,9 @@ let blogApi = {
       $,
       { blogAcc: BlogContext.blogAcc, postId: articleId },
       "/" +
-        BlogContext.blogAcc +
-        "/ajax/GetCommentCount.aspx?postId=" +
-        articleId
+      BlogContext.blogAcc +
+      "/ajax/GetCommentCount.aspx?postId=" +
+      articleId
     );
   },
 
@@ -334,11 +310,11 @@ let blogApi = {
       $,
       { blogAcc: BlogContext.blogAcc, archiveId: archiveId, pageNum: pageNum },
       "/" +
-        BlogContext.blogAcc +
-        "/archive/" +
-        archiveId +
-        ".html?page=" +
-        pageNum
+      BlogContext.blogAcc +
+      "/archive/" +
+      archiveId +
+      ".html?page=" +
+      pageNum
     );
   },
   loadCategoryList: (categoryId, pageNum) => {
@@ -350,11 +326,11 @@ let blogApi = {
         pageNum: pageNum,
       },
       "/" +
-        BlogContext.blogAcc +
-        "/category/" +
-        categoryId +
-        ".html?page=" +
-        pageNum
+      BlogContext.blogAcc +
+      "/category/" +
+      categoryId +
+      ".html?page=" +
+      pageNum
     );
   },
   loadPrevnext: (pageId) => {
@@ -366,9 +342,7 @@ let blogApi = {
   },
   loadDefaultCategoryList: (pageNum) => {
     return BlogContext.apiLoadDefaultCategoryList(
-      $,
-      { blogAcc: BlogContext.blogAcc, page: pageNum },
-      "/" + BlogContext.blogAcc + "/default.html?page=" + pageNum
+      "/" + BlogContext.blogAcc + "/default.html?page=" + pageNum,{ blogAcc: BlogContext.blogAcc, page: pageNum },
     );
 
     var list = [];
@@ -392,16 +366,11 @@ let blogApi = {
       });
   },
   loadSideColumn: () => {
-    return BlogContext.apiLoadSideColumn(
-      $,
-      { blogAcc: BlogContext.blogAcc },
-      "/" + BlogContext.blogAcc + "/ajax/sidecolumn.aspx"
-    );
+    let url = '/' + BlogContext.blogAcc + '/ajax/sidecolumn.aspx'
+    return BlogContext.apiLoadSideColumn(url);
   },
   loadTopLists: () => {
     return BlogContext.apiLoadTopLists(
-      $,
-      { blogAcc: BlogContext.blogAcc },
       "/" + BlogContext.blogAcc + "/ajax/TopLists.aspx"
     );
   },
@@ -409,13 +378,11 @@ let blogApi = {
     let pidSplTmp = committerUrl.split("/");
     let pid = pidSplTmp[pidSplTmp.length - 1].replace(".html", "");
     return BlogContext.apiLoadCommitterFaceUrl(
-      $,
-      { blogAcc: BlogContext.blogAcc, postId: pid },
       "/" +
-        BlogContext.blogAcc +
-        "/ajax/GetComments.aspx?postId=" +
-        pid +
-        "&pageIndex=0"
+      BlogContext.blogAcc +
+      "/ajax/GetComments.aspx?postId=" +
+      pid +
+      "&pageIndex=0",{ blogAcc: BlogContext.blogAcc, postId: pid },
     );
   },
   loadBlogTalkShort: () => {
@@ -450,10 +417,10 @@ let blogApi = {
       request
         .get(
           "/newjersey/ajax/comments-block?postId=" +
-            articleId +
-            "&pageIndex=" +
-            page +
-            "&anchorCommentId=0&isDesc=true&order=0&loadCommentBox=false"
+          articleId +
+          "&pageIndex=" +
+          page +
+          "&anchorCommentId=0&isDesc=true&order=0&loadCommentBox=false"
         )
         .then((res) => {
           let maxPage = Math.ceil(res["commentCount"] / mySize);
@@ -486,20 +453,20 @@ let blogApi = {
             obj.digg =
               $(v).find(".comment_digg").length >= 1
                 ? $(v)
-                    .find(".comment_digg")
-                    .html()
-                    .trim()
-                    .replace("支持(", "")
-                    .replace(")", "")
+                  .find(".comment_digg")
+                  .html()
+                  .trim()
+                  .replace("支持(", "")
+                  .replace(")", "")
                 : undefined;
             obj.burry =
               $(v).find(".comment_burry").length >= 1
                 ? $(v)
-                    .find(".comment_burry")
-                    .html()
-                    .trim()
-                    .replace("反对(", "")
-                    .replace(")", "")
+                  .find(".comment_burry")
+                  .html()
+                  .trim()
+                  .replace("反对(", "")
+                  .replace(")", "")
                 : undefined;
             obj.avatarUrl = (
               $(v).find("[id^='comment_'][id$='_avatar']").html() || ""
@@ -530,10 +497,10 @@ let blogApi = {
     return request
       .get(
         "/api/blogs/newjersey/posts/" +
-          articleId +
-          "/comments?pageIndex=" +
-          page +
-          "&pageSize=10"
+        articleId +
+        "/comments?pageIndex=" +
+        page +
+        "&pageSize=10"
       )
       .then((res) => {
         list = [];
@@ -576,8 +543,8 @@ let blogApi = {
     request
       .get(
         "/api/ZzkDocuments/Blog?keyWords=" +
-          keyword +
-          "&pageIndex=1&viewTimesAtLeast=10"
+        keyword +
+        "&pageIndex=1&viewTimesAtLeast=10"
       )
       .then((res) => {
         res.forEach((item) => {

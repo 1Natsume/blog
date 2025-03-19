@@ -1,5 +1,5 @@
 let BlogContext = {
-  blogAcc: "newjersey",
+  blogAcc: `newjersey`,
   blogName: `newjersey`,
   adDisplay: "",
   blogUrlPre: "https://www.cnblogs.com/",
@@ -47,7 +47,7 @@ let BlogContext = {
 					</span>
 `,
   menu: [
-    { name: "HOME", title: "首页", url: "/c/subject/category/default", icon: "fc-lol-huli fc-icon-40" },
+    { name: "HOME", title: "首页", url: "/category/default", icon: "fc-lol-huli fc-icon-40" },
     { name: "BUG", title: "反馈", url: '', icon: "fc-lol-naima fc-icon-40" },
     { name: "FOLLOW", title: "关注", url: 'me', icon: "fc-lol-ruiwen fc-icon-40" },
     { name: "SONG", title: "歌曲", url: '/song', icon: "fc-lol-goutou fc-icon-40" }

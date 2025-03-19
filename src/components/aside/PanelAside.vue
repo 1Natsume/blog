@@ -38,8 +38,10 @@ import img from "@/assets/Natsume.png";
 Component.MenuItems
 export default {
   name: "PanelAside",
-  components: { MenuItems:Component.MenuItems,
-     AvatarArea:Component.AvatarArea },
+  components: {
+    MenuItems: Component.MenuItems,
+    AvatarArea: Component.AvatarArea
+  },
   data: () => {
     return {
       MenuNav: [],
@@ -60,27 +62,32 @@ export default {
   },
   created: function () {
     blogApi.loadSideColumn().then((data) => {
-      this.funcMenuNav.push({
-        title: '随笔分类',
-        icon: 'icon iconfont menu',
-        children: blogKit.convertSubjectUrls(data.catListPostCategory)
-      }, {
-        title: '随笔档案',
-        icon: 'icon iconfont paper',
-        children: blogKit.convertSubjectUrls(data.catListPostArchive)
-      }, {
-        title: '随笔标签',
-        icon: 'icon iconfont label',
-        children: blogKit.convertSubjectUrls(data.catListTag)
-      }, {
-        title: '常用链接',
-        icon: 'icon iconfont pen',
-        children: data.catListLink
-      }, {
-        title: '友链',
-        icon: 'icon iconfont links',
-        children: BlogContext.link
-      })
+      this.funcMenuNav.push(
+        // {
+        //   title: '随笔分类',
+        //   icon: 'icon iconfont menu',
+        //   children: blogKit.convertSubjectUrls(data.catListPostCategory)
+        // },
+        // {
+        //   title: '随笔档案',
+        //   icon: 'icon iconfont paper',
+        //   children: blogKit.convertSubjectUrls(data.catListPostArchive)
+        // },
+        // {
+        //   title: '随笔标签',
+        //   icon: 'icon iconfont label',
+        //   children: blogKit.convertSubjectUrls(data.catListTag)
+        // },
+        // {
+        //   title: '常用链接',
+        //   icon: 'icon iconfont pen',
+        //   children: data.catListLink
+        // },
+        {
+          title: '友链',
+          icon: 'icon iconfont links',
+          children: BlogContext.link
+        })
     })
     this.MenuNav = BlogContext.menu
   }

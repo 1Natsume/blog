@@ -53,7 +53,7 @@ export default {
   components: {
     Headertop: Component.Headertop, BlogBottom: Component.BlogBottom,
     LoadingBar: Component.LoadingBar, LoadingBody: Component.LoadingBody,
-    RouteBody: Component.RouteBody, ArticlesBody: Component.ArticlesBody,
+    RouteBody: Component.RouteBody, ArticleBody: Component.ArticleBody,
     PanelAside: Component.PanelAside, BlogHeadBar: Component.BlogHeadBar, Tool: Component.Tool
   },
   beforeRouteUpdate: function (to, from, next) {

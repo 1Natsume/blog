@@ -16,7 +16,7 @@ export default {
   redirect: function (e) {
     let pathname = window.location.pathname;
     let relPath = matchUrlType(pathname);
-    relPath = relPath ? relPath : '/home';
+    relPath = relPath ? relPath : BlogContext.home;
     return {
       path: relPath
     };

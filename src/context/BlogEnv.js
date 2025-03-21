@@ -7,8 +7,6 @@ let BlogContext = {
   sendPage: "https://msg.cnblogs.com/send/${BLOG_ACC}",
   indexPage: "https://www.cnblogs.com/" + `"newjersey"`,
   autoInfoReset: true,
-  blogId: "725204",
-  blogPostId: "18156273",
   blogUserGuid: "c74cdce3-551f-4ab1-dbb7-08d9c527a5cc",
   pageBarImgs: 21,
   myCommentSize: 10,
@@ -28,6 +26,7 @@ let BlogContext = {
   contact: [
     { title: "", dec: "", icon: "" }
   ],
+  home:'/home',
   theme: "handsome",
   bg: ["http://www.dmoe.cc/random.php"],
   headcolor: "#7266ba",

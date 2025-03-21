@@ -83,20 +83,37 @@ let blogApi = {
     );
   },
   loadBlogPostInfo: (pageId) => {
-    return BlogContext.apiLoadBlogPostInfo(
-      "/" +
-      BlogContext.blogAcc +
-      "/ajax/BlogPostInfo.aspx?blogId=" +
-      BlogContext.blogId +
-      "&postId=" +
-      pageId +
-      "&blogUserGuid=" +
-      BlogContext.blogUserGuid
-    );
+    // return BlogContext.apiLoadBlogPostInfo(
+    //   "/" +
+    //   BlogContext.blogAcc +
+    //   "/ajax/BlogPostInfo.aspx?blogId=" +
+    //   BlogContext.blogId +
+    //   "&postId=" +
+    //   pageId +
+    //   "&blogUserGuid=" +
+    //   BlogContext.blogUserGuid
+    // );
+
+    return request.get("/newjersey/ajax/post-accessories?postId="+pageId).then((res) => {
+      return {
+        buryCount: res["postStats"]["buryCount"],
+        diggCount: res["postStats"]["diggCount"],
+      };
+    });
+  },
+  loadBlogFollow: () => {
+    return request.get("/newjersey/ajax/blog-accessories").then((res) => {
+      if(res["followStatus"].search('unfollow')){
+        return true
+      }else{
+        return false
+      }
+      
+    });
   },
   loadAuthorHeadImg: () => {
-    let url = "/" + BlogContext.blogAcc + "/ajax/BlogPostInfo.aspx?blogId=" + BlogContext.blogId + "&postId=" + BlogContext.blogPostId + "&blogUserGuid=" + BlogContext.blogUserGuid
-    return BlogContext.apiLoadAuthorHeadImg(url);
+    // let url = "/" + BlogContext.blogAcc + "/ajax/BlogPostInfo.aspx?blogId=" + BlogContext.blogId + "&postId=" + BlogContext.blogPostId + "&blogUserGuid=" + BlogContext.blogUserGuid
+    // return BlogContext.apiLoadAuthorHeadImg(url);
 
     return request.get("/api/users").then((res) => {
       return {
@@ -109,7 +126,7 @@ let blogApi = {
     return request.get("/api/users").then((res) => {
       
       return {
-        blogAcc :res["blogAcc"],
+        blogAcc :res["BlogApp"],
         face :'https://images.weserv.nl/?url=' + res["Face"],
         avatar : 'https://images.weserv.nl/?url=' + res["Avatar"],
         userId: res["UserId"]
@@ -146,7 +163,7 @@ let blogApi = {
         blogAcc: BlogContext.blogAcc,
         blogUserGuid: BlogContext.blogUserGuid,
         commentId: commentId,
-      },
+      }
     );
   },
   addComment: (postId, body, parentCommentId) => {
@@ -158,7 +175,7 @@ let blogApi = {
         postId: postId,
         body: body,
         parentCommentId: parentCommentId,
-      },
+      }
     );
     var data = {
       body: body,
@@ -171,7 +188,7 @@ let blogApi = {
   /*更新评论*/
   updateComment: (commentId, body) => {
     return BlogContext.apiUpdateComment(
-      "/" + BlogContext.blogAcc + "/ajax/PostComment/Update.aspx",{ blogAcc: BlogContext.blogAcc, commentId: commentId, body: body },
+      "/" + BlogContext.blogAcc + "/ajax/PostComment/Update.aspx",{ blogAcc: BlogContext.blogAcc, commentId: commentId, body: body }
     );
   },
   deleteComment: (commentId, pageIndex, parentId) => {
@@ -181,7 +198,7 @@ let blogApi = {
         commentId: parseInt(commentId),
         pageIndex: pageIndex,
         parentId: parentId,
-      },
+      }
     );
   },
   diggComment: (postId, commentId, isAbandoned) => {
@@ -192,44 +209,38 @@ let blogApi = {
         isAbandoned: isAbandoned,
         postId: parseInt(postId),
         voteType: "Digg",
-      },
+      }
     );
   },
   buryComment: (postId, commentId, isAbandoned) => {
     return BlogContext.apiBuryComment(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/vote/comment",{
         blogAcc: BlogContext.blogAcc,
         commentId: parseInt(commentId),
         isAbandoned: isAbandoned,
         postId: parseInt(postId),
         voteType: "Bury",
-      },
-      "/" + BlogContext.blogAcc + "/ajax/vote/comment"
+      }
     );
   },
   voteBlogPost: (postId, isAbandoned) => {
     return BlogContext.apiVoteBlogPost(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/vote/blogpost",{
         blogAcc: BlogContext.blogAcc,
         isAbandoned: isAbandoned,
         postId: parseInt(postId),
         voteType: "Digg",
-      },
-      "/" + BlogContext.blogAcc + "/ajax/vote/blogpost"
+      }
     );
   },
   buryBlogPost: (postId, isAbandoned) => {
     return BlogContext.apiBuryBlogPost(
-      $,
-      {
+      "/" + BlogContext.blogAcc + "/ajax/vote/blogpost",{
         blogAcc: BlogContext.blogAcc,
         isAbandoned: isAbandoned,
         postId: postId,
         voteType: "Bury",
-      },
-      "/" + BlogContext.blogAcc + "/ajax/vote/blogpost"
+      }
     );
   },
   loadCommentList: (articleId, page) => {
@@ -254,43 +265,35 @@ let blogApi = {
   },
   loadCategoriesTags: (articleId) => {
     return BlogContext.apiLoadCategoriesTags(
-      $,
-      {
-        blogAcc: BlogContext.blogAcc,
-        blogId: BlogContext.blogId,
-        postId: articleId,
-      },
       "/" +
       BlogContext.blogAcc +
       "/ajax/CategoriesTags.aspx?blogId=" +
       BlogContext.blogId +
       "&postId=" +
-      articleId
+      articleId,{
+        blogAcc: BlogContext.blogAcc,
+        blogId: BlogContext.blogId,
+        postId: articleId,
+      }
     );
   },
   loadCommentCount: (articleId) => {
     return BlogContext.apiLoadCommentCount(
-      $,
-      { blogAcc: BlogContext.blogAcc, postId: articleId },
       "/" +
       BlogContext.blogAcc +
       "/ajax/GetCommentCount.aspx?postId=" +
-      articleId
+      articleId,{ blogAcc: BlogContext.blogAcc, postId: articleId }
     );
   },
 
   loadViewCount: (articleId) => {
     return BlogContext.apiLoadViewCount(
-      $,
-      { blogAcc: BlogContext.blogAcc, postId: articleId },
-      "/" + BlogContext.blogAcc + "/ajax/GetViewCount.aspx?postId=" + articleId
+      "/" + BlogContext.blogAcc + "/ajax/GetViewCount.aspx?postId=" + articleId,{ blogAcc: BlogContext.blogAcc, postId: articleId }
     );
   },
   loadArticle: (articleId) => {
     return BlogContext.apiLoadArticle(
-      $,
-      { blogAcc: BlogContext.blogAcc, articleId: articleId },
-      "/" + BlogContext.blogAcc + "/p/" + articleId
+      "/" + BlogContext.blogAcc + "/p/" + articleId,{ blogAcc: BlogContext.blogAcc, articleId: articleId }
     );
     return request.get("/api/blogposts/" + articleId + "/body").then((res) => {
       return {
@@ -300,44 +303,36 @@ let blogApi = {
   },
   loadTagList: (tagId, pageNum) => {
     return BlogContext.apiLoadTagList(
-      $,
-      { blogAcc: BlogContext.blogAcc, tagId: tagId, page: pageNum },
-      "/" + BlogContext.blogAcc + "/tag/" + tagId + "/?page=" + pageNum
+      "/" + BlogContext.blogAcc + "/tag/" + tagId + "/?page=" + pageNum,{ blogAcc: BlogContext.blogAcc, tagId: tagId, page: pageNum }
     );
   },
   loadArchiveList: (archiveId, pageNum) => {
     return BlogContext.apiLoadArchiveList(
-      $,
-      { blogAcc: BlogContext.blogAcc, archiveId: archiveId, pageNum: pageNum },
       "/" +
       BlogContext.blogAcc +
       "/archive/" +
       archiveId +
       ".html?page=" +
-      pageNum
+      pageNum,{ blogAcc: BlogContext.blogAcc, archiveId: archiveId, pageNum: pageNum }
     );
   },
   loadCategoryList: (categoryId, pageNum) => {
     return BlogContext.apiLoadCategoryList(
-      $,
-      {
-        blogAcc: BlogContext.blogAcc,
-        categoryId: categoryId,
-        pageNum: pageNum,
-      },
       "/" +
       BlogContext.blogAcc +
       "/category/" +
       categoryId +
       ".html?page=" +
-      pageNum
+      pageNum,{
+        blogAcc: BlogContext.blogAcc,
+        categoryId: categoryId,
+        pageNum: pageNum,
+      }
     );
   },
   loadPrevnext: (pageId) => {
     return BlogContext.apiLoadPrevnext(
-      $,
-      { blogAcc: BlogContext.blogAcc, postId: pageId },
-      "/" + BlogContext.blogAcc + "/ajax/post/prevnext?postId=" + pageId
+      "/" + BlogContext.blogAcc + "/ajax/post/prevnext?postId=" + pageId,{ blogAcc: BlogContext.blogAcc, postId: pageId }
     );
   },
   loadDefaultCategoryList: (pageNum) => {

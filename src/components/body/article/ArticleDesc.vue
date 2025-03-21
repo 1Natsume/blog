@@ -9,8 +9,13 @@
       <div class="post-body-bottom">
         <span class="post-bottom-item" @click="diggAction()">
           <span class="icon iconfont zan"></span>
-          <span v-show="!isDigg">已推荐</span>
-          <span v-show="isDigg">点击推荐</span>
+          <!-- <span v-show="!isDigg">已推荐</span>
+          <span v-show="isDigg">点击推荐</span> -->
+          <span>{{ diggCount }}</span>
+        </span>
+        <span class="post-bottom-item" @click="buryAction()">
+          <span class="icon iconfont zan"></span>
+          <span>{{ buryCount }}</span>
         </span>
         <span class="post-bottom-item" @click="fucusAction()">
           <span class="icon iconfont heart"></span>
@@ -40,8 +45,10 @@ export default {
   name: "ArticleDesc",
   data: () => {
     return {
-      isFucus: '',
-      isDigg: '',
+      isFucus: false,
+      isDigg: false,
+      buryCount:0,
+      diggCount:0
     }
   },
   methods: {
@@ -51,14 +58,23 @@ export default {
     initPageList: function () {
       this.$nextTick(() => {
         this.articleObj.pageId ? blogApi.loadBlogPostInfo(this.articleObj.pageId).then((data) => {
-          this.isDigg = data.digg;
-          this.isFucus = data.fucus;
+          // this.isDigg = data.digg;
+          // this.isFucus = data.fucus;
+          this.buryCount = data.buryCount
+          this.diggCount = data.diggCount
           this.$bus.emit("articleInited", this.$refs.articleBody);
         }) : '';
+
+        blogApi.loadBlogFollow().then((data) => {this.isFucus = data})
       });
     },
     diggAction: function () {
       blogApi.voteBlogPost(this.articleObj.pageId, false).then((data) => {
+        blogUtils.showInfoMsg(data.message);
+      });
+    },
+    buryAction: function () {
+      blogApi.buryBlogPost(this.articleObj.pageId, false).then((data) => {
         blogUtils.showInfoMsg(data.message);
       });
     },

@@ -2,39 +2,40 @@
   <div id="music_player">
     <div class="music-player-out-wrap">
       <div class="music-player-wrap">
-        <div class="music-img-wrap" :class="{ Rotation: isPlay }">
-          <div class="div-img head-music-pic" :style="getPicImgStyle"></div>
+        <div class="music-img-wrap" :class="{ Rotation: audio.isPlay }">
+          <div class="div-img head-music-pic" :style="getPicImgStyle()"></div>
         </div>
         <div class="music-right-wrap">
           <div class="music-ope-wrap">
-            <div class="music-title" :style="{ width: cssStyle.titleWidth + 'px' }" :title="playing.title">
-              <div class="music-display-info sing-ellipsis" :class="{ marquee: isPlay }"
-                :style="{ width: (cssStyle.titleWidth - 5) + 'px' }">{{ playing.title }}
+            <div class="music-title" :style="{ width: audio.cssStyle.titleWidth + 'px' }" :title="audio.playing.title">
+              <div class="music-display-info sing-ellipsis" :class="{ marquee: audio.isPlay }"
+                :style="{ width: (audio.cssStyle.titleWidth - 5) + 'px' }">{{ audio.playing.title }}
               </div>
-              <div class="music-display-info sing-ellipsis" :class="{ marqueeT: isPlay }"
-                :style="{ width: (cssStyle.titleWidth - 5) + 'px' }" v-show="isPlay">{{ playing.title }}
+              <div class="music-display-info sing-ellipsis" :class="{ marqueeT: audio.isPlay }"
+                :style="{ width: (audio.cssStyle.titleWidth - 5) + 'px' }" v-show="audio.isPlay">{{ audio.playing.title
+                }}
               </div>
             </div>
             <div class="music-ope-bar">
               <span class="pre" @click="musicPlayPre"><span class="icon iconfont angle-double-left"></span></span>
               <span class="play" @click="musicState"><span class="icon iconfont "
-                  :class="{ timeout: !isPlay, play1: isPlay }"></span></span>
+                  :class="{ timeout: !audio.isPlay, play1: audio.isPlay }"></span></span>
               <span class="pos" @click="musicPlayPos"><span class="icon iconfont angle-double-right"></span></span>
             </div>
           </div>
           <div class="music-volume-wrap">
             <span class="icon iconfont volume-"></span>
           </div>
-          <div class="music-progress" :style="{ width: cssStyle.barWidth + 'px' }"></div>
+          <div class="music-progress" :style="{ width: audio.cssStyle.barWidth + 'px' }"></div>
         </div>
-        <div class="music-list-wrap" @click="showPlay = !showPlay">
+        <div class="music-list-wrap" @click="audio.showPlay = !audio.showPlay">
           <span class="icon iconfont headphones"></span>
         </div>
       </div>
       <div class="music-player-shade"></div>
       <transition name="trans">
-        <pop-list class="pop-list" ref="popList" v-show="showPlay" :pop-list="musicList" pop-title="音乐列表" :flag="true"
-          @clickItem="clickItem"></pop-list>
+        <pop-list class="pop-list" ref="popList" v-show="audio.showPlay" :pop-list="musicList" pop-title="音乐列表"
+          :flag="true" @clickItem="clickItem"></pop-list>
       </transition>
     </div>
     <div id="music_player_lrc"></div>
@@ -53,51 +54,26 @@ export default {
   name: "MusicPlayer",
   components: { PopList: Component.PopList },
   created: function () {
-    this.audio.ontimeupdate = this.musicUpdate;
-    this.audio.onerror = this.musicError;
-    this.audio.oncanplay = this.musicCanplay;
-    this.audio.onended = this.musicEnded;
+    audio.audio.ontimeupdate = this.musicUpdate;
+    audio.audio.onerror = this.musicError;
+    audio.audio.oncanplay = this.musicCanplay;
+    audio.audio.onended = this.musicEnded;
     blogApi.loadMusicList(BlogContext.musicIds).then((list) => {
-      this.playList = list;
+      audio.playList = list;
       //this.musicState();
     });
     blogUtils.registerUnClick("#music_player", () => {
-      this.showPlay = false;
+      audio.showPlay = false;
     });
   },
   data: () => {
     return {
-      delayTime: 0,
-      audio: new Audio(),
-      isPlay: false,
-      playing: {
-        index: 0,
-        title: '音乐播放器',
-        name: '',
-        url: '',
-        pic: '',
-      },
-      playList: [],
-      showPlay: false,
-      lrc: [],
-      cssStyle: {
-        maxTitleWidth: 130,
-        titleWidth: 130,
-        barMaxWidth: 140,
-        barWidth: 0,
-        fontSize: '9',
-      }
+      audio: audio
     }
   },
   computed: {
-    getPicImgStyle: function () {
-      let src = this.playing.pic ? this.playing.pic : '';
-      return {
-        "background": "url('" + src + "') 0% 0% / 100% no-repeat",
-      }
-    },
     musicList: function () {
-      return this.playList.map((item, i) => {
+      return this.audio.playList.map((item, i) => {
         return {
           key: item.title,
           key2: item.author,
@@ -113,82 +89,40 @@ export default {
       this.musicPlayPos();
     },
     musicUpdate: function (even) {
-      this.cssStyle.barWidth = ((this.audio.currentTime / this.audio.duration) * this.cssStyle.barMaxWidth).toFixed(0);
-      if (this.audio.currentTime / this.audio.duration > 0) {
-        document.getElementById("music_player_lrc").textContent = audio.getIndex(this.lrc, this.audio);
-        audio.setText(this.lrc, this.audio)
-      }
+      this.audio.cssStyle.barWidth = ((audio.audio.currentTime / audio.audio.duration) * audio.cssStyle.barMaxWidth).toFixed(0);
+      // if (audio.audio.currentTime / audio.audio.duration > 0) {
+      //   document.getElementById("music_player_lrc").textContent = audio.getIndex(audio.lrc, audio.audio);
+      //   audio.setText(audio.lrc, audio.audio)
+      // }
     },
     musicError: function (even) {
       blogUtils.showInfoMsg('播放失败,5秒后自动切换下一首');
-      this.delayTime = setTimeout(() => {
+      audio.delayTime = setTimeout(() => {
         this.musicPlayPos();
       }, 5000);
     },
     musicCanplay: function (even) {
     },
-    /*切換播放暫停狀態*/
-    musicState: function () {
-      if (this.playing.url) {
-        this.isPlay = !this.isPlay;
-        if (this.isPlay) {
-          this.audio.crossOrigin = 'anonymous';
-          audio.rondom(this.audio)
-          this.audio.play();
-        } else {
-          this.audio.pause();
-        }
-      } else {
-        this.musicPlayPos();
+    getPicImgStyle: function () {
+      let src = this.audio.playing.pic ? this.audio.playing.pic : '';
+      return {
+        "background": "url('" + src + "') 0% 0% / 100% no-repeat",
       }
     },
-    musicPlayPre: function () {
-      if (this.playing.index == 0) {
-        this.musicPlay(this.playList[this.playList.length - 1]);
-      } else {
-        this.musicPlay(this.playList[this.playing.index - 1]);
-      }
+    musicState() {
+      audio.musicState()
+      this.playing = audio.playing
     },
-    musicPlayPos: function () {
-      if (this.playing.index == this.playList.length - 1) {
-        this.musicPlay(this.playList[0]);
-      } else {
-        this.musicPlay(this.playList[this.playing.index + 1]);
-      }
-
+    musicPlayPre() {
+      audio.musicPlayPre()
+      this.playing = audio.playing
     },
-    musicSetInfo: function (item) {
-      this.playing.url = item.url;
-      this.playing.index = item.index;
-      this.playing.pic = item.pic;
-      this.playing.title = item.title + "[" + item.author + "]";
-      let calTitleWidth = blogUtils.getTextWidth(this.playing.name, this.cssStyle.fontSize);
-      calTitleWidth > this.cssStyle.maxTitleWidth ? this.cssStyle.titleWidth = calTitleWidth : this.cssStyle.titleWidth = this.cssStyle.maxTitleWidth;
-      this.$refs.popList.setFlag(item.index);
-      blogApi.loadMusicSonglrc(item.lrc).then(res => {
-        this.lrc = audio.loadLrl(res)
-      })
-
-    },
-    musicPlay: function (item) {
-      try {
-        this.audio.crossOrigin = 'anonymous';
-        this.audio.src = item.url;
-        audio.rondom(this.audio)
-        this.audio.play();
-        this.musicSetInfo(item);
-        this.isPlay = true;
-        if (this.delayTime > 0) {
-          clearTimeout(this.delayTime);
-          this.delayTime = 0;
-        }
-      } catch (e) {
-        this.musicError();
-      }
-
+    musicPlayPos() {
+      audio.musicPlayPos()
+      this.playing = audio.playing
     },
     clickItem: function (item) {
-      this.musicPlay(item);
+      audio.musicPlay(item);
     }
   }
 }

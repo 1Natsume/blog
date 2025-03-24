@@ -1,7 +1,7 @@
 <template>
     <div class="play_list_main">
         <div class="song-list">
-            <div v-for="item in playList" class="song-item">{{ item.title }}</div>
+            <div v-for="item in audio.playList" class="song-item">{{ item.title }}</div>
         </div>
         <div class="play-contols">123</div>
         <div class="song"></div>
@@ -10,31 +10,16 @@
 <script>
 import BlogContext from "@/context/BlogContext";
 import blogApi from "@/utils/BlogApi";
+import audio from '@/utils/Audio'
 export default{
     name:"",
     data: () => {
       return {
-        delayTime:0,
-        audio: new Audio(),
-        isPlay: false,
-        playing: {
-          index: 0,
-          title: '音乐播放器',
-          name: '',
-          url: '',
-          pic: '',
-        },
-        playList: [],
-        showPlay: false,
-        lrc:[],
+        audio: audio,
       }
     },
     created(){
         $("#blog").attr('class', 'handsome');
-        blogApi.loadMusicList(BlogContext.musicIds).then((list) => {
-        this.playList = list;
-        //this.musicState();
-      });
     },
     methods:{
 
